@@ -5,7 +5,7 @@ import { LoginPage } from './pages/Login/LoginPage';
 function App() {
   return (
     <div className='App'>
-      Hello Movies <LoginPage />
+      <LoginPage />
     </div>
   );
 }
