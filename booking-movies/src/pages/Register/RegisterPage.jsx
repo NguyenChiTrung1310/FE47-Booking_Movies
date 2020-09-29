@@ -5,46 +5,29 @@ import { Container, Button, TextField, Typography } from "@material-ui/core";
 import "./RegisterPage.scss";
 import { useStyles } from "./../Register/useStyles";
 //import Button from "./../../components/Button/Button";
+import * as yup from "yup";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+
+const registerSchema = yup.object().shape({
+  account: yup.string().required("Account must be fill out").nullable(),
+  password: yup.string().required("Password must be fill out").nullable(),
+  fullname: yup.string().required("Full Name must be fill out").nullable(),
+  email: yup
+    .string()
+    .required("Email must be fill out")
+    .email("Email is invalid")
+    .nullable(),
+  phoneNumber: yup
+    .string()
+    .required("Phone Number must be fill out")
+    .matches(/^[0-9]+$/),
+});
+
 const RegisterPage = () => {
   const classes = useStyles();
 
-  const [account, setaccount] = useState("");
-  const [password, setPassword] = useState("");
-  const [fullname, setFullname] = useState("");
-  const [email, setEmail] = useState("");
-  const [phoneNumber, setphoneNumber] = useState("");
-
-  const handleChangeAccount = (e) => {
-    const account_value = e.target.value;
-    setaccount(account_value);
-  };
-
-  const handleChangePassword = (e) => {
-    const password_value = e.target.value;
-    setPassword(password_value);
-  };
-
-  const handleChangeFullName = (e) => {
-    const fullname_value = e.target.value;
-    setFullname(fullname_value);
-  };
-
-  const handleChangeEmail = (e) => {
-    const email_value = e.target.value;
-    setEmail(email_value);
-  };
-
-  const handleChangePhoneNmber = (e) => {
-    const phoneNumber_value = e.target.value;
-    setphoneNumber(phoneNumber_value);
-  };
-
   const handleSubmit = (e) => {
-    e.preventDefault();
-
-    console.log(
-      `Account: ${account} Password:${password} Fullname:${fullname} Email: ${email} and password: ${password} Phone Number: ${phoneNumber}`
-    );
+    console.log(e);
   };
   return (
     <Container component="main" maxWidth="xs">
@@ -52,86 +35,101 @@ const RegisterPage = () => {
         <Typography className="title" component="h3" variant="h3">
           Register
         </Typography>
-        <form className={classes.form} noValidate onSubmit={handleSubmit}>
-          <TextField
-            autoComplete="account"
-            autoFocus
-            className={classes.field}
-            fullWidth
-            id="account"
-            label="Account"
-            margin="normal"
-            name="account"
-            onChange={handleChangeAccount}
-            required
-            type="text"
-            value={account}
-            variant="outlined"
-          />
-          <TextField
-            autoComplete="password"
-            autoFocus
-            className={classes.field}
-            fullWidth
-            id="password"
-            label="Password"
-            margin="normal"
-            name="password"
-            onChange={handleChangePassword}
-            required
-            value={password}
-            type="text"
-            variant="outlined"
-          />
-          <TextField
-            autoComplete="fullname"
-            autoFocus
-            className={classes.field}
-            fullWidth
-            id="fullname"
-            label="Fullname"
-            margin="normal"
-            name="fullname"
-            onChange={handleChangeFullName}
-            required
-            value={fullname}
-            type="text"
-            variant="outlined"
-          />
-          <TextField
-            autoComplete="email"
-            autoFocus
-            className={classes.field}
-            fullWidth
-            id="email"
-            label="Email"
-            margin="normal"
-            name="email"
-            onChange={handleChangeEmail}
-            required
-            value={email}
-            type="text"
-            variant="outlined"
-          />
-          <TextField
-            autoComplete="phomeNumber"
-            autoFocus
-            className={classes.field}
-            fullWidth
-            id="phoneNumber"
-            label="Phone Number"
-            margin="normal"
-            name="phoneNumber"
-            onChange={handleChangePhoneNmber}
-            required
-            value={phoneNumber}
-            type="text"
-            variant="outlined"
-          />
-          <Button type="submit" variant="contained" color="primary">
-            Create Account
-          </Button>
-        </form>
+        <Formik
+          initialValues={{
+            account: "",
+            password: "",
+            fullname: "",
+            email: "",
+            phoneNumber: "",
+          }}
+          validationSchema={registerSchema}
+          onSubmit={handleSubmit}
+          render={(formikProps) => (
+            <Form className={classes.form} noValidate>
+              <TextField
+                autoComplete="account"
+                autoFocus
+                className={classes.field}
+                fullWidth
+                id="account"
+                label="Account"
+                margin="normal"
+                name="account"
+                onChange={formikProps.handleChange}
+                required
+                type="text"
+                variant="outlined"
+              ></TextField>
+              <ErrorMessage name="account" />
+
+              <TextField
+                autoComplete="password"
+                autoFocus
+                className={classes.field}
+                fullWidth
+                id="password"
+                label="Password"
+                margin="normal"
+                name="password"
+                onChange={formikProps.handleChange}
+                required
+                type="password"
+                variant="outlined"
+              ></TextField>
+              <ErrorMessage name="password" />
+              <TextField
+                autoComplete="fullname"
+                autoFocus
+                className={classes.field}
+                fullWidth
+                id="fullname"
+                label="Full Name"
+                margin="normal"
+                name="fullname"
+                onChange={formikProps.handleChange}
+                required
+                type="text"
+                variant="outlined"
+              ></TextField>
+              <ErrorMessage name="fullname" />
+              <TextField
+                autoComplete="email"
+                autoFocus
+                className={classes.field}
+                fullWidth
+                id="email"
+                label="Email"
+                margin="normal"
+                name="email"
+                onChange={formikProps.handleChange}
+                required
+                type="email"
+                variant="outlined"
+              ></TextField>
+              <ErrorMessage name="email" />
+              <TextField
+                autoComplete="phoneNumber"
+                autoFocus
+                className={classes.field}
+                fullWidth
+                id="phoneNumber"
+                label="Phone Number"
+                margin="normal"
+                name="phoneNumber"
+                onChange={formikProps.handleChange}
+                required
+                type="text"
+                variant="outlined"
+              ></TextField>
+              <ErrorMessage name="phoneNumber" />
+
+              <Button type="submit" variant="contained" color="primary">
+                Create Account
+              </Button>
+            </Form>
+          )}
+        ></Formik>
       </div>
     </Container>
   );
