@@ -64,7 +64,7 @@ const LoginPage = () => {
             value={password}
             variant="outlined"
           />
-          <Button type="submit"></Button>
+          <Button type="submit">Sign In</Button>
           <Grid container>
             <Grid item>
               <div className={classes.registerLink}>
@@ -87,4 +87,4 @@ LoginPage.propTypes = {
   onChange: PropTypes.func,
 };
 
-export { LoginPage };
+export default LoginPage;

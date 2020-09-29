@@ -8,7 +8,7 @@ import PropTypes from "prop-types";
 
 const ButtonComponent = (props) => {
   const classes = useStyles();
-  const { type } = props;
+  const { type, children } = props;
   return (
     <div>
       <Button
@@ -18,7 +18,7 @@ const ButtonComponent = (props) => {
         type={type}
         variant="contained"
       >
-        Sign in
+        <b>{children}</b>
       </Button>
     </div>
   );

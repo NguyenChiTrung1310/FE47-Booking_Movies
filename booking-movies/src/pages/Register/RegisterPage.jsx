@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 // type rafce and press Tab to create hook function default
-import { Container, Button, TextField, Typography } from "@material-ui/core";
+import { Container, TextField, Typography } from "@material-ui/core";
 import "./RegisterPage.scss";
 import { useStyles } from "./../Register/useStyles";
-//import Button from "./../../components/Button/Button";
+import Button from "./../../components/Button/Button";
 import * as yup from "yup";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 
@@ -124,9 +124,7 @@ const RegisterPage = () => {
               ></TextField>
               <ErrorMessage name="phoneNumber" />
 
-              <Button type="submit" variant="contained" color="primary">
-                Create Account
-              </Button>
+              <Button type="submit">Create Account</Button>
             </Form>
           )}
         ></Formik>
@@ -139,4 +137,4 @@ RegisterPage.propTypes = {
   onChange: PropTypes.func,
 };
 
-export { RegisterPage };
+export default RegisterPage;
