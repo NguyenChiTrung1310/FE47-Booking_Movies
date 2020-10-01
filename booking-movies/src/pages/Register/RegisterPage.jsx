@@ -1,25 +1,25 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
+import React   from 'react';
+import PropTypes from 'prop-types';
 // type rafce and press Tab to create hook function default
-import { Container, TextField, Typography } from "@material-ui/core";
-import "./RegisterPage.scss";
-import { useStyles } from "./../Register/useStyles";
-import Button from "./../../components/Button/Button";
-import * as yup from "yup";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Container, TextField, Typography, Grid } from '@material-ui/core';
+import './RegisterPage.scss';
+import { useStyles } from './../Register/useStyles';
+import Button from './../../components/Button/Button';
+import * as yup from 'yup';
+import { Formik, Form,   ErrorMessage } from 'formik';
 
 const registerSchema = yup.object().shape({
-  account: yup.string().required("Account must be fill out").nullable(),
-  password: yup.string().required("Password must be fill out").nullable(),
-  fullname: yup.string().required("Full Name must be fill out").nullable(),
+  account: yup.string().required('Account must be fill out').nullable(),
+  password: yup.string().required('Password must be fill out').nullable(),
+  fullname: yup.string().required('Full Name must be fill out').nullable(),
   email: yup
     .string()
-    .required("Email must be fill out")
-    .email("Email is invalid")
+    .required('Email must be fill out')
+    .email('Email is invalid')
     .nullable(),
   phoneNumber: yup
     .string()
-    .required("Phone Number must be fill out")
+    .required('Phone Number must be fill out')
     .matches(/^[0-9]+$/),
 });
 
@@ -30,104 +30,125 @@ const RegisterPage = () => {
     console.log(e);
   };
   return (
-    <Container component="main" maxWidth="xs">
+    <Container
+      component='main'
+      maxWidth='xs'
+    >
       <div className={classes.paper}>
-        <Typography className="title" component="h3" variant="h3">
+        <Typography
+          className='title'
+          component='h3'
+          variant='h3'
+        >
           Register
         </Typography>
         <Formik
           initialValues={{
-            account: "",
-            password: "",
-            fullname: "",
-            email: "",
-            phoneNumber: "",
+            account: '',
+            password: '',
+            fullname: '',
+            email: '',
+            phoneNumber: '',
           }}
-          validationSchema={registerSchema}
           onSubmit={handleSubmit}
           render={(formikProps) => (
-            <Form className={classes.form} noValidate>
+            <Form
+              className={classes.form}
+              noValidate
+            >
               <TextField
-                autoComplete="account"
+                autoComplete='account'
                 autoFocus
                 className={classes.field}
                 fullWidth
-                id="account"
-                label="Account"
-                margin="normal"
-                name="account"
+                id='account'
+                label='Account'
+                margin='normal'
+                name='account'
                 onChange={formikProps.handleChange}
                 required
-                type="text"
-                variant="outlined"
-              ></TextField>
-              <ErrorMessage name="account" />
+                type='text'
+                variant='outlined'
+              />
+              <ErrorMessage name='account' />
 
               <TextField
-                autoComplete="password"
-                autoFocus
+                autoComplete='password' 
                 className={classes.field}
                 fullWidth
-                id="password"
-                label="Password"
-                margin="normal"
-                name="password"
+                id='password'
+                label='Password'
+                margin='normal'
+                name='password'
                 onChange={formikProps.handleChange}
                 required
-                type="password"
-                variant="outlined"
-              ></TextField>
-              <ErrorMessage name="password" />
+                type='password'
+                variant='outlined'
+              />
+              <ErrorMessage name='password' />
               <TextField
-                autoComplete="fullname"
-                autoFocus
+                autoComplete='fullname' 
                 className={classes.field}
                 fullWidth
-                id="fullname"
-                label="Full Name"
-                margin="normal"
-                name="fullname"
+                id='fullname'
+                label='Full Name'
+                margin='normal'
+                name='fullname'
                 onChange={formikProps.handleChange}
                 required
-                type="text"
-                variant="outlined"
-              ></TextField>
-              <ErrorMessage name="fullname" />
+                type='text'
+                variant='outlined'
+              />
+              <ErrorMessage name='fullname' />
               <TextField
-                autoComplete="email"
-                autoFocus
+                autoComplete='email' 
                 className={classes.field}
                 fullWidth
-                id="email"
-                label="Email"
-                margin="normal"
-                name="email"
+                id='email'
+                label='Email'
+                margin='normal'
+                name='email'
                 onChange={formikProps.handleChange}
                 required
-                type="email"
-                variant="outlined"
-              ></TextField>
-              <ErrorMessage name="email" />
+                type='email'
+                variant='outlined'
+              />
+              <ErrorMessage name='email' />
               <TextField
-                autoComplete="phoneNumber"
-                autoFocus
+                autoComplete='phoneNumber' 
                 className={classes.field}
                 fullWidth
-                id="phoneNumber"
-                label="Phone Number"
-                margin="normal"
-                name="phoneNumber"
+                id='phoneNumber'
+                label='Phone Number'
+                margin='normal'
+                name='phoneNumber'
                 onChange={formikProps.handleChange}
                 required
-                type="text"
-                variant="outlined"
-              ></TextField>
-              <ErrorMessage name="phoneNumber" />
+                type='text'
+                variant='outlined'
+              />
+              <ErrorMessage name='phoneNumber' />
 
-              <Button type="submit">Create Account</Button>
+              <Button type='submit'>Create Account</Button>
+              <Grid container>
+                <Grid item>
+                  <div className={classes.loginLink}>
+                    <p>
+                  Have an account?
+                      <a
+                        className={classes.link}
+                        href='#login'
+                      >
+                    Login
+                      </a>
+                    </p>
+                  </div>
+                </Grid>
+              </Grid>
             </Form>
           )}
-        ></Formik>
+          validationSchema={registerSchema}
+        />
       </div>
     </Container>
   );

@@ -1,10 +1,10 @@
 // Here is a component, NOT the main component.
 // So the file must be named 'name.js', NOT 'name.jsx'
-
-import React from "react";
-import { Button } from "@material-ui/core";
-import { useStyles } from "./useStyles";
-import PropTypes from "prop-types";
+//ewrewr
+import React from 'react';
+import { Button } from '@material-ui/core';
+import { useStyles } from './useStyles';
+import PropTypes from 'prop-types';
 
 const ButtonComponent = (props) => {
   const classes = useStyles();
@@ -13,10 +13,10 @@ const ButtonComponent = (props) => {
     <div>
       <Button
         className={classes.submit}
-        color="primary"
+        color='primary'
         fullWidth
         type={type}
-        variant="contained"
+        variant='contained'
       >
         <b>{children}</b>
       </Button>
@@ -26,6 +26,7 @@ const ButtonComponent = (props) => {
 
 ButtonComponent.propTypes = {
   type: PropTypes.string,
+  children: PropTypes.string,
 };
 
 export default ButtonComponent;

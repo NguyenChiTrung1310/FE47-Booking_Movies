@@ -1,10 +1,10 @@
-import React from "react";
-import "./App.scss";
-import LoginPage from "./pages/Login/LoginPage";
-import RegisterPage from "./pages/Register/RegisterPage";
+/* eslint-disable linebreak-style */
+import React from 'react';
+import './App.scss';
+import {LoginPage, RegisterPage} from './pages/index';
 function App() {
   return (
-    <div className="App">
+    <div className='App'>
       {/**
         
         <LoginPage />

@@ -1,17 +1,17 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
-import { Container, Grid, TextField, Typography } from "@material-ui/core";
+import { Container, Grid, TextField, Typography } from '@material-ui/core';
 
-import "./LoginPage.scss";
-import { useStyles } from "./useStyles";
-import Button from "../../components/Button/Button";
+import './LoginPage.scss';
+import { useStyles } from './useStyles';
+import Button from '../../components/Button/Button';
 
 const LoginPage = () => {
   const classes = useStyles();
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const handleChangeEmail = (e) => {
     const email_value = e.target.value;
@@ -29,48 +29,62 @@ const LoginPage = () => {
     console.log(`Email: ${email} and password: ${password}`);
   };
   return (
-    <Container component="main" maxWidth="xs">
+    <Container
+      component='main'
+      maxWidth='xs'
+    >
       <div className={classes.paper}>
-        <Typography className="title" component="h1" variant="h3">
+        <Typography
+          className='title'
+          component='h1'
+          variant='h3'
+        >
           Sign in
         </Typography>
-        <form className={classes.form} noValidate onSubmit={handleSubmit}>
+        <form
+          className={classes.form}
+          noValidate
+          onSubmit={handleSubmit}
+        >
           <TextField
-            autoComplete="email"
+            autoComplete='email'
             autoFocus
             className={classes.field}
             fullWidth
-            id="email"
-            label="Username"
-            margin="normal"
-            name="email"
+            id='email'
+            label='Username'
+            margin='normal'
+            name='email'
             onChange={handleChangeEmail}
             required
-            type="text"
+            type='text'
             value={email}
-            variant="outlined"
+            variant='outlined'
           />
           <TextField
-            autoComplete="password"
+            autoComplete='password'
             className={classes.field}
             fullWidth
-            id="password"
-            label="Password"
-            margin="normal"
-            name="password"
+            id='password'
+            label='Password'
+            margin='normal'
+            name='password'
             onChange={handleChangePassword}
             required
-            type="password"
+            type='password'
             value={password}
-            variant="outlined"
+            variant='outlined'
           />
-          <Button type="submit">Sign In</Button>
+          <Button type='submit'>Sign In</Button>
           <Grid container>
             <Grid item>
               <div className={classes.registerLink}>
                 <p>
                   Don't have an account?
-                  <a className={classes.link} href="#register">
+                  <a
+                    className={classes.link}
+                    href='#register'
+                  >
                     Register
                   </a>
                 </p>
