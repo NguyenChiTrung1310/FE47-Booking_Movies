@@ -1,12 +1,11 @@
 import React   from 'react';
 import PropTypes from 'prop-types';
-// type rafce and press Tab to create hook function default
 import { Container, TextField, Typography, Grid } from '@material-ui/core';
+import { Formik, Form,   ErrorMessage } from 'formik';
 import './RegisterPage.scss';
 import { useStyles } from './../Register/useStyles';
 import Button from './../../components/Button/Button';
 import * as yup from 'yup';
-import { Formik, Form,   ErrorMessage } from 'formik';
 
 const registerSchema = yup.object().shape({
   account: yup.string().required('Account must be fill out').nullable(),
