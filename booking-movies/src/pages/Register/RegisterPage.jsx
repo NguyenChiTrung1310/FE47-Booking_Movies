@@ -1,23 +1,33 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Container, TextField, Typography } from '@material-ui/core'; 
 import './RegisterPage.scss';
 import { useStyles } from './../Register/useStyles';
 import Button from './../../components/Button/Button'; 
-const RegisterPage = () => {
+const RegisterPage = (props) => {
   const classes = useStyles();
+  const { account='NOT-FOUND',  password='NOT-FOUND',  fullname='NOT-FOUND',  email='NOT-FOUND',  phoneNumber='NOT-FOUND'} = props;
+  const [fields, setFields]= useState({
+    account: '',
+    password: '',
+    fullname:'',
+    email:'',
+    phoneNumber:'',
+  })
 
-  const [account, setaccount] = useState('');
-  const [password, setPassword] = useState('');
-  const [fullname, setFullname] = useState('');
-  const [email, setEmail] = useState('');
-  const [phoneNumber, setphoneNumber] = useState('');
-
+  
+  const handleChange= e=>{
+    setFields({
+      ...fields,
+      [e.target.name]:e.target.value
+    })
+    
+  }
   const handleSubmit = (e) => {
     e.preventDefault();
-
     console.log(
-      `Account: ${account} Password:${password} Fullname:${fullname} Email: ${email} and password: ${password} Phone Number: ${phoneNumber}`
+      `Account: ${fields.account} Password:${fields.password} Fullname:${fields.fullname} Email: ${fields.email} Phone Number: ${fields.phoneNumber}`
     );
   };
   return (
@@ -47,10 +57,10 @@ const RegisterPage = () => {
             label='Account'
             margin='normal'
             name='account'
-            onChange={evt => setaccount(evt.target.value)}
+            onChange={event=>handleChange(event)}
             required
             type='text'
-            value={account}
+            value={fields.account}
             variant='outlined'
           />
           <TextField
@@ -61,10 +71,10 @@ const RegisterPage = () => {
             label='Password'
             margin='normal'
             name='password'
-            onChange={evt => setPassword(evt.target.value)}
+            onChange={event=>handleChange(event)}
             required
             type='password'
-            value={password}
+            value={fields.password}
             variant='outlined'
           />
           <TextField
@@ -75,10 +85,10 @@ const RegisterPage = () => {
             label='Fullname'
             margin='normal'
             name='fullname'
-            onChange={evt => setFullname(evt.target.value)}
+            onChange={event=>handleChange(event)}
             required
             type='text'
-            value={fullname}
+            value={fields.fullname}
             variant='outlined'
           />
           <TextField
@@ -89,10 +99,10 @@ const RegisterPage = () => {
             label='Email'
             margin='normal'
             name='email'
-            onChange={evt => setEmail(evt.target.value)}
+            onChange={event=>handleChange(event)}
             required
             type='text'
-            value={email}
+            value={fields.email}
             variant='outlined'
           />
           <TextField
@@ -103,10 +113,10 @@ const RegisterPage = () => {
             label='Phone Number'
             margin='normal'
             name='phoneNumber'
-            onChange={evt => setphoneNumber(evt.target.value)}
+            onChange={event=>handleChange(event)}
             required
-            type='text'
-            value={phoneNumber}
+            type='text' 
+            value={fields.phoneNumber}
             variant='outlined'
           />
           <Button
