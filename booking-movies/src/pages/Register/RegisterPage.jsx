@@ -5,9 +5,9 @@ import { Container, TextField, Typography } from '@material-ui/core';
 import './RegisterPage.scss';
 import { useStyles } from './../Register/useStyles';
 import Button from './../../components/Button/Button'; 
-const RegisterPage = (props) => {
+const RegisterPage = () => {
   const classes = useStyles();
-  const { account='NOT-FOUND',  password='NOT-FOUND',  fullname='NOT-FOUND',  email='NOT-FOUND',  phoneNumber='NOT-FOUND'} = props;
+  const { account ,  password ,  fullname ,  email ,  phoneNumber } = fields;
   const [fields, setFields]= useState({
     account: '',
     password: '',
@@ -27,7 +27,7 @@ const RegisterPage = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(
-      `Account: ${fields.account} Password:${fields.password} Fullname:${fields.fullname} Email: ${fields.email} Phone Number: ${fields.phoneNumber}`
+      `Account: ${ account} Password:${ password} Fullname:${ fullname} Email: ${ email} Phone Number: ${ phoneNumber}`
     );
   };
   return (
