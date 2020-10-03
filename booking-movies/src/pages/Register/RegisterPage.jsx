@@ -7,7 +7,6 @@ import { useStyles } from './../Register/useStyles';
 import Button from './../../components/Button/Button'; 
 const RegisterPage = () => {
   const classes = useStyles();
-  const { account ,  password ,  fullname ,  email ,  phoneNumber } = fields;
   const [fields, setFields]= useState({
     account: '',
     password: '',
@@ -25,6 +24,7 @@ const RegisterPage = () => {
     
   }
   const handleSubmit = (e) => {
+    const { account ,  password ,  fullname ,  email ,  phoneNumber } = fields;
     e.preventDefault();
     console.log(
       `Account: ${ account} Password:${ password} Fullname:${ fullname} Email: ${ email} Phone Number: ${ phoneNumber}`
