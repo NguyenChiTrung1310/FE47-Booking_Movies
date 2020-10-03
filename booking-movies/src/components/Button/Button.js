@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 
 const ButtonComponent = (props) => {
   const classes = useStyles();
-  const { type, children } = props;
+  const { type = 'submit', children = 'NOT-FOUND' } = props;
   return (
     <div>
       <Button
