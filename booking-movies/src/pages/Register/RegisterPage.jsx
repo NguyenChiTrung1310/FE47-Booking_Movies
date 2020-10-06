@@ -6,9 +6,10 @@ import './RegisterPage.scss';
 import { useStyles } from './../Register/useStyles';
 import Button from './../../components/Button/Button';
 import {
-  handleValidationForm,
-  validateEmail,
-} from './../../components/Validation/Validation';
+  handleValidationForm, 
+} from '../../utils/Validation/Validation';
+import { toast } from 'react-toastify';
+toast.configure()
 const RegisterPage = () => {
   const classes = useStyles();
   const [fields, setFields] = useState({
@@ -27,11 +28,8 @@ const RegisterPage = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    const { account, password, fullname, email, phone } = fields;
-    handleValidationForm(fields);
-    console.log(
-      `Account: ${account} Password:${password} Fullname:${fullname} Email: ${email} Phone Number: ${phone}`
-    );
+    const { account, password, fullname, email, phone } = fields; 
+    handleValidationForm(fields); 
   };
   return (
     <Container
@@ -136,7 +134,8 @@ const RegisterPage = () => {
 };
 
 RegisterPage.propTypes = {
-  onChange: PropTypes.func,
+  onChange: PropTypes.func, 
+  onSubmit: PropTypes.func,
 };
 
 export default RegisterPage;
