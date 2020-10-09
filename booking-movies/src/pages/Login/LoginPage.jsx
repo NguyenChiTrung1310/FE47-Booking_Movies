@@ -5,8 +5,8 @@ import { Container, Grid, TextField, Typography } from '@material-ui/core';
 
 import './LoginPage.scss';
 import { useStyles } from './useStyles';
-import Button from '../../components/Button/Button';
-
+import Button from '../../components/Button/Button'; 
+import {Link} from 'react-router-dom'
 const LoginPage = () => {
   const classes = useStyles();
 
@@ -81,12 +81,12 @@ const LoginPage = () => {
               <div className={classes.registerLink}>
                 <p>
                   Don't have an account?
-                  <a
+                  <Link
                     className={classes.link}
-                    href='#register'
+                    to = '/register'
                   >
                     Register
-                  </a>
+                  </Link>
                 </p>
               </div>
             </Grid>

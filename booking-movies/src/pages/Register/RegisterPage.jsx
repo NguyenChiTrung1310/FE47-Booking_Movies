@@ -9,6 +9,7 @@ import {
   handleValidationForm, 
 } from '../../utils/Validation/Validation';
 import { toast } from 'react-toastify';
+import {Link} from 'react-router-dom'
 toast.configure()
 const RegisterPage = () => {
   const classes = useStyles();
@@ -132,12 +133,13 @@ const RegisterPage = () => {
               <div className={classes.loginLink}>
                 <p>
             Have an account?
-                  <a
+                  <Link
                     className={classes.link}
-                    href='#login'
+                    to = '/login'
+                    
                   >
               Login
-                  </a>
+                  </Link>
                 </p>
               </div>
             </Grid>

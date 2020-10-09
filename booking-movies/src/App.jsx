@@ -12,12 +12,12 @@ function App() {
           <Route
             component={LoginPage}
       
-            path='/loginpage'
+            path='/login'
           />
           <Route
             component={RegisterPage}
       
-            path='/registerpage'
+            path='/register'
           />
         </Switch>
       </BrowserRouter>
