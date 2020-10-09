@@ -82,7 +82,7 @@ const LoginPage = () => {
                   Don't have an account?
                   <Link
                     className={classes.link}
-                    to = {types.REGISTER_TYPE}
+                    to = {types.REGISTER_PAGE}
                   >
                     Register
                   </Link>
@@ -98,6 +98,9 @@ const LoginPage = () => {
 
 LoginPage.propTypes = {
   onChange: PropTypes.func,
+  onSubmit: PropTypes.func, 
+  email: PropTypes.string,
+  password: PropTypes.string 
 };
 
 export default LoginPage;

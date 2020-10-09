@@ -1,3 +1,4 @@
-export const LOGIN_TYPE = '/login';
-export const REGISTER_TYPE = '/register';
+export const HOME_PAGE = '/';
+export const LOGIN_PAGE = '/login';
+export const REGISTER_PAGE = '/register';
  

@@ -136,8 +136,7 @@ const RegisterPage = () => {
             Have an account?
                   <Link
                     className={classes.link}
-                    to = {types.LOGIN_TYPE}
-                    
+                    to = {types.LOGIN_PAGE}
                   >
               Login
                   </Link>
@@ -154,6 +153,13 @@ const RegisterPage = () => {
 RegisterPage.propTypes = {
   onChange: PropTypes.func, 
   onSubmit: PropTypes.func,
+  // eslint-disable-next-line react/sort-prop-types
+  fields: PropTypes.shape({
+    account: PropTypes.string.isRequired,
+    password: PropTypes.string.isRequired,
+    fullname: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired, 
+  })
 };
 
 export default RegisterPage;
