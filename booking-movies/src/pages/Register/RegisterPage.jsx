@@ -9,7 +9,8 @@ import {
   handleValidationForm, 
 } from '../../utils/Validation/Validation';
 import { toast } from 'react-toastify';
-import {Link} from 'react-router-dom'
+import {Link} from 'react-router-dom';
+import * as types from './../../constants/constant'
 toast.configure()
 const RegisterPage = () => {
   const classes = useStyles();
@@ -135,7 +136,7 @@ const RegisterPage = () => {
             Have an account?
                   <Link
                     className={classes.link}
-                    to = '/login'
+                    to = {types.LOGIN_TYPE}
                     
                   >
               Login

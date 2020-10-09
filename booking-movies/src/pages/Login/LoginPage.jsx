@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-
-import { Container, Grid, TextField, Typography } from '@material-ui/core';
-
+import PropTypes from 'prop-types'; 
+import { Container, Grid, TextField, Typography } from '@material-ui/core'; 
 import './LoginPage.scss';
 import { useStyles } from './useStyles';
 import Button from '../../components/Button/Button'; 
 import {Link} from 'react-router-dom'
+import * as types from './../../constants/constant'
 const LoginPage = () => {
   const classes = useStyles();
 
@@ -83,7 +82,7 @@ const LoginPage = () => {
                   Don't have an account?
                   <Link
                     className={classes.link}
-                    to = '/register'
+                    to = {types.REGISTER_TYPE}
                   >
                     Register
                   </Link>

@@ -1,2 +1,3 @@
-export const LOGIN_TYPE = 'LOGIN_TYPE';
-export const REGISTER_TYPE = 'REGISTER_TYPE';
+export const LOGIN_TYPE = '/login';
+export const REGISTER_TYPE = '/register';
+ 

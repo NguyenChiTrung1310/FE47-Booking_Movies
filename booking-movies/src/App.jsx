@@ -2,22 +2,32 @@
 import React from 'react';
 import './App.scss';
 import 'react-toastify/dist/ReactToastify.css';
-import {LoginPage, RegisterPage} from './pages/index';
-import {BrowserRouter, Route, Switch} from 'react-router-dom'
+import {LoginPage, RegisterPage, ErrorPage, HomePage} from './pages/index';
+import {BrowserRouter, Route, Switch} from 'react-router-dom'; 
+import * as types from './constants/constant'
 function App() {
   return (
     <div className='App'>
       <BrowserRouter>
-        <Switch>
+        <Switch> 
+          
           <Route
             component={LoginPage}
-      
-            path='/login'
+            exact
+            path={types.LOGIN_TYPE}
           />
           <Route
             component={RegisterPage}
-      
-            path='/register'
+            exact
+            path={types.REGISTER_TYPE}
+          />
+          <Route
+            component={HomePage}
+            exact
+            path='/'
+          />
+          <Route
+            component={ErrorPage}
           />
         </Switch>
       </BrowserRouter>
