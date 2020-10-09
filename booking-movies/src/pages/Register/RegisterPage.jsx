@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Container, TextField, Typography } from '@material-ui/core';
+import { Container, TextField, Typography, Grid } from '@material-ui/core';
 import './RegisterPage.scss';
 import { useStyles } from './../Register/useStyles';
 import Button from './../../components/Button/Button';
@@ -127,6 +127,21 @@ const RegisterPage = () => {
           >
             Create Account
           </Button>
+          <Grid container>
+            <Grid item>
+              <div className={classes.loginLink}>
+                <p>
+            Have an account?
+                  <a
+                    className={classes.link}
+                    href='#login'
+                  >
+              Login
+                  </a>
+                </p>
+              </div>
+            </Grid>
+          </Grid>
         </form>
       </div>
     </Container>
