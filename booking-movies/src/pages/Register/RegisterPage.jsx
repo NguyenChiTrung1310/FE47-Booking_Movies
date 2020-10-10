@@ -151,15 +151,14 @@ const RegisterPage = () => {
 };
 
 RegisterPage.propTypes = {
-  onChange: PropTypes.func, 
-  onSubmit: PropTypes.func,
-  // eslint-disable-next-line react/sort-prop-types
   fields: PropTypes.shape({
     account: PropTypes.string.isRequired,
     password: PropTypes.string.isRequired,
     fullname: PropTypes.string.isRequired,
     email: PropTypes.string.isRequired, 
-  })
+  }),
+  onChange: PropTypes.func, 
+  onSubmit: PropTypes.func,
 };
 
 export default RegisterPage;
