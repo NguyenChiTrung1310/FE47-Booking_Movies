@@ -1,16 +1,18 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
+import {Link} from 'react-router-dom';
+import { toast } from 'react-toastify';
 import PropTypes from 'prop-types';
 import { Container, TextField, Typography, Grid } from '@material-ui/core';
-import './RegisterPage.scss';
-import { useStyles } from './../Register/useStyles';
+
 import Button from './../../components/Button/Button';
 import {
   handleRegisterForm, 
 } from '../../utils/Validation/Validation';
-import { toast } from 'react-toastify';
-import {Link} from 'react-router-dom';
 import { LOGIN_PAGE } from './../../constants/constant'
+
+import { useStyles } from './../Register/useStyles';
+import './RegisterPage.scss';
 toast.configure()
 const RegisterPage = () => {
   const classes = useStyles();
