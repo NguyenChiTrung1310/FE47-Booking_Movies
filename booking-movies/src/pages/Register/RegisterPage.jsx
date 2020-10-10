@@ -1,16 +1,18 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
+import {Link} from 'react-router-dom';
+import { toast } from 'react-toastify';
 import PropTypes from 'prop-types';
 import { Container, TextField, Typography, Grid } from '@material-ui/core';
-import './RegisterPage.scss';
-import { useStyles } from './../Register/useStyles';
+
 import Button from './../../components/Button/Button';
 import {
-  handleValidationForm, 
+  handleRegisterForm, 
 } from '../../utils/Validation/Validation';
-import { toast } from 'react-toastify';
-import {Link} from 'react-router-dom';
-import * as types from './../../constants/constant'
+import { LOGIN_PAGE } from './../../constants/constant'
+
+import { useStyles } from './../Register/useStyles';
+import './RegisterPage.scss';
 toast.configure()
 const RegisterPage = () => {
   const classes = useStyles();
@@ -30,8 +32,8 @@ const RegisterPage = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    const { account, password, fullname, email, phone } = fields; 
-    handleValidationForm(fields); 
+
+    handleRegisterForm(fields); 
   };
   return (
     <Container
@@ -136,7 +138,7 @@ const RegisterPage = () => {
             Have an account?
                   <Link
                     className={classes.link}
-                    to = {types.LOGIN_PAGE}
+                    to = {LOGIN_PAGE}
                   >
               Login
                   </Link>
@@ -151,15 +153,14 @@ const RegisterPage = () => {
 };
 
 RegisterPage.propTypes = {
-  onChange: PropTypes.func, 
-  onSubmit: PropTypes.func,
-  // eslint-disable-next-line react/sort-prop-types
   fields: PropTypes.shape({
     account: PropTypes.string.isRequired,
     password: PropTypes.string.isRequired,
     fullname: PropTypes.string.isRequired,
     email: PropTypes.string.isRequired, 
-  })
+  }),
+  onChange: PropTypes.func, 
+  onSubmit: PropTypes.func,
 };
 
 export default RegisterPage;

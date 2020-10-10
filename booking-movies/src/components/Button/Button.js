@@ -24,8 +24,8 @@ const ButtonComponent = (props) => {
 };
 
 ButtonComponent.propTypes = {
-  type: PropTypes.string,
   children: PropTypes.string,
+  type: PropTypes.string,
 };
 
 export default ButtonComponent;

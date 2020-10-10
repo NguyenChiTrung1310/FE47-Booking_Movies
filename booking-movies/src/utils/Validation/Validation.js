@@ -19,7 +19,7 @@ const notify_warning = (error) => {
   toast.warn(error);
 };
 
-const handleValidationForm = (fields) => {
+const handleRegisterForm = (fields) => {
   var errors = {
     account: '',
     password: '',
@@ -85,4 +85,40 @@ const handleValidationForm = (fields) => {
   }
 };
 
-export { handleValidationForm, validateEmail };
+const handleLoginForm = (fields) => {
+  var errors = {
+    email: '',
+    password: ''
+  };
+
+  if (
+    fields['email'] !== '' &&
+    fields['password'] !== '' &&
+    validateEmail(fields['email']) === true
+  ) {
+    console.log(
+      `Email: ${fields['email']} || Password: ${fields['password']}`
+    );
+    notify_success();
+    return;
+  } else {
+    //Email
+    if (!fields['email']) {
+      errors['email'] = 'Email field cannot be empty';
+      return notify_warning(errors['email']);
+    }else {
+      if (!validateEmail(fields['email'])) {
+        errors['email'] = 'Invalid Email';
+        return notify_warning(errors['email']);
+      }
+    }
+
+    //Password
+    if (!fields['password']) {
+      errors['password'] = 'Password field cannot be empty';
+      return notify_warning(errors['password']);
+    }
+  }
+}
+
+export { handleRegisterForm, validateEmail, handleLoginForm };
