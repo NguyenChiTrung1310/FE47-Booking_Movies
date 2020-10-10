@@ -6,7 +6,7 @@ import './RegisterPage.scss';
 import { useStyles } from './../Register/useStyles';
 import Button from './../../components/Button/Button';
 import {
-  handleValidationForm, 
+  handleRegisterForm, 
 } from '../../utils/Validation/Validation';
 import { toast } from 'react-toastify';
 import {Link} from 'react-router-dom';
@@ -31,7 +31,7 @@ const RegisterPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const { account, password, fullname, email, phone } = fields; 
-    handleValidationForm(fields); 
+    handleRegisterForm(fields); 
   };
   return (
     <Container

@@ -6,26 +6,29 @@ import { useStyles } from './useStyles';
 import Button from '../../components/Button/Button'; 
 import {Link} from 'react-router-dom'
 import { REGISTER_PAGE } from './../../constants/constant'
+import { toast } from 'react-toastify';
+import { handleLoginForm } from '../../utils/Validation/Validation';
+
+toast.configure();
 const LoginPage = () => {
   const classes = useStyles();
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [fields, setFields] = useState({
+    email: '',
+    password: '',
+  });
 
-  const handleChangeEmail = (e) => {
-    const email_value = e.target.value;
-    setEmail(email_value);
-  };
-
-  const handleChangePassword = (e) => {
-    const password_value = e.target.value;
-    setPassword(password_value);
+  const handleChange = (e) => {
+    setFields({
+      ...fields,
+      [e.target.name]: e.target.value,
+    });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    console.log(`Email: ${email} and password: ${password}`);
+  
+    handleLoginForm(fields);
   };
   return (
     <Container
@@ -54,10 +57,10 @@ const LoginPage = () => {
             label='Username'
             margin='normal'
             name='email'
-            onChange={handleChangeEmail}
+            onChange={(event) => handleChange(event)}
             required
             type='text'
-            value={email}
+            value={fields.email}
             variant='outlined'
           />
           <TextField
@@ -68,10 +71,10 @@ const LoginPage = () => {
             label='Password'
             margin='normal'
             name='password'
-            onChange={handleChangePassword}
+            onChange={(event) => handleChange(event)}
             required
             type='password'
-            value={password}
+            value={fields.password}
             variant='outlined'
           />
           <Button type='submit'>Sign In</Button>
