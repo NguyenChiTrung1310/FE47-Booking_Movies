@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types'; 
-import { Container, Grid, TextField, Typography } from '@material-ui/core'; 
-import './LoginPage.scss';
-import { useStyles } from './useStyles';
-import Button from '../../components/Button/Button'; 
 import {Link} from 'react-router-dom'
-import { REGISTER_PAGE } from './../../constants/constant'
+import PropTypes from 'prop-types'; 
 import { toast } from 'react-toastify';
+import { Container, Grid, TextField, Typography } from '@material-ui/core'; 
+
+import Button from '../../components/Button/Button'; 
+import { REGISTER_PAGE } from './../../constants/constant'
 import { handleLoginForm } from '../../utils/Validation/Validation';
+import { useStyles } from './useStyles';
+import './LoginPage.scss';
 
 toast.configure();
 const LoginPage = () => {
