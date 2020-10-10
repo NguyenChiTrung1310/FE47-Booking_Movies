@@ -30,7 +30,7 @@ const RegisterPage = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    const { account, password, fullname, email, phone } = fields; 
+
     handleRegisterForm(fields); 
   };
   return (
