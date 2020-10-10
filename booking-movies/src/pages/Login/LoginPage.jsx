@@ -5,7 +5,7 @@ import './LoginPage.scss';
 import { useStyles } from './useStyles';
 import Button from '../../components/Button/Button'; 
 import {Link} from 'react-router-dom'
-import * as types from './../../constants/constant'
+import { REGISTER_PAGE } from './../../constants/constant'
 const LoginPage = () => {
   const classes = useStyles();
 
@@ -82,7 +82,7 @@ const LoginPage = () => {
                   Don't have an account?
                   <Link
                     className={classes.link}
-                    to = {types.REGISTER_PAGE}
+                    to = {REGISTER_PAGE}
                   >
                     Register
                   </Link>
