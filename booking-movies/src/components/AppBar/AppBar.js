@@ -56,12 +56,6 @@ const AppBar = () => {
                 to={CONTACT_PAGE}
               >Contact</Link>
             </div>
-            {/* <Link
-              className='link link-login'
-              color='inherit'
-              to={LOGIN_PAGE}
-            >Login</Link> */}
-
             <Button
               aria-controls='simple-menu'
               aria-haspopup='true'
