@@ -97,9 +97,9 @@ const LoginPage = () => {
 };
 
 LoginPage.propTypes = {
+  email: PropTypes.string,
   onChange: PropTypes.func,
   onSubmit: PropTypes.func, 
-  email: PropTypes.string,
   password: PropTypes.string 
 };
 

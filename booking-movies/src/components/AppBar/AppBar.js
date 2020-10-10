@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import { AppBar as App, Button, IconButton, Menu, MenuItem, Toolbar, Typography } from '@material-ui/core';
@@ -92,6 +93,13 @@ const AppBar = () => {
       </App>
     </div>
   )
+}
+
+AppBar.propTypes = {
+  anchorEl: PropTypes.func,
+  onClick: PropTypes.func,
+  onClose: PropTypes.func,
+  open: PropTypes.bool
 }
 
 export default AppBar
