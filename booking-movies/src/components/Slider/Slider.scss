@@ -1,0 +1,23 @@
+@import './../../styles/styles.scss';
+
+.text {
+  color: red;
+}
+.slider {
+  height: 100%;
+  width: 100%;
+}
+.slider-arrow {
+  position: absolute;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding-top: 75px;
+}
+.arrow-btn {
+  top: 50%;
+  z-index: 1;
+}
+.slider-panel {
+  height: 150px;
+}
