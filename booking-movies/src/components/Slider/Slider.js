@@ -1,64 +1,91 @@
-import React, { Component } from 'react';
-import Slider from 'react-slick';
+import React, { useState } from 'react';
+import Slider from 'react-slick'; 
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 import './Slider.scss'
-import ArrowLeft from '@material-ui/icons/ArrowLeft';
-import ArrowRight from '@material-ui/icons/ArrowRight';
-import ButtonBase from '@material-ui/core/ButtonBase';  
-import 'slick-carousel/slick/slick.css'; 
-import 'slick-carousel/slick/slick-theme.css'; 
-export default class SliderComponent extends Component {
-  renderArrows = () => {
-    return (
-      <div className='slider-arrow'>
-        <ButtonBase
-          className='arrow-btn prev'
-          onClick={() => this.slider.slickPrev()}
-        >
-          <ArrowLeft />
-        </ButtonBase>
-        <ButtonBase
-          className='arrow-btn next'
-          onClick={() => this.slider.slickNext()}
-        >
-          <ArrowRight />
-        </ButtonBase>
-      </div>
-    );
+const SliderSlick=()=> {
+
+  const config = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1
   };
-  render() {
-    return (
-      <div className='App'> 
-        <div style={{ position: 'relative', marginTop: '2rem' }}>
-          {this.renderArrows()}
-          <Slider
-            arrows={false}
-            centerMode
-            className='slider-panel'
-            dots={false}
-            ref={c => (this.slider = c)}
-            slidesToShow={4}
-          >
-            <div>
-              <h3>1</h3>
-            </div>
-            <div>
-              <h3>2</h3>
-            </div>
-            <div>
-              <h3>3</h3>
-            </div>
-            <div>
-              <h3>4</h3>
-            </div>
-            <div>
-              <h3>5</h3>
-            </div>
-            <div>
-              <h3>6</h3>
-            </div>
-          </Slider>
-        </div>
-      </div>
-    );
+
+  const [settings, setSettings] = useState(config);
+
+  const products = [
+    {
+      img: '/images/product1.jpg',
+      title: 'Dolore magna',
+      text: 'Lorem ipsum dolor sit amet elit.'
+    },
+    {
+      img: '/images/product2.jpg',
+      title: 'Eget est lorem',
+      text: 'Lorem Ipsum adipiscing elit ipsum.'
+    },
+    {
+      img: '/images/product3.jpg',
+      title: 'Tempus imperdiet',
+      text: 'Orci porta non pulvinar neque laoreet.'
+    },
+    {
+      img: '/images/product4.jpg',
+      title: 'Mattis rhoncus',
+      text: 'Bibendum neque egestas congue quisque.'
+    },
+    {
+      img: '/images/product5.jpg',
+      title: 'Odio ut enim',
+      text: 'Mattis rhoncus urna neque viverra justo.'
+    }
+  ]
+
+  const onChangeCenterMode = e => {
+    if (e.target.checked) {
+      setSettings({
+        ...config,
+        centerMode: true,
+        centerPadding: '50px'
+      });
+    } else {
+      setSettings(config);
+    }
   }
+
+  return (
+    <div className='slick'>
+      
+      <label className='cb-centermode'>
+        <input
+          checked={settings.centerMode}
+          onChange={onChangeCenterMode}
+          type='checkbox'
+        />
+        <span>Enable Center Mode</span>
+      </label>
+
+      <Slider {...settings}>
+        {products.map((x, i) => {
+          return <div
+            className='img-card'
+            key={i}
+                 >
+            <img
+              className='img'
+              src={x.img}
+            />
+            <div className='card-body'>
+              <div className='card-title'>{x.title}</div>
+              <div className='card-text'>{x.text}</div>
+            </div>
+          </div>
+        })}
+      </Slider>
+    </div>
+  );
 }
+
+export default SliderSlick;
