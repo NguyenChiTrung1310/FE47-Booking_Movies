@@ -1,13 +1,14 @@
-/* eslint-disable indent */
 import React, { useState } from 'react';
 import Slider from 'react-slick'; 
-import {products} from '../../services/fakeApi'
 import {Typography} from '@material-ui/core'
+import {products} from '../../services/fakeApi'
+
 import {useStyles} from './useStyles'
 import PropTypes from 'prop-types';
+
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import './Slider.scss'
+import './Slider.scss';
 const SliderSlick=()=> {
   const classes= useStyles();
   const config = {
@@ -17,7 +18,7 @@ const SliderSlick=()=> {
     slidesToShow: 3,
     slidesToScroll: 1
   };
-  const [settings, setSettings] = useState(config);
+  const [settings] = useState(config);
   return (
     <div className='slick'>
       <Typography
@@ -28,19 +29,21 @@ const SliderSlick=()=> {
       <Slider {...settings}>
         {products.map((item, i) => {
           const {img, title,text}=item;
-          return <div 
-            className='img-card'
-            key={i}
-                 >
-            <img
-              className='img'
-              src={img}
-            />
-            <div className='card-body'>
-              <div className='card-title'>{title}</div>
-              <div className='card-text'>{text}</div>
-            </div>
-          </div>
+          return (
+            <div 
+              className='img-card'
+              key={i}
+            >
+              <img
+                alt='movie_Image'
+                className='img'
+                src={img}
+              />
+              <div className='card-body'>
+                <div className='card-title'>{title}</div>
+                <div className='card-text'>{text}</div>
+              </div>
+            </div>)
         })}
       </Slider>
     </div>
