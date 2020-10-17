@@ -1,10 +1,15 @@
+/* eslint-disable indent */
 import React, { useState } from 'react';
 import Slider from 'react-slick'; 
+import {products} from '../../services/fakeApi'
+import {Typography} from '@material-ui/core'
+import {useStyles} from './useStyles'
+import PropTypes from 'prop-types';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import './Slider.scss'
 const SliderSlick=()=> {
-
+  const classes= useStyles();
   const config = {
     dots: true,
     infinite: true,
@@ -12,74 +17,28 @@ const SliderSlick=()=> {
     slidesToShow: 3,
     slidesToScroll: 1
   };
-
   const [settings, setSettings] = useState(config);
-
-  const products = [
-    {
-      img: '/images/product1.jpg',
-      title: 'Dolore magna',
-      text: 'Lorem ipsum dolor sit amet elit.'
-    },
-    {
-      img: '/images/product2.jpg',
-      title: 'Eget est lorem',
-      text: 'Lorem Ipsum adipiscing elit ipsum.'
-    },
-    {
-      img: '/images/product3.jpg',
-      title: 'Tempus imperdiet',
-      text: 'Orci porta non pulvinar neque laoreet.'
-    },
-    {
-      img: '/images/product4.jpg',
-      title: 'Mattis rhoncus',
-      text: 'Bibendum neque egestas congue quisque.'
-    },
-    {
-      img: '/images/product5.jpg',
-      title: 'Odio ut enim',
-      text: 'Mattis rhoncus urna neque viverra justo.'
-    }
-  ]
-
-  const onChangeCenterMode = e => {
-    if (e.target.checked) {
-      setSettings({
-        ...config,
-        centerMode: true,
-        centerPadding: '50px'
-      });
-    } else {
-      setSettings(config);
-    }
-  }
-
   return (
     <div className='slick'>
-      
-      <label className='cb-centermode'>
-        <input
-          checked={settings.centerMode}
-          onChange={onChangeCenterMode}
-          type='checkbox'
-        />
-        <span>Enable Center Mode</span>
-      </label>
-
+      <Typography
+        className={classes.text}
+        component='h2'
+        variant='h4'
+      >Now Showing</Typography>
       <Slider {...settings}>
-        {products.map((x, i) => {
-          return <div
+        {products.map((item, i) => {
+          const {img, title,text}=item;
+          return <div 
             className='img-card'
             key={i}
                  >
             <img
               className='img'
-              src={x.img}
+              src={img}
             />
             <div className='card-body'>
-              <div className='card-title'>{x.title}</div>
-              <div className='card-text'>{x.text}</div>
+              <div className='card-title'>{title}</div>
+              <div className='card-text'>{text}</div>
             </div>
           </div>
         })}
@@ -87,5 +46,9 @@ const SliderSlick=()=> {
     </div>
   );
 }
-
+SliderSlick.propTypes={
+  img: PropTypes.string,
+  text: PropTypes.string,
+  title: PropTypes.string, 
+}
 export default SliderSlick;

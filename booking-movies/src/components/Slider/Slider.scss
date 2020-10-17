@@ -1,26 +1,24 @@
 @import './../../styles/styles.scss';
 
 .slick {
-  //width: 100%;
-  margin: 30px;
+  width: 100%;
+  margin-top: 30px;
+  overflow: hidden;
 }
 .slick-arrow {
+  position: absolute;
+  z-index: 10;
 }
 .slick-prev {
+  left: 5px;
 }
 .slick-next {
+  right: 5px;
 }
-.cb-centermode {
-  margin-bottom: 20px;
-  display: block;
-}
-.cb-centermode input {
-  margin-right: 7px;
-}
-
 /* card style start */
 
 .img-card {
+  position: relative;
   border-radius: 4px;
   background: #f5f5f5;
   color: #666;

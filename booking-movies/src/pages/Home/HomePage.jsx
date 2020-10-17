@@ -9,8 +9,8 @@ const HomePage=()=>{
     <div className='home-page'>
       <div className='banner'>
         <Banner />
-        <SliderSlick/>
       </div>
+      <SliderSlick/>
     </div>
   )
 }

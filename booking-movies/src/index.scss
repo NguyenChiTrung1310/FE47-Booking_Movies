@@ -2,10 +2,13 @@
 
 body {
   margin: 0;
-  font-family: 'Montserrat', sans-serif;
+
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   /////////////////////////////
 
-  background-color: $black-1!important;
+  background-color: $black-1 !important;
+}
+* {
+  font-family: 'Montserrat', sans-serif !important;
 }

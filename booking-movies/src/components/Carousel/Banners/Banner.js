@@ -10,7 +10,7 @@ import Banner4_img from '../../../assets/images/banner4.jpg';
 
 const Banner = () => {
   const [carousel] = useState({
-    autoPlay: false,
+    autoPlay: true,
     timer: 500,
     animation: 'fade',
     indicators: true,
