@@ -6,9 +6,9 @@ const validateEmail = (email) => {
   return re.test(email);
 };
 
-const validatePhoneNumber = (phone) => {
+const validatePhoneNumber = (soDt) => {
   var re = /^\(?([0-9]{3})\)?(?:[0-9]??).{6,10}[0-9]$/;
-  return re.test(phone);
+  return re.test(soDt);
 };
 
 const notify_success = () => {
@@ -21,31 +21,33 @@ const notify_warning = (error) => {
 
 const handleRegisterForm = (fields) => {
   var errors = {
-    account: '',
-    password: '',
-    fullname: '',
+    taiKhoan: '',
+    matKhau: '',
     email: '',
-    phone: '',
+    soDt: '',
+    maNhom: '',
+    maLoaiNguoiDung: '',
+    hoTen: '',
   };
   if (
-    fields['account'] !== '' &&
-    fields['fullname'] !== '' &&
+    fields['taiKhoan'] !== '' &&
+    fields['hoTen'] !== '' &&
     fields['email'] !== '' &&
-    fields['password'] !== '' &&
-    fields['phone'] !== '' &&
+    fields['matKhau'] !== '' &&
+    fields['soDt'] !== '' &&
     validateEmail(fields['email']) === true &&
-    validatePhoneNumber(fields['phone']) === true
+    validatePhoneNumber(fields['soDt']) === true
   ) {
     console.log(
-      `Account: ${fields['account']} || Password: ${fields['password']} || FullName: ${fields['fullname']} || Email: ${fields['email']} || Phone: ${fields['phone']}`
+      `Account: ${fields['taiKhoan']} || Password: ${fields['matKhau']} || Fullname: ${fields['hoTen']} || Email: ${fields['email']} || Phone: ${fields['soDt']}`
     );
     notify_success();
     return;
   } else {
-    //Account
-    if (!fields['account']) {
-      errors['account'] = 'Account field cannot be empty';
-      return notify_warning(errors['account']);
+    //taiKhoan
+    if (!fields['taiKhoan']) {
+      errors['taiKhoan'] = 'Account field cannot be empty';
+      return notify_warning(errors['taiKhoan']);
     }
 
     //Email
@@ -60,26 +62,26 @@ const handleRegisterForm = (fields) => {
       }
     }
 
-    //Password
-    if (!fields['password']) {
-      errors['password'] = 'Password field cannot be empty';
-      return notify_warning(errors['password']);
+    //matKhau
+    if (!fields['matKhau']) {
+      errors['matKhau'] = 'Password field cannot be empty';
+      return notify_warning(errors['matKhau']);
     }
 
     //Username
-    if (!fields['fullname']) {
-      errors['fullname'] = 'Fullname field cannot be empty';
-      return notify_warning(errors['fullname']);
+    if (!fields['hoTen']) {
+      errors['hoTen'] = 'Fullname field cannot be empty';
+      return notify_warning(errors['hoTen']);
     }
 
-    //Phone
-    if (!fields['phone']) {
-      errors['phone'] = 'Phone filed cannot be empty';
-      return notify_warning(errors['phone']);
+    //soDt
+    if (!fields['soDt']) {
+      errors['soDt'] = 'Phone filed cannot be empty';
+      return notify_warning(errors['soDt']);
     } else {
-      if (!validatePhoneNumber(fields['phone'])) {
-        errors['phone'] = 'Phone number at least 10-15 numbers';
-        return notify_warning(errors['phone']);
+      if (!validatePhoneNumber(fields['soDt'])) {
+        errors['soDt'] = 'Phone number at least 10-15 numbers';
+        return notify_warning(errors['soDt']);
       }
     }
   }
@@ -87,36 +89,26 @@ const handleRegisterForm = (fields) => {
 
 const handleLoginForm = (fields) => {
   var errors = {
-    email: '',
-    password: ''
+    taiKhoan: '',
+    matKhau: ''
   };
 
   if (
-    fields['email'] !== '' &&
-    fields['password'] !== '' &&
-    validateEmail(fields['email']) === true
+    fields['taiKhoan'] !== '' &&
+    fields['matKhau'] !== ''
   ) {
-    console.log(
-      `Email: ${fields['email']} || Password: ${fields['password']}`
-    );
-    notify_success();
-    return;
+    return 1;
   } else {
-    //Email
-    if (!fields['email']) {
-      errors['email'] = 'Email field cannot be empty';
-      return notify_warning(errors['email']);
-    }else {
-      if (!validateEmail(fields['email'])) {
-        errors['email'] = 'Invalid Email';
-        return notify_warning(errors['email']);
-      }
+    // taiKhoan
+    if (!fields['taiKhoan']) {
+      errors['taiKhoan'] = 'Account field cannot be empty';
+      return notify_warning(errors['taiKhoan']);
     }
 
-    //Password
-    if (!fields['password']) {
-      errors['password'] = 'Password field cannot be empty';
-      return notify_warning(errors['password']);
+    //matKhau
+    if (!fields['matKhau']) {
+      errors['matKhau'] = 'Password field cannot be empty';
+      return notify_warning(errors['matKhau']);
     }
   }
 }
