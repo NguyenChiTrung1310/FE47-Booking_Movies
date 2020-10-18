@@ -12,6 +12,8 @@ import { useStyles } from './useStyles';
 import './LoginPage.scss';
 import { loginAction } from '../../redux/actions/userAction';
 
+import { isEmpty } from 'lodash';
+
 toast.configure();
 const LoginPage = () => {
   const classes = useStyles();
@@ -35,9 +37,26 @@ const LoginPage = () => {
 
     const {taiKhoan, matKhau} = fields;
   
-    handleLoginForm(fields);
+    // handle validation form
+    const error = handleLoginForm(fields);
+    
+    if (!isEmpty(error)) {
+      toast.warn('Please input valid email and password');
+      return;
+    }
 
-    dispatch(loginAction(taiKhoan.trim(), matKhau.trim())); // dispatch action
+    const notify_success = () => {
+      toast.success('Login success');
+    };
+    
+    const notify_failed = () => {
+      toast.error('Email or password is incorrect !');
+    }
+
+    // dispatch action
+    dispatch(
+      loginAction(taiKhoan.trim(), matKhau.trim(), notify_success, notify_failed)
+    ); 
   };
   return (
     <Container
