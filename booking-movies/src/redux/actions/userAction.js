@@ -6,8 +6,7 @@ const loginSucceeded = (loginData) => {
   const {status} = loginData;
   return {
     type: LOGIN_SUCCESS,
-    loginStatus: status, //200
-    // loginMessage: msg
+    loginStatus: status, 
   };
 }
 
@@ -20,14 +19,31 @@ const loginFailed = (loginData) => {
   };
 }
 
-export const loginAction = (taiKhoan, matKhau) => {
+export const loginAction = (
+  taiKhoan, 
+  matKhau,
+  notify_success = () => {},
+  notify_failed = () => {},
+) => {
   return (dispatch) => {
     LoginService(taiKhoan, matKhau)
       .then(res => {
-        // dispatch(createAction(LOGIN_SUCCESS, res.data));
-        // localStorage.setItem('credentials', JSON.stringify(res.data));
-        console.log(res)
+
+        // dispatch action to reducer
+        dispatch(loginSucceeded(res)); // res is an object of data's API
+        console.log(res) 
+
+        // Notify Success
+        notify_success();
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+
+        // dispatch action to reducer
+        dispatch(loginFailed(err));
+        console.log(err);
+
+        // Notify Failed
+        notify_failed();
+      });
   }
 }
