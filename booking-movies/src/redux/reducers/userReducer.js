@@ -1,13 +1,14 @@
 import { LOGIN_SUCCESS } from '../../constants/constant';
 
 let initialState = {
-  credentials: null,
+  // credentials: null,
+  loginStatus: null,
 };
   
-const UserReducer = (state = initialState, { type, payload }) => {
+const UserReducer = (state = initialState, { type }) => {
   switch (type) {
     case LOGIN_SUCCESS:
-      state.credentials = payload;
+      // state.credentials = payload;
       return { ...state };
     default:
       return state;
