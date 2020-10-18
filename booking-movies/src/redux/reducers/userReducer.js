@@ -5,11 +5,17 @@ let initialState = {
   loginStatus: null,
 };
   
-const UserReducer = (state = initialState, { type }) => {
+const UserReducer = (state = initialState, action) => {
+
+  const { type, loginStatus } = action 
+
   switch (type) {
     case LOGIN_SUCCESS:
       // state.credentials = payload;
-      return { ...state };
+      return { 
+        ...state,
+        loginStatus: loginStatus 
+      };
     default:
       return state;
   }
