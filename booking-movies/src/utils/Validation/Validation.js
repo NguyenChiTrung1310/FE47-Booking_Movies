@@ -97,11 +97,7 @@ const handleLoginForm = (fields) => {
     fields['taiKhoan'] !== '' &&
     fields['matKhau'] !== ''
   ) {
-    console.log(
-      `Account: ${fields['taiKhoan']} || Password: ${fields['matKhau']}`
-    );
-    notify_success();
-    return;
+    return 1;
   } else {
     // taiKhoan
     if (!fields['taiKhoan']) {
@@ -111,7 +107,7 @@ const handleLoginForm = (fields) => {
 
     //matKhau
     if (!fields['matKhau']) {
-      errors['matKhau'] = 'matKhau field cannot be empty';
+      errors['matKhau'] = 'Password field cannot be empty';
       return notify_warning(errors['matKhau']);
     }
   }

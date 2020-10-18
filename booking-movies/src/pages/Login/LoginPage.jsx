@@ -53,10 +53,13 @@ const LoginPage = () => {
       toast.error('Email or password is incorrect !');
     }
 
-    // dispatch action
-    dispatch(
-      loginAction(taiKhoan.trim(), matKhau.trim(), notify_success, notify_failed)
-    ); 
+    if(error === 1){
+      // dispatch action
+      dispatch(
+        loginAction(taiKhoan.trim(), matKhau.trim(), notify_success, notify_failed)
+      ); 
+    }
+    
   };
   return (
     <Container
