@@ -3,10 +3,11 @@ import {LoginService} from '../../services';
 
 // login success
 const loginSucceeded = (loginData) => {
-  const {status} = loginData;
+  const {status, data} = loginData;
   return {
     type: LOGIN_SUCCESS,
     loginStatus: status, 
+    payload: data
   };
 }
 
@@ -31,6 +32,10 @@ export const loginAction = (
 
         // dispatch action to reducer
         dispatch(loginSucceeded(res)); // res is an object of data's API
+        
+        localStorage.setItem('Token', res.data.accessToken);
+        localStorage.setItem('Credentials', JSON.stringify(res.data));
+        
         console.log(res) 
 
         // Notify Success
