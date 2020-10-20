@@ -21,7 +21,7 @@
     }
   }
 
-.link {
+.link, .logout {
     color: #fff;
     text-decoration: none;
     overflow: hidden;
@@ -31,6 +31,17 @@
     font-weight: lighter;
     font-family: "Montserrat", sans-serif !important;
 
+}
+
+.user{
+    color: $white!important;
+    text-decoration: none;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+
+    font-weight: lighter!important;
+    font-family: "Montserrat", sans-serif !important;
 }
 
 .link-menu{
@@ -50,10 +61,10 @@
 
 .link-user {
 
-    width: 200px;
-    padding-top: 12px;
-    text-align: center;
-    font-size: 26px;
+    width: 200px!important;
+    padding-top: 12px!important;
+    text-align: center!important;
+    font-size: 26px!important;
     
 
     &::after{
@@ -63,6 +74,10 @@
     &:hover::after{
         @include animation('circle 1.5s ease-in-out forwards');
     }
+}
+
+.logout {
+  text-transform: capitalize!important;
 }
 
 // change theme menu popup icon

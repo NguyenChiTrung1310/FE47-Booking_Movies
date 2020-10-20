@@ -10,6 +10,7 @@ import {CONTACT_PAGE, HOME_PAGE, LOGIN_PAGE, NEWS_PAGE, REGISTER_PAGE} from '../
 
 import {useStyles} from './useStyles';
 import './AppBar.scss';
+import { useSelector } from 'react-redux';
 
 const AppBar = () => {
   const classes = useStyles();
@@ -23,6 +24,8 @@ const AppBar = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const userCredentials = useSelector(state => state.user.credentials)
 
   return (
     <div>
@@ -75,18 +78,38 @@ const AppBar = () => {
               onClose={handleClose}
               open={Boolean(anchorEl)}
             >
-              <MenuItem onClick={handleClose}>
-                <Link
-                  className='link link-user'
-                  color='inherit'
-                  to={LOGIN_PAGE}
-                >Login</Link></MenuItem>
-              <MenuItem onClick={handleClose}>
-                <Link
-                  className='link link-user'
-                  color='inherit'
-                  to={REGISTER_PAGE}
-                >Register</Link></MenuItem>
+              {
+                userCredentials 
+                  ? (<div>
+                    <MenuItem onClick={handleClose}>
+                      <Button
+                        className='user logout link-user'
+                        // to={NEWS_PAGE}
+                      >Logout</Button>
+                    </MenuItem>
+
+                    <MenuItem onClick={handleClose}>
+                      <Typography
+                        className='user link-user'
+                      >{userCredentials.hoTen}</Typography>
+                    </MenuItem>
+                  </div>
+                  ) 
+                  : (<div>
+                    <MenuItem onClick={handleClose}>
+                      <Link
+                        className='link link-user'
+                        to={LOGIN_PAGE}
+                      >Login</Link></MenuItem>
+
+                    <MenuItem onClick={handleClose}>
+                      <Link
+                        className='link link-user'
+                        to={REGISTER_PAGE}
+                      >Register</Link></MenuItem>
+                  </div>
+                  )
+              }
             </Menu>
           </Typography>
         </Toolbar>
