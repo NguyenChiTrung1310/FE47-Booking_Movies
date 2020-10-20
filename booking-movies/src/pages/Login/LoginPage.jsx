@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import {Link} from 'react-router-dom'
+import {Link, useHistory} from 'react-router-dom'
 import PropTypes from 'prop-types'; 
 import { toast } from 'react-toastify';
 import { Container, Grid, TextField, Typography } from '@material-ui/core'; 
 
 import Button from '../../components/Button/Button'; 
-import { REGISTER_PAGE } from './../../constants/constant'
+import { NEWS_PAGE, REGISTER_PAGE } from './../../constants/constant'
 import { handleLoginForm } from '../../utils/Validation/Validation';
 import { useStyles } from './useStyles';
 import './LoginPage.scss';
@@ -19,6 +19,8 @@ const LoginPage = () => {
   const classes = useStyles();
 
   const dispatch = useDispatch();
+  const history = useHistory();
+
 
   const [fields, setFields] = useState({
     taiKhoan: '',
@@ -57,7 +59,8 @@ const LoginPage = () => {
       // dispatch action
       dispatch(
         loginAction(taiKhoan.trim(), matKhau.trim(), notify_success, notify_failed)
-      ); 
+      );
+      history.push(NEWS_PAGE);
     }
     
   };
