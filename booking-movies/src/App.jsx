@@ -1,12 +1,29 @@
 /* eslint-disable linebreak-style */
-import React from 'react';
+import React, { useEffect } from 'react';
 import './App.scss';
 import 'react-toastify/dist/ReactToastify.css';
 import {LoginPage, RegisterPage, ErrorPage, HomePage, NewsPage, ContactPage} from './pages/index';
 import { Route, Switch} from 'react-router-dom';  
-import {LOGIN_PAGE, REGISTER_PAGE, HOME_PAGE, NEWS_PAGE, CONTACT_PAGE} from './constants/constant';
+import {LOGIN_PAGE, REGISTER_PAGE, HOME_PAGE, NEWS_PAGE, CONTACT_PAGE, LOGIN_SUCCESS} from './constants/constant';
 import AppBar from './components/AppBar/AppBar';
+import { useDispatch } from 'react-redux';
+import { createAction } from './redux/actions';
+
 function App() {
+  const dispatch = useDispatch();
+
+  const getCredentialsFromLocal = () => {
+    const credentialsStr = localStorage.getItem('Credentials');
+    if(credentialsStr){
+      dispatch(createAction(LOGIN_SUCCESS, JSON.parse(credentialsStr)))
+    }
+  }
+
+  useEffect(() => {
+    getCredentialsFromLocal()
+  });
+
+
   return (
     <div className='App'>
       <AppBar />

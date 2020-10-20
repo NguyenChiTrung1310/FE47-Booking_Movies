@@ -1,17 +1,17 @@
 import { LOGIN_SUCCESS } from '../../constants/constant';
 
 let initialState = {
-  // credentials: null,
+  credentials: null,
   loginStatus: null,
 };
   
 const UserReducer = (state = initialState, action) => {
 
-  const { type, loginStatus } = action 
+  const { type, loginStatus, payload } = action 
 
   switch (type) {
     case LOGIN_SUCCESS:
-      // state.credentials = payload;
+      state.credentials = payload;
       return { 
         ...state,
         loginStatus: loginStatus 
