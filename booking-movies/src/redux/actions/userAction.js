@@ -1,4 +1,4 @@
-import { LOGIN_FAILL, LOGIN_SUCCESS } from '../../constants/constant';
+import { LOGIN_FAILURE, LOGIN_SUCCESS } from '../../constants/constant';
 import {LoginService} from '../../services';
 
 // login success
@@ -14,7 +14,7 @@ const loginSucceeded = (loginData) => {
 const loginFailed = (loginData) => {
   const {status} = loginData;
   return {
-    type: LOGIN_FAILL,
+    type: LOGIN_FAILURE,
     loginStatus: status
   };
 }
