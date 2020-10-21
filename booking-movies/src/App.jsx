@@ -9,7 +9,10 @@ import AppBar from './components/AppBar/AppBar';
 import { useDispatch } from 'react-redux';
 import { createAction } from './redux/actions';
 import { getDataFromLocalStorage } from './utils/LocalStorage/LocalStorage';
+import { toast } from 'react-toastify';
 
+
+toast.configure();
 function App() {
   const dispatch = useDispatch();
 

@@ -18,3 +18,8 @@ export const getDataFromLocalStorage = (key) => {
 }
 
 
+// CLEAR STORE
+export const clearStoreFromLocalStorage = () => {
+  localStorage.clear();
+}
+

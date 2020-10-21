@@ -14,7 +14,6 @@ import { loginAction } from '../../redux/actions/userAction';
 
 import { isEmpty } from 'lodash';
 
-toast.configure();
 const LoginPage = () => {
   const classes = useStyles();
 
