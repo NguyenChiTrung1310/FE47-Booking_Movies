@@ -4,20 +4,19 @@ import { clearStoreFromLocalStorage, storeCredentials, storeUserToken } from '..
 
 // login success
 const loginSucceeded = (loginData) => {
-  const {status, data} = loginData;
+  const {data} = loginData;
   return {
     type: LOGIN_SUCCESS,
-    loginStatus: status, 
+    loginStatus: true, 
     payload: data
   };
 }
 
 // login failed
-const loginFailed = (loginData) => {
-  const {status} = loginData;
+const loginFailed = () => {
   return {
     type: LOGIN_FAILURE,
-    loginStatus: status
+    loginStatus: false
   };
 }
 
@@ -38,8 +37,7 @@ export const loginAction = (
     LoginService(taiKhoan, matKhau)
       .then(res => {
         const { accessToken } = res.data;
-        const {data} = res;
-        
+        const {data} = res;        
         // dispatch action to reducer
         dispatch(loginSucceeded(res)); // res is an object of data's API
         
@@ -55,7 +53,7 @@ export const loginAction = (
       .catch((err) => {
 
         // dispatch action to reducer
-        dispatch(loginFailed(err));
+        dispatch(loginFailed());
         console.log(err);
 
         // Notify Failed

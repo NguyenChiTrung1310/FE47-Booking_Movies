@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import {Link, useHistory} from 'react-router-dom'
 import PropTypes from 'prop-types'; 
 import { toast } from 'react-toastify';
@@ -20,6 +20,9 @@ const LoginPage = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
+  const loginStatus = useSelector(state => {
+    return state.user.loginStatus;
+  });
 
   const [fields, setFields] = useState({
     taiKhoan: '',
@@ -32,6 +35,10 @@ const LoginPage = () => {
       [e.target.name]: e.target.value,
     });
   };
+
+  const checkLoginSuccess = () => {
+    return loginStatus;
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -58,11 +65,19 @@ const LoginPage = () => {
       // dispatch action
       dispatch(
         loginAction(taiKhoan.trim(), matKhau.trim(), notify_success, notify_failed)
-      );
+      );    
+    } 
+  }
+
+  useEffect(() => {
+    const check = checkLoginSuccess();
+    
+    if(check === true){
       history.push(NEWS_PAGE);
     }
-    
-  };
+  }, [loginStatus]);
+
+
   return (
     <Container
       component='main'

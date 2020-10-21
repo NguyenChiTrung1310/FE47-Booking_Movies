@@ -1,4 +1,4 @@
-import { CLEAR_STORE, LOGIN_SUCCESS } from '../../constants/constant';
+import { CLEAR_STORE, LOGIN_FAILURE, LOGIN_SUCCESS } from '../../constants/constant';
 
 let initialState = {
   credentials: null,
@@ -16,6 +16,11 @@ const UserReducer = (state = initialState, action) => {
         ...state,
         loginStatus: loginStatus 
       };
+    case LOGIN_FAILURE:
+      return {
+        ...state,
+        loginStatus: loginStatus 
+      }
     case CLEAR_STORE:
       state = undefined;
       return {
