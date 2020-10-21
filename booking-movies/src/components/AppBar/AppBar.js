@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 import { AppBar as App, Button, IconButton, Menu, MenuItem, Toolbar, Typography } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
@@ -10,10 +10,14 @@ import {CONTACT_PAGE, HOME_PAGE, LOGIN_PAGE, NEWS_PAGE, REGISTER_PAGE} from '../
 
 import {useStyles} from './useStyles';
 import './AppBar.scss';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { clearStoreAction } from '../../redux/actions/userAction';
+import { toast } from 'react-toastify';
 
 const AppBar = () => {
   const classes = useStyles();
+  const dispatch = useDispatch();
+  const history = useHistory();
 
   const [anchorEl, setAnchorEl] = useState(null);
 
@@ -27,6 +31,17 @@ const AppBar = () => {
 
   const userCredentials = useSelector(state => state.user.credentials)
 
+  // handle logout
+  const handleLogOutBtnClick = (e) => {
+    e.preventDefault();
+
+    const notify_success = () => {
+      toast.success('Logout success');
+    };
+
+    dispatch(clearStoreAction(notify_success));
+    history.push(HOME_PAGE);
+  }
   return (
     <div>
       <App
@@ -84,7 +99,7 @@ const AppBar = () => {
                     <MenuItem onClick={handleClose}>
                       <Button
                         className='user logout link-user'
-                        // to={NEWS_PAGE}
+                        onClick={handleLogOutBtnClick}
                       >Logout</Button>
                     </MenuItem>
 
