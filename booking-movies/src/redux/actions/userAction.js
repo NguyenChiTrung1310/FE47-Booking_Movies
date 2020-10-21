@@ -1,5 +1,6 @@
 import { LOGIN_FAILURE, LOGIN_SUCCESS } from '../../constants/constant';
 import {LoginService} from '../../services';
+import { storeCredentials, storeUserToken } from '../../utils/LocalStorage/LocalStorage';
 
 // login success
 const loginSucceeded = (loginData) => {
@@ -29,12 +30,14 @@ export const loginAction = (
   return (dispatch) => {
     LoginService(taiKhoan, matKhau)
       .then(res => {
-
+        const { accessToken } = res.data;
+        const {data} = res;
         // dispatch action to reducer
         dispatch(loginSucceeded(res)); // res is an object of data's API
         
-        localStorage.setItem('Token', res.data.accessToken);
-        localStorage.setItem('Credentials', JSON.stringify(res.data));
+        // store data (localstorage)
+        storeUserToken(accessToken);
+        storeCredentials(JSON.stringify(data));
         
         console.log(res) 
 
