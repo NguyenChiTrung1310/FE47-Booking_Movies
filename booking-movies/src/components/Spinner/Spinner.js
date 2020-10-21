@@ -5,15 +5,12 @@ import PropTypes from 'prop-types';
 import {useStyles} from './useStyles';
 import './Spinner.scss';
 
-const LoadingSpinner = (props) => {
+const LoadingSpinner = () => {
   const classes = useStyles();
-  // const {isLoading} = props;
-
   return (
     <div className={classes.root}>
       <CircularProgress 
         className='spinner'
-        // loading = {isLoading}
       />
     </div>
   );

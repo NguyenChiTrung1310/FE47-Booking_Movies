@@ -12,7 +12,9 @@ import { getDataFromLocalStorage } from './utils/LocalStorage/LocalStorage';
 import { toast } from 'react-toastify';
 
 
-toast.configure();
+toast.configure({
+  autoClose: 2000,
+});
 function App() {
   const dispatch = useDispatch();
 

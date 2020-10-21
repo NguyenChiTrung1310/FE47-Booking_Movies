@@ -6,13 +6,14 @@ import { toast } from 'react-toastify';
 import { Container, Grid, TextField, Typography } from '@material-ui/core'; 
 
 import Button from '../../components/Button/Button'; 
-import { NEWS_PAGE, REGISTER_PAGE } from './../../constants/constant'
+import { HOME_PAGE, REGISTER_PAGE } from './../../constants/constant'
 import { handleLoginForm } from '../../utils/Validation/Validation';
 import { useStyles } from './useStyles';
 import './LoginPage.scss';
 import { loginAction } from '../../redux/actions/userAction';
 
 import { isEmpty } from 'lodash';
+import LoadingCool from '../../components/Spinner_Cool/SpinnerCool';
 
 const LoginPage = () => {
   const classes = useStyles();
@@ -63,7 +64,7 @@ const LoginPage = () => {
 
     const notify_success = () => {
       toast.success('Login success');
-    };
+    }
     
     const notify_failed = () => {
       toast.error('Email or password is incorrect !');
@@ -79,81 +80,96 @@ const LoginPage = () => {
 
   useEffect(() => {
     if(check === true){
-      history.push(NEWS_PAGE);
+      setTimeout(() => {
+        history.push(HOME_PAGE)
+      }, 2000);
+      
     }
   }, [loginStatus, history, check]);
 
+  const loading = () => {
+    return (<LoadingCool />);
+  }
 
   return (
     <Container
       component='main'
       maxWidth='xs'
     >
-      <div className={classes.paper}>
-        <Typography
-          className='title'
-          component='h1'
-          variant='h3'
-        >
+      {check 
+        ? loading() 
+        : (
+          <div className={classes.paper}>
+            <Typography
+              className='title'
+              component='h1'
+              variant='h3'
+            >
           Sign in
-        </Typography>
-        <form
-          className={classes.form}
-          noValidate
-          onSubmit={handleSubmit}
-        >
-          <TextField
-            autoComplete='taiKhoan'
-            autoFocus
-            className={classes.field}
-            fullWidth
-            id='taiKhoan'
-            label='Username'
-            margin='normal'
-            name='taiKhoan'
-            onChange={(event) => handleChange(event)}
-            required
-            type='text'
-            value={fields.taiKhoan}
-            variant='outlined'
-          />
-          <TextField
-            autoComplete='matKhau'
-            className={classes.field}
-            fullWidth
-            id='matKhau'
-            label='Password'
-            margin='normal'
-            name='matKhau'
-            onChange={(event) => handleChange(event)}
-            required
-            type='password'
-            value={fields.matKhau}
-            variant='outlined'
-          />
-          <Button type='submit'>Sign In</Button>
-          <Grid container>
-            <Grid item>
-              <div className={classes.registerLink}>
-                <p>
+            </Typography>
+            <form
+              className={classes.form}
+              noValidate
+              onSubmit={handleSubmit}
+            >
+              <TextField
+                autoComplete='taiKhoan'
+                autoFocus
+                className={classes.field}
+                fullWidth
+                id='taiKhoan'
+                label='Username'
+                margin='normal'
+                name='taiKhoan'
+                onChange={(event) => handleChange(event)}
+                required
+                type='text'
+                value={fields.taiKhoan}
+                variant='outlined'
+              />
+              <TextField
+                autoComplete='matKhau'
+                className={classes.field}
+                fullWidth
+                id='matKhau'
+                label='Password'
+                margin='normal'
+                name='matKhau'
+                onChange={(event) => handleChange(event)}
+                required
+                type='password'
+                value={fields.matKhau}
+                variant='outlined'
+              />
+              <Button type='submit'>Sign In</Button>
+              <Grid container>
+                <Grid item>
+                  <div className={classes.registerLink}>
+                    <p>
                   Don't have an account?
-                  <Link
-                    className={classes.link}
-                    to = {REGISTER_PAGE}
-                  >
+                      <Link
+                        className={classes.link}
+                        to = {REGISTER_PAGE}
+                      >
                     Register
-                  </Link>
-                </p>
-              </div>
-            </Grid>
-          </Grid>
-        </form>
-      </div>
+                      </Link>
+                    </p>
+                  </div>
+                </Grid>
+              </Grid>
+            </form>
+          </div>
+        )
+      
+      }
+      
     </Container>
   );
 };
 
 LoginPage.propTypes = {
+  check: PropTypes.bool,
+  loginStatus: PropTypes.bool,
   matKhau: PropTypes.string, 
   onChange: PropTypes.func,
   onSubmit: PropTypes.func, 
