@@ -6,13 +6,14 @@ import { AppBar as App, Button, IconButton, Menu, MenuItem, Toolbar, Typography 
 import AddIcon from '@material-ui/icons/Add';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
-import {CONTACT_PAGE, HOME_PAGE, LOGIN_PAGE, NEWS_PAGE, REGISTER_PAGE} from '../../constants/constant';
+import {CONTACT_PAGE, HOME_PAGE, LOGIN_PAGE, NEWS_PAGE, PROFILE_PAGE, REGISTER_PAGE} from '../../constants/constant';
 
 import {useStyles} from './useStyles';
 import './AppBar.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearStoreAction } from '../../redux/actions/userAction';
 import { toast } from 'react-toastify';
+import { inforUserAction } from '../../redux/actions/profileAction';
 
 const AppBar = () => {
   const classes = useStyles();
@@ -41,6 +42,10 @@ const AppBar = () => {
 
     dispatch(clearStoreAction(notify_success));
     history.push(HOME_PAGE);
+  }
+
+  const handleProfileClick = (e) => {
+    dispatch(inforUserAction(userCredentials));
   }
   return (
     <div>
@@ -104,9 +109,11 @@ const AppBar = () => {
                     </MenuItem>
 
                     <MenuItem onClick={handleClose}>
-                      <Typography
+                      <Link
                         className='user link-user'
-                      >{userCredentials.hoTen}</Typography>
+                        onClick={handleProfileClick}
+                        to={PROFILE_PAGE}
+                      >{userCredentials.hoTen}</Link>
                     </MenuItem>
                   </div>
                   ) 

@@ -1,4 +1,4 @@
-import { LOCAL_STORAGE_CREDENTIALS_KEY, LOCAL_STORAGE_TOKEN_KEY } from '../../constants/constant';
+import { LOCAL_STORAGE_CREDENTIALS_KEY, LOCAL_STORAGE_PROFILE_KEY, LOCAL_STORAGE_TOKEN_KEY } from '../../constants/constant';
 
 
 /* ========= USER TOKEN ========= */
@@ -10,6 +10,12 @@ export const storeUserToken = (token) => {
 // set 
 export const storeCredentials = (token) => {
   localStorage.setItem(LOCAL_STORAGE_CREDENTIALS_KEY, token);
+}
+
+/* ========= PROFILE ========= */
+// set 
+export const storeProfile = (data) => {
+  localStorage.setItem(LOCAL_STORAGE_PROFILE_KEY, data);
 }
 
 // get
