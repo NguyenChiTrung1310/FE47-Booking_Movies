@@ -35,11 +35,13 @@ const handleRegisterForm = (fields) => {
     fields['email'] !== '' &&
     fields['matKhau'] !== '' &&
     fields['soDt'] !== '' &&
+    fields['maNhom'] !== '' &&
+    fields['maLoaiNguoiDung'] !== '' &&
     validateEmail(fields['email']) === true &&
     validatePhoneNumber(fields['soDt']) === true
   ) {
     console.log(
-      `Account: ${fields['taiKhoan']} || Password: ${fields['matKhau']} || Fullname: ${fields['hoTen']} || Email: ${fields['email']} || Phone: ${fields['soDt']}`
+      `Account: ${fields['taiKhoan']} || Password: ${fields['matKhau']} || Fullname: ${fields['hoTen']} || Email: ${fields['email']} || Phone: ${fields['soDt']} || TypeGroup: ${fields['maNhom']} || TypeUser: ${fields['maLoaiNguoiDung']} `
     );
     notify_success();
     return;
@@ -83,6 +85,16 @@ const handleRegisterForm = (fields) => {
         errors['soDt'] = 'Phone number at least 10-15 numbers';
         return notify_warning(errors['soDt']);
       }
+    }
+    //maNhom 
+      if (!fields['maNhom']) {
+        errors['maNhom'] = ' Type group field cannot be empty';
+        return notify_warning(errors['maNhom']);
+      }
+    //maNguoiDung 
+    if (!fields['maLoaiNguoiDung']) {
+      errors['maLoaiNguoiDung'] = ' Type User field cannot be empty';
+      return notify_warning(errors['maLoaiNguoiDung']);
     }
   }
 };

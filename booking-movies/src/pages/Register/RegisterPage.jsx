@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import {Link} from 'react-router-dom';
 import { toast } from 'react-toastify';
 import PropTypes from 'prop-types';
-import { Container, TextField, Typography, Grid } from '@material-ui/core';
+import { Container, TextField, Typography, Grid, InputLabel, Select, FormControl } from '@material-ui/core';
 
 import Button from './../../components/Button/Button';
 import {
@@ -17,11 +17,13 @@ toast.configure()
 const RegisterPage = () => {
   const classes = useStyles();
   const [fields, setFields] = useState({
-    account: '',
-    password: '',
-    fullname: '',
+    taiKhoan: '',
+    matKhau: '',
     email: '',
-    phone: '',
+    soDt: '',
+    maNhom:'',
+    maLoaiNguoiDung:'',
+    hoTen: '',
   });
 
   const handleChange = (e) => {
@@ -54,46 +56,46 @@ const RegisterPage = () => {
           onSubmit={handleSubmit}
         >
           <TextField
-            autoComplete='account'
+            autoComplete='taiKhoan'
             autoFocus
             className={classes.field}
             fullWidth
-            id='account'
+            id='taiKhoan'
             label='Account'
             margin='normal'
-            name='account'
+            name='taiKhoan'
             onChange={(event) => handleChange(event)}
             required
             type='text'
-            value={fields.account}
+            value={fields.taiKhoan}
             variant='outlined'
           />
           <TextField
-            autoComplete='password'
+            autoComplete='matKhau'
             className={classes.field}
             fullWidth
-            id='password'
+            id='matKhau'
             label='Password'
             margin='normal'
-            name='password'
+            name='matKhau'
             onChange={(event) => handleChange(event)}
             required
             type='password'
-            value={fields.password}
+            value={fields.matKhau}
             variant='outlined'
           />
           <TextField
-            autoComplete='fullname'
+            autoComplete='hoTen'
             className={classes.field}
             fullWidth
-            id='fullname'
-            label='Fullname'
+            id='hoTen'
+            label='Full Name'
             margin='normal'
-            name='fullname'
+            name='hoTen'
             onChange={(event) => handleChange(event)}
             required
             type='text'
-            value={fields.fullname}
+            value={fields.hoTen}
             variant='outlined'
           />
           <TextField
@@ -114,16 +116,47 @@ const RegisterPage = () => {
             autoComplete='phomeNumber'
             className={classes.field}
             fullWidth
-            id='phone'
+            id='soDt'
             label='Phone Number'
             margin='normal'
-            name='phone'
+            name='soDt'
             onChange={(event) => handleChange(event)}
             required
             type='text'
-            value={fields.phone}
+            value={fields.soDt}
             variant='outlined'
-          />
+          /> 
+            <FormControl variant="filled" className={classes.formControl}>
+            <InputLabel htmlFor="filled-age-native-simple" className={classes.inputLabel}>Select Group</InputLabel>
+            <Select className={classes.inputLabel} 
+            name='maNhom'
+             value={fields.maNhom} 
+             onChange={(event) => handleChange(event)}
+              
+            >
+              <option aria-label="None" value='GP01'className={classes.inputLabel}    />
+              <option value='GP01'className={classes.inputLabel}>GP01</option>
+              <option value='GP02'className={classes.inputLabel} >GP02</option>
+              <option value='GP03'className={classes.inputLabel}>GP03</option>
+              <option value='GP04'className={classes.inputLabel}>GP04</option>
+              <option value='GP05'className={classes.inputLabel}>GP05</option>
+              <option value='GP06'className={classes.inputLabel}>GP06</option>
+             
+            </Select>
+          </FormControl>
+          <FormControl variant="filled" className={classes.formControl}>
+          <InputLabel htmlFor="filled-age-native-simple" className={classes.inputLabel}>Select Type User</InputLabel>
+          <Select className={classes.inputLabel} 
+          name='maLoaiNguoiDung' 
+          value={fields.maLoaiNguoiDung} 
+          onChange={(event) => handleChange(event)} 
+          
+          >
+            <option aria-label="None" value='KhachHang'className={classes.inputLabel}   />
+            <option value='KhachHang'className={classes.inputLabel}>Member</option> 
+            <option value='QuanTri'className={classes.inputLabel}>Admin</option> 
+          </Select>
+        </FormControl>
           <Button
             color='primary'
             type='submit'
@@ -135,7 +168,7 @@ const RegisterPage = () => {
             <Grid item>
               <div className={classes.loginLink}>
                 <p>
-            Have an account?
+            Have an Account?
                   <Link
                     className={classes.link}
                     to = {LOGIN_PAGE}
@@ -154,9 +187,9 @@ const RegisterPage = () => {
 
 RegisterPage.propTypes = {
   fields: PropTypes.shape({
-    account: PropTypes.string.isRequired,
-    password: PropTypes.string.isRequired,
-    fullname: PropTypes.string.isRequired,
+    taiKhoan: PropTypes.string.isRequired,
+    matKhau: PropTypes.string.isRequired,
+    hoTen: PropTypes.string.isRequired,
     email: PropTypes.string.isRequired, 
   }),
   onChange: PropTypes.func, 

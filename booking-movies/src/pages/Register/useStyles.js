@@ -40,4 +40,12 @@ export const useStyles = makeStyles((theme) => ({
       color: '#fff',
     },
   },
+  formControl: {
+    width: '100%',
+    color: '#fff',   
+  },
+  inputLabel:{
+    color: '#fff',
+  },
+  
 }));
