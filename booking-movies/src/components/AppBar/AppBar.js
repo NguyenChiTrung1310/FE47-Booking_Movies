@@ -45,6 +45,7 @@ const AppBar = () => {
   }
 
   const handleProfileClick = (e) => {
+    e.preventDefault();
     dispatch(inforUserAction(userCredentials));
   }
   return (
@@ -142,9 +143,14 @@ const AppBar = () => {
 
 AppBar.propTypes = {
   anchorEl: PropTypes.func,
+  handleClick: PropTypes.func,
+  handleClose: PropTypes.func,
+  handleLogOutBtnClick: PropTypes.func,
+  handleProfileClick: PropTypes.func,
   onClick: PropTypes.func,
   onClose: PropTypes.func,
-  open: PropTypes.bool
+  open: PropTypes.bool,
+  userCredentials: PropTypes.object,
 }
 
 export default AppBar

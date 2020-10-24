@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+import PropTypes from 'prop-types'; 
 import Carousel from 'react-material-ui-carousel';
 import CarouselBanner from '../Carousel/Carousel';
 
@@ -69,6 +70,10 @@ const Banner = () => {
       </Carousel>
     </div>
   )
+}
+
+Banner.propTypes = {
+  carousel: PropTypes.object,  
 }
 
 export default Banner
