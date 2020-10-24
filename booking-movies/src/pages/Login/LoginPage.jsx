@@ -169,6 +169,8 @@ const LoginPage = () => {
 
 LoginPage.propTypes = {
   check: PropTypes.bool,
+  handleChange: PropTypes.func,
+  handleSubmit: PropTypes.func,
   loginStatus: PropTypes.bool,
   matKhau: PropTypes.string, 
   onChange: PropTypes.func,

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types'; 
 import { Container, TextField, Typography } from '@material-ui/core';
 import Button from './../../components/Button/Button';
 
@@ -250,5 +251,22 @@ const Profile = () => {
     </Container>
   )
 }
+
+Profile.propTypes = {
+  email: PropTypes.string,
+  fields: PropTypes.object,
+  handleChange: PropTypes.func,
+  handleUpdate: PropTypes.func,
+  hoTen: PropTypes.string,
+  loaiNguoiDung: PropTypes.string,
+  maNhom: PropTypes.string, 
+  matKhau: PropTypes.string, 
+  onChange: PropTypes.func,
+  onSubmit: PropTypes.func, 
+  soDt: PropTypes.number,
+  taiKhoan: PropTypes.string,
+  thongTinDatVe: PropTypes.array,
+  userProfile: PropTypes.object,
+};
 
 export default Profile
