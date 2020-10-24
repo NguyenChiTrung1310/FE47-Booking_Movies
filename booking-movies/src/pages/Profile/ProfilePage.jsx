@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types'; 
 import { Container, TextField, Typography } from '@material-ui/core';
-import Button from './../../components/Button/Button';
+import Button from '../../components/Button/Button';
 
-import { useStyles } from './../Register/useStyles';
+import { useStyles } from '../Register/useStyles';
 import { useSelector } from 'react-redux';
 
-const Profile = () => {
+const ProfilePage = () => {
   const classes = useStyles();
   const userProfile = useSelector(state=> state.profile.initialProfile)
     
@@ -252,7 +252,7 @@ const Profile = () => {
   )
 }
 
-Profile.propTypes = {
+ProfilePage.propTypes = {
   email: PropTypes.string,
   fields: PropTypes.object,
   handleChange: PropTypes.func,
@@ -269,4 +269,4 @@ Profile.propTypes = {
   userProfile: PropTypes.object,
 };
 
-export default Profile
+export default ProfilePage

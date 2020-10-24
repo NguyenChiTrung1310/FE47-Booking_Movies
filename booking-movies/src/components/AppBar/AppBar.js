@@ -44,8 +44,7 @@ const AppBar = () => {
     history.push(HOME_PAGE);
   }
 
-  const handleProfileClick = (e) => {
-    e.preventDefault();
+  const handleProfileClick = () => {
     dispatch(inforUserAction(userCredentials));
   }
   return (
