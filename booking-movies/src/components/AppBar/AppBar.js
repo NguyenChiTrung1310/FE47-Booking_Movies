@@ -29,9 +29,8 @@ const AppBar = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
-
-  const userCredentials = useSelector(state => state.user.credentials)
-
+  const userCredentials=useSelector(state=> state.user.credentials);
+  const loginStatus = useSelector(state=> state.user.loginStatus);
   // handle logout
   const handleLogOutBtnClick = (e) => {
     e.preventDefault();
@@ -99,7 +98,7 @@ const AppBar = () => {
               open={Boolean(anchorEl)}
             >
               {
-                userCredentials 
+                loginStatus 
                   ? (<div>
                     <MenuItem onClick={handleClose}>
                       <Button

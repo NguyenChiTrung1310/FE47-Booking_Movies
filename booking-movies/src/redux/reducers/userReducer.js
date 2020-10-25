@@ -21,19 +21,20 @@ const UserReducer = (state = initialState, action) => {
       return {
         ...state,
         loginStatus: loginStatus 
-      }
-      //B8
+      } 
     case REGISTER_SUCESS:
       state.credentials = payload;
       return{
         ...state,
-        registerStatus: type // handle in view
+        loginStatus:false,
+        registerStatus: type  
       }
-      case REGISTER_FAILURE:
-        return{
-          ...state,
-          registerStatus: type // handle in view
-        }
+    case REGISTER_FAILURE:
+      return{
+        ...state,
+        loginStatus:false,
+        registerStatus: type  
+      }
     case CLEAR_STORE:
       state = undefined;
       return {

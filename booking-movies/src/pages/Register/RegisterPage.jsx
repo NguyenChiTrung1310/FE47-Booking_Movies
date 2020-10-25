@@ -49,8 +49,7 @@ const RegisterPage = () => {
       maNhom,
       maLoaiNguoiDung,
       hoTen
-    } = fields;
-    //1.handle register
+    } = fields; 
     const error= handleRegisterForm(fields); 
 
     const notify_success = () => {
@@ -60,195 +59,234 @@ const RegisterPage = () => {
       toast.error('Register failed');
     };
 
-    if(error===1){
-     //2.dispatch action
-     dispatch(
-       registerAction(
-         taiKhoan.trim(),
-         matKhau.trim(),
-         email.trim(),
-         soDt.trim(),
-         maNhom.trim(),
-         maLoaiNguoiDung.trim(),
-         hoTen.trim(),
-         notify_success,
-         notify_failed,
-       )
-     );
-    //  console.log("KO USEEFECT",registerStatus);
-    //     if(registerStatus=== REGISTER_SUCESS){
-    //       history.push(LOGIN_PAGE); 
-    //     }
+    if(error===1){ 
+      dispatch(
+        registerAction(
+          taiKhoan.trim(),
+          matKhau.trim(),
+          email.trim(),
+          soDt.trim(),
+          maNhom.trim(),
+          maLoaiNguoiDung.trim(),
+          hoTen.trim(),
+          notify_success,
+          notify_failed,
+        )
+      ); 
     }
-  };
-  //COMPONENT DIDMOUNT
+  }; 
   useEffect(() => {
     if(registerStatus=== REGISTER_SUCESS){
       setTimeout(()=>{
         history.push(LOGIN_PAGE); 
       },2000);
      
-    }
-    //console.log("CO USEEFECT",registerStatus); 
+    } 
   }, [registerStatus, history])
   
   //is Loading
-const isLoading=()=>{
-  return(
-    <LoadingCool/> 
-  );
-}
+  const isLoading=()=>{
+    return(
+      <LoadingCool/> 
+    );
+  }
 
   return (
     <Container
       component='main'
       maxWidth='xs'
     >
-    {
-      registerStatus
-      ? isLoading() 
-      : (
-        <div className={classes.paper}>
-        <Typography
-          className='title'
-          component='h3'
-          variant='h3'
-        >
+      {
+        registerStatus
+          ? isLoading() 
+          : (
+            <div className={classes.paper}>
+              <Typography
+                className='title'
+                component='h3'
+                variant='h3'
+              >
           Register
-        </Typography>
-        <form
-          className={classes.form}
-          noValidate
-          onSubmit={handleSubmit}
-        >
-          <TextField
-            autoComplete='taiKhoan'
-            autoFocus
-            className={classes.field}
-            fullWidth
-            id='taiKhoan'
-            label='Account'
-            margin='normal'
-            name='taiKhoan'
-            onChange={(event) => handleChange(event)}
-            required
-            type='text'
-            value={fields.taiKhoan}
-            variant='outlined'
-          />
-          <TextField
-            autoComplete='matKhau'
-            className={classes.field}
-            fullWidth
-            id='matKhau'
-            label='Password'
-            margin='normal'
-            name='matKhau'
-            onChange={(event) => handleChange(event)}
-            required
-            type='password'
-            value={fields.matKhau}
-            variant='outlined'
-          />
-          <TextField
-            autoComplete='hoTen'
-            className={classes.field}
-            fullWidth
-            id='hoTen'
-            label='Full Name'
-            margin='normal'
-            name='hoTen'
-            onChange={(event) => handleChange(event)}
-            required
-            type='text'
-            value={fields.hoTen}
-            variant='outlined'
-          />
-          <TextField
-            autoComplete='email'
-            className={classes.field}
-            fullWidth
-            id='email'
-            label='Email'
-            margin='normal'
-            name='email'
-            onChange={(event) => handleChange(event)}
-            required
-            type='text'
-            value={fields.email}
-            variant='outlined'
-          />
-          <TextField
-            autoComplete='phomeNumber'
-            className={classes.field}
-            fullWidth
-            id='soDt'
-            label='Phone Number'
-            margin='normal'
-            name='soDt'
-            onChange={(event) => handleChange(event)}
-            required
-            type='text'
-            value={fields.soDt}
-            variant='outlined'
-          /> 
-            <FormControl variant="filled" className={classes.formControl}>
-            <InputLabel htmlFor="filled-age-native-simple" className={classes.inputLabel}>Select Group</InputLabel>
-            <Select className={classes.inputLabel} 
-            name='maNhom'
-             value={fields.maNhom} 
-             onChange={(event) => handleChange(event)}
+              </Typography>
+              <form
+                className={classes.form}
+                noValidate
+                onSubmit={handleSubmit}
+              >
+                <TextField
+                  autoComplete='taiKhoan'
+                  autoFocus
+                  className={classes.field}
+                  fullWidth
+                  id='taiKhoan'
+                  label='Account'
+                  margin='normal'
+                  name='taiKhoan'
+                  onChange={(event) => handleChange(event)}
+                  required
+                  type='text'
+                  value={fields.taiKhoan}
+                  variant='outlined'
+                />
+                <TextField
+                  autoComplete='matKhau'
+                  className={classes.field}
+                  fullWidth
+                  id='matKhau'
+                  label='Password'
+                  margin='normal'
+                  name='matKhau'
+                  onChange={(event) => handleChange(event)}
+                  required
+                  type='password'
+                  value={fields.matKhau}
+                  variant='outlined'
+                />
+                <TextField
+                  autoComplete='hoTen'
+                  className={classes.field}
+                  fullWidth
+                  id='hoTen'
+                  label='Full Name'
+                  margin='normal'
+                  name='hoTen'
+                  onChange={(event) => handleChange(event)}
+                  required
+                  type='text'
+                  value={fields.hoTen}
+                  variant='outlined'
+                />
+                <TextField
+                  autoComplete='email'
+                  className={classes.field}
+                  fullWidth
+                  id='email'
+                  label='Email'
+                  margin='normal'
+                  name='email'
+                  onChange={(event) => handleChange(event)}
+                  required
+                  type='text'
+                  value={fields.email}
+                  variant='outlined'
+                />
+                <TextField
+                  autoComplete='phomeNumber'
+                  className={classes.field}
+                  fullWidth
+                  id='soDt'
+                  label='Phone Number'
+                  margin='normal'
+                  name='soDt'
+                  onChange={(event) => handleChange(event)}
+                  required
+                  type='text'
+                  value={fields.soDt}
+                  variant='outlined'
+                /> 
+                <FormControl
+                  className={classes.formControl}
+                  variant='filled'
+                >
+                  <InputLabel
+                    className={classes.inputLabel}
+                    htmlFor='filled-age-native-simple'
+                  >Select Group</InputLabel>
+                  <Select
+                    className={classes.inputLabel} 
+                    name='maNhom'
+                    onChange={(event) => handleChange(event)} 
+                    value={fields.maNhom}
               
-            >
-              <MenuItem aria-label="None" value=' 'className={classes.inputLabel}    />
-              <MenuItem value='GP01'className={classes.inputLabel}>GP01</MenuItem>
-              <MenuItem value='GP02'className={classes.inputLabel} >GP02</MenuItem>
-              <MenuItem value='GP03'className={classes.inputLabel}>GP03</MenuItem>
-              <MenuItem value='GP04'className={classes.inputLabel}>GP04</MenuItem>
-              <MenuItem value='GP05'className={classes.inputLabel}>GP05</MenuItem>
-              <MenuItem value='GP06'className={classes.inputLabel}>GP06</MenuItem>
-             
-            </Select>
-          </FormControl>
-          <FormControl variant="filled" className={classes.formControl}>
-          <InputLabel htmlFor="filled-age-native-simple" className={classes.inputLabel}>Select Type User</InputLabel>
-          <Select className={classes.inputLabel} 
-          name='maLoaiNguoiDung' 
-          value={fields.maLoaiNguoiDung} 
-          onChange={(event) => handleChange(event)} 
-          
-          >
-            <MenuItem aria-label="None" value=' 'className={classes.inputLabel}   />
-            <MenuItem value='KhachHang'className={classes.inputLabel}>Member</MenuItem> 
-            <MenuItem value='QuanTri'className={classes.inputLabel}>Admin</MenuItem> 
-          </Select>
-        </FormControl>
-          <Button
-            color='primary'
-            type='submit'
-            variant='contained'
-          >
-            Create Account
-          </Button>
-          <Grid container>
-            <Grid item>
-              <div className={classes.loginLink}>
-                <p>
-            Have an Account?
-                  <Link
-                    className={classes.link}
-                    to = {LOGIN_PAGE}
                   >
+                    <MenuItem
+                      aria-label='None'
+                      className={classes.inputLabel}
+                      value=' '
+                    />
+                    <MenuItem
+                      className={classes.inputLabel}
+                      value='GP01'
+                    >GP01</MenuItem>
+                    <MenuItem
+                      className={classes.inputLabel}
+                      value='GP02'
+                    >GP02</MenuItem>
+                    <MenuItem
+                      className={classes.inputLabel}
+                      value='GP03'
+                    >GP03</MenuItem>
+                    <MenuItem
+                      className={classes.inputLabel}
+                      value='GP04'
+                    >GP04</MenuItem>
+                    <MenuItem
+                      className={classes.inputLabel}
+                      value='GP05'
+                    >GP05</MenuItem>
+                    <MenuItem
+                      className={classes.inputLabel}
+                      value='GP06'
+                    >GP06</MenuItem>
+             
+                  </Select>
+                </FormControl>
+                <FormControl
+                  className={classes.formControl}
+                  variant='filled'
+                >
+                  <InputLabel
+                    className={classes.inputLabel}
+                    htmlFor='filled-age-native-simple'
+                  >Select Type User</InputLabel>
+                  <Select
+                    className={classes.inputLabel} 
+                    name='maLoaiNguoiDung' 
+                    onChange={(event) => handleChange(event)} 
+                    value={fields.maLoaiNguoiDung} 
+          
+                  >
+                    <MenuItem
+                      aria-label='None'
+                      className={classes.inputLabel}
+                      value=' '
+                    />
+                    <MenuItem
+                      className={classes.inputLabel}
+                      value='KhachHang'
+                    >Member</MenuItem> 
+                    <MenuItem
+                      className={classes.inputLabel}
+                      value='QuanTri'
+                    >Admin</MenuItem> 
+                  </Select>
+                </FormControl>
+                <Button
+                  color='primary'
+                  type='submit'
+                  variant='contained'
+                >
+            Create Account
+                </Button>
+                <Grid container>
+                  <Grid item>
+                    <div className={classes.loginLink}>
+                      <p>
+            Have an Account?
+                        <Link
+                          className={classes.link}
+                          to = {LOGIN_PAGE}
+                        >
               Login
-                  </Link>
-                </p>
-              </div>
-            </Grid>
-          </Grid>
-        </form>
-      </div>
-      )
-    }
+                        </Link>
+                      </p>
+                    </div>
+                  </Grid>
+                </Grid>
+              </form>
+            </div>
+          )
+      }
       
     </Container>
   );
@@ -260,9 +298,12 @@ RegisterPage.propTypes = {
     matKhau: PropTypes.string.isRequired,
     hoTen: PropTypes.string.isRequired,
     email: PropTypes.string.isRequired, 
+    soDt: PropTypes.string.isRequired, 
+    maNhom: PropTypes.string.isRequired, 
+    maLoaiNguoiDung: PropTypes.string.isRequired, 
   }),
   onChange: PropTypes.func, 
   onSubmit: PropTypes.func,
 };
 
-export default RegisterPage;
+ 

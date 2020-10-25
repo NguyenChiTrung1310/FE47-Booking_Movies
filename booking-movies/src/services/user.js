@@ -8,8 +8,7 @@ export function LoginService(taiKhoan, matKhau) {
     url: LOGIN_API,
     data: loginData,
   });
-}
-    //B.3
+} 
 export function RegisterService(taiKhoan, matKhau, email, soDt, maNhom, maLoaiNguoiDung, hoTen) {
   const registerData = {taiKhoan, matKhau, email, soDt, maNhom, maLoaiNguoiDung, hoTen};
   return  axios({

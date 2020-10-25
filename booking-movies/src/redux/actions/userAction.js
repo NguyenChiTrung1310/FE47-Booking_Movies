@@ -61,8 +61,7 @@ export const loginAction = (
       });
   }
 }
-
-//B.6
+ 
 const registerSucess=(registerData)=>{
   const {data} =registerData;
   return {
@@ -86,10 +85,7 @@ export const clearStoreAction = (notify_success = () => {}) => {
     notify_success();
   }
 }
-
-
-
-// B.5
+ 
 export const registerAction =( 
   taiKhoan,
   matKhau,
@@ -100,9 +96,9 @@ export const registerAction =(
   hoTen,
   notify_success=()=>{},
   notify_failed=()=>{},
-  ) => {
- return (dispatch)=>{
-   RegisterService(
+) => {
+  return (dispatch)=>{
+    RegisterService(
       taiKhoan,
       matKhau,
       email,
@@ -110,18 +106,14 @@ export const registerAction =(
       maNhom,
       maLoaiNguoiDung,
       hoTen
-      )
-      .then(res=>{
-       // console.log(res);  //res is an object of data's API
-       //B.7 continute to dispath
-       dispatch(registerSucess(res))
-      //Notify Success
-      notify_success();
+    )
+      .then(res=>{ 
+        dispatch(registerSucess(res)) 
+        notify_success();
       })
-      .catch(err=>{
-       // console.log(err);
-       dispatch(registerFailed());
-       notify_failed();
+      .catch(err=>{ 
+        dispatch(registerFailed());
+        notify_failed();
       })
- }
+  }
 }
