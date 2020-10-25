@@ -23,18 +23,11 @@ const LoginPage = () => {
 
   /* START ______GET DATA FROM REDUCER______ */
   
-  // (1) get loginStatus from reducer using useSelector
+  // Get loginStatus from reducer using useSelector
   const loginStatus = useSelector(state => {
     return state.user.loginStatus;
   });
 
-  // // (2) then create a function to return that loginStatus which is get in (1)
-  // const checkLoginSuccess = () => {
-  //   return loginStatus;
-  // }
-
-  // // (3) store value's checkLoginSuccess to a variable
-  // const check = checkLoginSuccess();
   /* END ________________________________________ */
 
   const [fields, setFields] = useState({
