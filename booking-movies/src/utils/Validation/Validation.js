@@ -11,9 +11,7 @@ const validatePhoneNumber = (soDt) => {
   return re.test(soDt);
 };
 
-const notify_success = () => {
-  toast.success('Register success');
-};
+
 
 const notify_warning = (error) => {
   toast.warn(error);
@@ -40,11 +38,11 @@ const handleRegisterForm = (fields) => {
     validateEmail(fields['email']) === true &&
     validatePhoneNumber(fields['soDt']) === true
   ) {
-    console.log(
-      `Account: ${fields['taiKhoan']} || Password: ${fields['matKhau']} || Fullname: ${fields['hoTen']} || Email: ${fields['email']} || Phone: ${fields['soDt']} || TypeGroup: ${fields['maNhom']} || TypeUser: ${fields['maLoaiNguoiDung']} `
-    );
-    notify_success();
-    return;
+    // console.log(
+    //   `Account: ${fields['taiKhoan']} || Password: ${fields['matKhau']} || Fullname: ${fields['hoTen']} || Email: ${fields['email']} || Phone: ${fields['soDt']} || TypeGroup: ${fields['maNhom']} || TypeUser: ${fields['maLoaiNguoiDung']} `
+    // );
+    // notify_success();
+    return 1;
   } else {
     //taiKhoan
     if (!fields['taiKhoan']) {

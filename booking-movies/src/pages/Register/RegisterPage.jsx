@@ -1,9 +1,10 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from 'react';
+import React, { useState  } from 'react';
+import {useDispatch} from 'react-redux';
 import {Link} from 'react-router-dom';
 import { toast } from 'react-toastify';
 import PropTypes from 'prop-types';
-import { Container, TextField, Typography, Grid, InputLabel, Select, FormControl } from '@material-ui/core';
+import { Container, TextField, Typography, Grid, InputLabel, Select, FormControl, MenuItem } from '@material-ui/core';
 
 import Button from './../../components/Button/Button';
 import {
@@ -12,10 +13,11 @@ import {
 import { LOGIN_PAGE } from './../../constants/constant'
 
 import { useStyles } from './../Register/useStyles';
-import './RegisterPage.scss';
-toast.configure()
+import './RegisterPage.scss'; 
+import { registerAction } from '../../redux/actions/userAction';
 const RegisterPage = () => {
   const classes = useStyles();
+  const dispatch = useDispatch()
   const [fields, setFields] = useState({
     taiKhoan: '',
     matKhau: '',
@@ -35,7 +37,41 @@ const RegisterPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    handleRegisterForm(fields); 
+    const {
+      taiKhoan,
+      matKhau,
+      email,
+      soDt,
+      maNhom,
+      maLoaiNguoiDung,
+      hoTen
+    } = fields;
+    //1.handle register
+    const error= handleRegisterForm(fields); 
+
+    const notify_success = () => {
+      toast.success('Register success');
+    };
+    const notify_failed = () => {
+      toast.error('Register failed');
+    };
+
+    if(error===1){
+     //2.dispatch action
+     dispatch(
+       registerAction(
+         taiKhoan.trim(),
+         matKhau.trim(),
+         email.trim(),
+         soDt.trim(),
+         maNhom.trim(),
+         maLoaiNguoiDung.trim(),
+         hoTen.trim(),
+         notify_success,
+         notify_failed,
+       )
+     );
+    }
   };
   return (
     <Container
@@ -134,13 +170,13 @@ const RegisterPage = () => {
              onChange={(event) => handleChange(event)}
               
             >
-              <option aria-label="None" value='GP01'className={classes.inputLabel}    />
-              <option value='GP01'className={classes.inputLabel}>GP01</option>
-              <option value='GP02'className={classes.inputLabel} >GP02</option>
-              <option value='GP03'className={classes.inputLabel}>GP03</option>
-              <option value='GP04'className={classes.inputLabel}>GP04</option>
-              <option value='GP05'className={classes.inputLabel}>GP05</option>
-              <option value='GP06'className={classes.inputLabel}>GP06</option>
+              <MenuItem aria-label="None" value=' 'className={classes.inputLabel}    />
+              <MenuItem value='GP01'className={classes.inputLabel}>GP01</MenuItem>
+              <MenuItem value='GP02'className={classes.inputLabel} >GP02</MenuItem>
+              <MenuItem value='GP03'className={classes.inputLabel}>GP03</MenuItem>
+              <MenuItem value='GP04'className={classes.inputLabel}>GP04</MenuItem>
+              <MenuItem value='GP05'className={classes.inputLabel}>GP05</MenuItem>
+              <MenuItem value='GP06'className={classes.inputLabel}>GP06</MenuItem>
              
             </Select>
           </FormControl>
@@ -152,9 +188,9 @@ const RegisterPage = () => {
           onChange={(event) => handleChange(event)} 
           
           >
-            <option aria-label="None" value='KhachHang'className={classes.inputLabel}   />
-            <option value='KhachHang'className={classes.inputLabel}>Member</option> 
-            <option value='QuanTri'className={classes.inputLabel}>Admin</option> 
+            <MenuItem aria-label="None" value=' 'className={classes.inputLabel}   />
+            <MenuItem value='KhachHang'className={classes.inputLabel}>Member</MenuItem> 
+            <MenuItem value='QuanTri'className={classes.inputLabel}>Admin</MenuItem> 
           </Select>
         </FormControl>
           <Button

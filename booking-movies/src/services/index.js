@@ -1,3 +1,3 @@
-import {LoginService} from './user';
+import {LoginService, RegisterService} from './user';
 
-export {LoginService};
+export {LoginService, RegisterService};
