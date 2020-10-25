@@ -23,18 +23,11 @@ const LoginPage = () => {
 
   /* START ______GET DATA FROM REDUCER______ */
   
-  // (1) get loginStatus from reducer using useSelector
+  // Get loginStatus from reducer using useSelector
   const loginStatus = useSelector(state => {
     return state.user.loginStatus;
   });
 
-  // (2) then create a function to return that loginStatus which is get in (1)
-  const checkLoginSuccess = () => {
-    return loginStatus;
-  }
-
-  // (3) store value's checkLoginSuccess to a variable
-  const check = checkLoginSuccess();
   /* END ________________________________________ */
 
   const [fields, setFields] = useState({
@@ -79,13 +72,13 @@ const LoginPage = () => {
   }
 
   useEffect(() => {
-    if(check === true){
+    if(loginStatus === true){
       setTimeout(() => {
         history.push(HOME_PAGE)
       }, 2000);
       
     }
-  }, [loginStatus, history, check]);
+  }, [loginStatus, history]);
 
   const loading = () => {
     return (<LoadingCool />);
@@ -96,7 +89,7 @@ const LoginPage = () => {
       component='main'
       maxWidth='xs'
     >
-      {check 
+      {loginStatus 
         ? loading() 
         : (
           <div className={classes.paper}>
