@@ -62,5 +62,8 @@ export const useStyles = makeStyles((theme) => ({
   // fix UI
   drawerArrow: {
     color: '#fff'
+  },
+  divider: {
+    borderBottom: '1px solid rgba(255, 255, 255, 0.12)'
   }
 }));

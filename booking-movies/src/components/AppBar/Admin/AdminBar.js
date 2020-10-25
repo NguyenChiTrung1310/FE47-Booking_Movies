@@ -87,7 +87,7 @@ const AdminBar = () => {
             {theme.direction === 'ltr' ? <ChevronLeftIcon className={classes.drawerArrow}/> : <ChevronRightIcon className={classes.drawerArrow}/>}
           </IconButton>
         </div>
-        <Divider />
+        <Divider className={classes.divider}/>
         <TabPanel
           handleChange={handleChange}
           propsValue={value}
@@ -99,7 +99,7 @@ const AdminBar = () => {
           [classes.contentShift]: open,
         })}
       >
-        <div className={classes.drawerHeader} />
+        {/* <div className={classes.drawerHeader} /> */}
         <TabItem
           index={0}
           value={value}
