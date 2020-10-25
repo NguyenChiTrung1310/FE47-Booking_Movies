@@ -306,4 +306,4 @@ RegisterPage.propTypes = {
   onSubmit: PropTypes.func,
 };
 
- 
+export default RegisterPage;
