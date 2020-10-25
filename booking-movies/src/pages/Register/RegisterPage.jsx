@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
-import React, { useState  } from 'react';
-import {useDispatch} from 'react-redux';
-import {Link} from 'react-router-dom';
+import React, { useEffect, useState  } from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import {Link, useHistory} from 'react-router-dom';
 import { toast } from 'react-toastify';
 import PropTypes from 'prop-types';
 import { Container, TextField, Typography, Grid, InputLabel, Select, FormControl, MenuItem } from '@material-ui/core';
@@ -10,14 +10,18 @@ import Button from './../../components/Button/Button';
 import {
   handleRegisterForm, 
 } from '../../utils/Validation/Validation';
-import { LOGIN_PAGE } from './../../constants/constant'
+import { LOGIN_PAGE, REGISTER_SUCESS } from './../../constants/constant'
 
 import { useStyles } from './../Register/useStyles';
 import './RegisterPage.scss'; 
 import { registerAction } from '../../redux/actions/userAction';
+import LoadingCool from '../../components/Spinner_Cool/SpinnerCool';
 const RegisterPage = () => {
   const classes = useStyles();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const registerStatus = useSelector(state=> state.user.registerStatus); //re
+
   const [fields, setFields] = useState({
     taiKhoan: '',
     matKhau: '',
@@ -71,14 +75,40 @@ const RegisterPage = () => {
          notify_failed,
        )
      );
+    //  console.log("KO USEEFECT",registerStatus);
+    //     if(registerStatus=== REGISTER_SUCESS){
+    //       history.push(LOGIN_PAGE); 
+    //     }
     }
   };
+  //COMPONENT DIDMOUNT
+  useEffect(() => {
+    if(registerStatus=== REGISTER_SUCESS){
+      setTimeout(()=>{
+        history.push(LOGIN_PAGE); 
+      },2000);
+     
+    }
+    //console.log("CO USEEFECT",registerStatus); 
+  }, [registerStatus, history])
+  
+  //is Loading
+const isLoading=()=>{
+  return(
+    <LoadingCool/> 
+  );
+}
+
   return (
     <Container
       component='main'
       maxWidth='xs'
     >
-      <div className={classes.paper}>
+    {
+      registerStatus
+      ? isLoading() 
+      : (
+        <div className={classes.paper}>
         <Typography
           className='title'
           component='h3'
@@ -217,6 +247,9 @@ const RegisterPage = () => {
           </Grid>
         </form>
       </div>
+      )
+    }
+      
     </Container>
   );
 };
