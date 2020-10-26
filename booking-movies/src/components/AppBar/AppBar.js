@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link, useHistory } from 'react-router-dom';
 
@@ -52,6 +52,7 @@ const AppBar = () => {
   };
 
   const userCredentials = useSelector(state => state.user.credentials);
+  const loginStatus = useSelector(state => state.user.loginStatus);
 
   // handle logout
   const handleLogOutBtnClick = (e) => {
@@ -68,6 +69,13 @@ const AppBar = () => {
   const handleProfileClick = () => {
     dispatch(inforUserAction(userCredentials));
   }
+
+  useEffect(() => {
+    if(loginStatus === true){
+      dispatch(inforUserAction(userCredentials));
+    }
+  }, [userCredentials, dispatch, loginStatus]);
+
   return (
     <div>
       <App
@@ -132,7 +140,7 @@ const AppBar = () => {
                     <StyledMenuItem onClick={handleClose}>
                       <Link
                         className='user link-user hover-link'
-                        onClick={handleProfileClick}
+                        // onClick={handleProfileClick}
                         to={PROFILE_PAGE}
                       >{userCredentials.hoTen}</Link>
                     </StyledMenuItem>
