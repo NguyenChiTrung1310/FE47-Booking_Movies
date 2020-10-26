@@ -7,7 +7,12 @@ export const useStyles = makeStyles((theme) => ({
     display: 'flex',
     height: 224,
   },
-  tabs: {
-    borderRight: `1px solid ${theme.palette.divider}`,
-  }
+  indicator: {
+    backgroundColor: '#03a9f4'
+  },
+  tabs:{
+    '& .MuiTab-textColorSecondary':{
+      color: '#fff!important'
+    }
+  },
 }));

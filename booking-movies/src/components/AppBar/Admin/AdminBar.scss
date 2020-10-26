@@ -1,6 +1,5 @@
 @import '../../../styles/styles';
 
-
 // fix border right sidebar
 .MuiDrawer-paperAnchorDockedLeft {
     border-right: 1px solid rgba(255, 255, 255, 0.12)!important;
@@ -10,6 +9,21 @@
     border-right: 0!important;
 }
 
-.makeStyles-drawerPaper-12 {
-    padding-left: 0!important;
+.toolbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .left-toolbar{
+        display: flex;
+        align-items: center;
+    }
+
+    .right-toolbar{
+        display: flex;
+        align-items: center;
+    }
 }
+
+// fix bugs
+

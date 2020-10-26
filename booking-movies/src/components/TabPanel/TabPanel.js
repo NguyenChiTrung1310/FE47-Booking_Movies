@@ -15,20 +15,27 @@ const TabPanel = (props) => {
       <Tabs
         aria-label='Vertical tabs example'
         className={classes.tabs}
+        classes={{
+          indicator: classes.indicator,
+        }}
         onChange={handleChange}
         orientation='vertical'
+        textColor='secondary'
         value={propsValue}
         variant='scrollable'
       >
         <Tab
+          className='tab'
           label='Item One'
           {...tabProps(0)}
         />
         <Tab
+          className='tab'
           label='Item Two'
           {...tabProps(1)}
         />
         <Tab
+          className='tab'
           label='Item Three'
           {...tabProps(2)}
         />

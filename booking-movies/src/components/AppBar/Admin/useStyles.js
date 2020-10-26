@@ -19,7 +19,14 @@ export const useStyles = makeStyles((theme) => ({
       easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.enteringScreen,
     }),
+
   },
+  // menuItem: {
+  //   fontSize: '16px',
+  //   color: '#fff',
+  //   fontWeight: '400',
+  //   margin: 'auto'
+  // },
   menuButton: {
     marginRight: theme.spacing(2),
   },
@@ -32,7 +39,6 @@ export const useStyles = makeStyles((theme) => ({
   },
   drawerPaper: {
     width: drawerWidth,
-    paddingLeft: '10px'
   },
   drawerHeader: {
     display: 'flex',
