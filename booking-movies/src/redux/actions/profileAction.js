@@ -1,5 +1,5 @@
 import { USER_PROFILE } from '../../constants/constant';
-import { ProfileService } from '../../services/profile';
+import { ProfileService } from '../../services';
 import { storeProfile } from '../../utils/LocalStorage/LocalStorage';
 
 const profile = (userData) => {
