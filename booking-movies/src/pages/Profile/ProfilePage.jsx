@@ -1,31 +1,43 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types'; 
 import { Container, TextField, Typography } from '@material-ui/core';
 import Button from '../../components/Button/Button';
 
 import { useStyles } from '../Register/useStyles';
 import { useSelector } from 'react-redux';
-import { LOCAL_STORAGE_PROFILE_KEY } from '../../constants/constant';
-import { getDataFromLocalStorage } from '../../utils/LocalStorage/LocalStorage';
 
 const ProfilePage = () => {
   const classes = useStyles();
   const userProfile = useSelector(state=> state.profile.initialProfile)
-  
-  const profileStr = getDataFromLocalStorage(LOCAL_STORAGE_PROFILE_KEY); 
-  const profile = JSON.parse(profileStr)
+  const userCredentials = useSelector(state => state.user.credentials)
+
 
   const [fields, setFields] = useState({
-    taiKhoan: profile.taiKhoan,
-    matKhau: profile.matKhau,
-    hoTen: profile.hoTen,
-    email: profile.email,
-    soDT: profile.soDT,
-    maNhom: profile.maNhom,
-    loaiNguoiDung: profile.maLoaiNguoiDung,
+    taiKhoan: '',
+    matKhau: '',
+    hoTen: '',
+    email: '',
+    soDT: '',
+    maNhom: '',
+    loaiNguoiDung: '',
     thongTinDatVe: []
         
   });
+
+  useEffect(() => {
+    if(userCredentials){
+      setFields({
+        taiKhoan: userProfile.taiKhoan,
+        matKhau: userProfile.matKhau,
+        hoTen: userProfile.hoTen,
+        email: userProfile.email,
+        soDT: userProfile.soDT,
+        maNhom: userProfile.maNhom,
+        loaiNguoiDung: userProfile.maLoaiNguoiDung,
+        thongTinDatVe: []
+      });
+    }
+  }, [setFields, userProfile, userCredentials])
 
   const handleChange = (e) => {
     setFields({
