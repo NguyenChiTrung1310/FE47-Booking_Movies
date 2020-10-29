@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link, useHistory } from 'react-router-dom';
 
-import { AppBar as App, Button, IconButton, Menu, MenuItem, Toolbar, Typography } from '@material-ui/core';
+import { AppBar as App, Button, IconButton, Menu, MenuItem, Toolbar, Typography, withStyles } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
-import {CONTACT_PAGE, HOME_PAGE, LOGIN_PAGE, NEWS_PAGE, PROFILE_PAGE, REGISTER_PAGE} from '../../constants/constant';
+import {ADMIN_PAGE, CONTACT_PAGE, HOME_PAGE, LOGIN_PAGE, NEWS_PAGE, PROFILE_PAGE, REGISTER_PAGE} from '../../constants/constant';
 
 import {useStyles} from './useStyles';
 import './AppBar.scss';
@@ -14,6 +14,27 @@ import { useDispatch, useSelector } from 'react-redux';
 import { clearStoreAction } from '../../redux/actions/userAction';
 import { toast } from 'react-toastify';
 import { inforUserAction } from '../../redux/actions/profileAction';
+
+const StyledMenuItem = withStyles({
+  root: {
+    height: '50px',
+    position: 'relative',
+    '&:hover': {
+      backgroundColor: 'transparent',
+    },
+  },
+})(MenuItem);
+
+const StyleButton = withStyles({
+  root: {
+    '&:hover': {
+      backgroundColor: 'transparent',
+    },
+    '&:hover::after': {
+      backgroundColor: 'transparent',
+    },
+  },
+})(Button);
 
 const AppBar = () => {
   const classes = useStyles();
@@ -29,8 +50,10 @@ const AppBar = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
-  const userCredentials=useSelector(state=> state.user.credentials);
-  const loginStatus = useSelector(state=> state.user.loginStatus);
+
+  const userCredentials = useSelector(state => state.user.credentials);
+  const loginStatus = useSelector(state => state.user.loginStatus);
+  
   // handle logout
   const handleLogOutBtnClick = (e) => {
     e.preventDefault();
@@ -46,6 +69,13 @@ const AppBar = () => {
   const handleProfileClick = () => {
     dispatch(inforUserAction(userCredentials));
   }
+
+  useEffect(() => {
+    if(loginStatus === true){
+      dispatch(inforUserAction(userCredentials));
+    }
+  }, [userCredentials, dispatch, loginStatus]);
+
   return (
     <div>
       <App
@@ -98,36 +128,49 @@ const AppBar = () => {
               open={Boolean(anchorEl)}
             >
               {
-                loginStatus 
+                userCredentials
                   ? (<div>
-                    <MenuItem onClick={handleClose}>
-                      <Button
-                        className='user logout link-user'
+                    <StyledMenuItem onClick={handleClose}>
+                      <StyleButton
+                        className='user logout link-user hover-btn'
                         onClick={handleLogOutBtnClick}
-                      >Logout</Button>
-                    </MenuItem>
+                      >Logout</StyleButton>
+                    </StyledMenuItem>
 
-                    <MenuItem onClick={handleClose}>
+                    <StyledMenuItem onClick={handleClose}>
                       <Link
-                        className='user link-user'
-                        onClick={handleProfileClick}
+                        className='user link-user hover-link'
+                        // onClick={handleProfileClick}
                         to={PROFILE_PAGE}
                       >{userCredentials.hoTen}</Link>
-                    </MenuItem>
+                    </StyledMenuItem>
+                    {
+                      userCredentials.maLoaiNguoiDung === 'KhachHang' 
+                        ? null
+                        : (
+                          <StyledMenuItem onClick={handleClose}>
+                            <Link
+                              className='user link-user hover-link'
+                              onClick={handleProfileClick}
+                              to={ADMIN_PAGE}
+                            >Admin</Link>
+                          </StyledMenuItem>
+                        )
+                    }
                   </div>
                   ) 
                   : (<div>
-                    <MenuItem onClick={handleClose}>
+                    <StyledMenuItem onClick={handleClose}>
                       <Link
-                        className='link link-user'
+                        className='link link-user hover-link'
                         to={LOGIN_PAGE}
-                      >Login</Link></MenuItem>
+                      >Login</Link></StyledMenuItem>
 
-                    <MenuItem onClick={handleClose}>
+                    <StyledMenuItem onClick={handleClose}>
                       <Link
-                        className='link link-user'
+                        className='link link-user hover-link'
                         to={REGISTER_PAGE}
-                      >Register</Link></MenuItem>
+                      >Register</Link></StyledMenuItem>
                   </div>
                   )
               }
