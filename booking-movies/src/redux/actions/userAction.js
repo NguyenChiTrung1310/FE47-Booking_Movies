@@ -1,5 +1,5 @@
-import { CLEAR_STORE, LOGIN_FAILURE, LOGIN_SUCCESS } from '../../constants/constant';
-import {LoginService} from '../../services';
+import { CLEAR_STORE, LOGIN_FAILURE, LOGIN_SUCCESS, REGISTER_FAILURE, REGISTER_SUCESS } from '../../constants/constant';
+import {LoginService, RegisterService} from '../../services'; 
 import { clearStoreFromLocalStorage, storeCredentials, storeUserToken } from '../../utils/LocalStorage/LocalStorage';
 
 // login success
@@ -61,12 +61,59 @@ export const loginAction = (
       });
   }
 }
+ 
+const registerSucess=(registerData)=>{
+  const {data} =registerData;
+  return {
+    type: REGISTER_SUCESS,
+    payload:data,
+    loginStatus:false,
+  }
+}
 
+const registerFailed=()=>{ 
+  return {
+    type: REGISTER_FAILURE, 
+    loginStatus:false,
+  }
+}
 // clear store
 export const clearStoreAction = (notify_success = () => {}) => {
   return (dispatch) => {
     dispatch(logOut());
     clearStoreFromLocalStorage();
     notify_success();
+  }
+}
+ 
+export const registerAction =( 
+  taiKhoan,
+  matKhau,
+  email,
+  soDt,
+  maNhom,
+  maLoaiNguoiDung,
+  hoTen,
+  notify_success=()=>{},
+  notify_failed=()=>{},
+) => {
+  return (dispatch)=>{
+    RegisterService(
+      taiKhoan,
+      matKhau,
+      email,
+      soDt,
+      maNhom,
+      maLoaiNguoiDung,
+      hoTen
+    )
+      .then(res=>{ 
+        dispatch(registerSucess(res)) 
+        notify_success();
+      })
+      .catch(err=>{ 
+        dispatch(registerFailed());
+        notify_failed();
+      })
   }
 }

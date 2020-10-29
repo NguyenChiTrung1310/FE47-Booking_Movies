@@ -53,7 +53,7 @@ const AppBar = () => {
 
   const userCredentials = useSelector(state => state.user.credentials);
   const loginStatus = useSelector(state => state.user.loginStatus);
-
+  
   // handle logout
   const handleLogOutBtnClick = (e) => {
     e.preventDefault();
