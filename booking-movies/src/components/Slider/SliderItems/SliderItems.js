@@ -1,7 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { Component } from 'react' 
-import {
-  Button,
+import { 
   Card,
   CardActionArea,
   CardActions,
@@ -16,26 +15,28 @@ const SliderItems=({item})=>{
   const {img, title, text} =  item;  
   return(
     <Card>
-      <CardActionArea className='img-card'>
+      <CardActionArea className='imgCard'>
         <CardMedia
           img={img} 
           title='Movie'
+          className='img'
         />
-        <CardContent>
+        <CardContent className='cardBody'>
           <Typography
+          className='cardTitle'
             component='h2'
             gutterBottom
             variant='h5'
           >{title}</Typography>
           <Typography
+            className='cardText'
             color='textSecondary'
             component='p'
             variant='body2'
           >{text}</Typography>
         </CardContent>
       </CardActionArea> 
-    </Card> 
- 
+    </Card>   
   )
 }
 export default SliderItems;
@@ -54,24 +55,4 @@ export default SliderItems;
 //   </div>
 // </div>
  
-// <Card>
-// <CardActionArea>
-//   <CardMedia
-//     img={img}
-//     style={{ height: 50 }}
-//     title='Movie'
-//   />
-//   <CardContent>
-//     <Typography
-//       component='h2'
-//       gutterBottom
-//       variant='h5'
-//     >{title}</Typography>
-//     <Typography
-//       color='textSecondary'
-//       component='p'
-//       variant='body2'
-//     >{text}</Typography>
-//   </CardContent>
-// </CardActionArea> 
-// </Card> 
+ 

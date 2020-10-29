@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import {useDispatch} from 'react-redux';
 import Slider from 'react-slick'; 
 import {Typography} from '@material-ui/core'
 import {products} from '../../services/fakeApi' 
@@ -8,6 +9,7 @@ import PropTypes from 'prop-types';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import './Slider.scss';
+import Axios from 'axios';
 const SliderSlick=()=> {
   const classes= useStyles();
   const config = {

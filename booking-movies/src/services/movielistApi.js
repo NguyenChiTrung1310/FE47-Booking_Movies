@@ -1,7 +1,6 @@
 
 import axios from 'axios';
-import { MOVIELIST_API } from './api';
- 
+import { MOVIELIST_API } from './api'; 
 
 export function MovieListService(maPhim, tenPhim, biDanh, trailer, hinhAnh, moTa, maNhom, ngayKhoiChieu, danhGia) {
   const movieListData={maPhim, tenPhim, biDanh, trailer, hinhAnh, moTa, maNhom, ngayKhoiChieu, danhGia};
