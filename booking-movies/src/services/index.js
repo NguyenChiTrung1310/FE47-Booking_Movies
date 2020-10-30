@@ -1,3 +1,3 @@
 import {LoginService, RegisterService} from './user';
-
-export {LoginService, RegisterService};
+import {MovieListService} from './movielist'
+export {LoginService, RegisterService, MovieListService};

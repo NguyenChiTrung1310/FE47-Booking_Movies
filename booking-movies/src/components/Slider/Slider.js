@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import {useDispatch} from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 import Slider from 'react-slick'; 
 import {Typography} from '@material-ui/core'
 import {products} from '../../services/fakeApi' 
@@ -8,8 +8,8 @@ import {useStyles} from './useStyles'
 import PropTypes from 'prop-types'; 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import './Slider.scss';
-import Axios from 'axios';
+import './Slider.scss'; 
+import { fetchMovieList } from '../../redux/actions/movieListAction';
 const SliderSlick=()=> {
   const classes= useStyles();
   const config = {
@@ -20,6 +20,15 @@ const SliderSlick=()=> {
     slidesToScroll: 1
   };
   const [settings] = useState(config);
+  const dispatch= useDispatch();
+
+  useEffect(()=>{
+    dispatch(fetchMovieList());
+  },[dispatch]);
+  
+  // const movieList = useSelector((state) => {
+  //   return state.movieList.initialMovieList;
+  // });
 
   const renderSilerList=()=>{
     return products.map((item, index)=>{
