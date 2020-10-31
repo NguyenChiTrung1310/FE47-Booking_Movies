@@ -7,11 +7,10 @@ export const fetchMovieList = ()=>{
     return (dispatch) =>{
         MovieListService()
             .then((res)=>{
-                dispatch(createAction(FETCH_MOVIELIST))
-                console.log(res.data);
+                dispatch(createAction(FETCH_MOVIELIST,res.data)) 
             })
             .catch((err)=>{
-                console.log(err);
+                // console.log(err);
             })
     }
 }

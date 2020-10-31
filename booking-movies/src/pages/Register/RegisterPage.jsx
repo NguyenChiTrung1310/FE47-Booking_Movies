@@ -28,7 +28,7 @@ const RegisterPage = () => {
     email: '',
     soDt: '',
     maNhom:'',
-    maLoaiNguoiDung:'',
+    maLoaiNguoiDung:'KhachHang',
     hoTen: '',
   });
 
@@ -231,7 +231,8 @@ const RegisterPage = () => {
              
                   </Select>
                 </FormControl>
-                <FormControl
+               {/**
+               <FormControl
                   className={classes.formControl}
                   variant='filled'
                 >
@@ -261,6 +262,7 @@ const RegisterPage = () => {
                     >Admin</MenuItem> 
                   </Select>
                 </FormControl>
+              */}
                 <Button
                   color='primary'
                   type='submit'

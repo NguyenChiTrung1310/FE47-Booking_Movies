@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import Slider from 'react-slick'; 
-import {Typography} from '@material-ui/core'
-import {products} from '../../services/fakeApi' 
+import {Typography} from '@material-ui/core' 
 import SliderItems from './SliderItems/SliderItems';
 import {useStyles} from './useStyles'
 import PropTypes from 'prop-types'; 
@@ -26,12 +25,12 @@ const SliderSlick=()=> {
     dispatch(fetchMovieList());
   },[dispatch]);
   
-  // const movieList = useSelector((state) => {
-  //   return state.movieList.initialMovieList;
-  // });
-
+  const movieList = useSelector((state) => {
+    return state.movieList.initialMovieList;
+  });
+ 
   const renderSilerList=()=>{
-    return products.map((item, index)=>{
+    return movieList.map((item, index)=>{
       return (
         <SliderItems
           item= {item}
