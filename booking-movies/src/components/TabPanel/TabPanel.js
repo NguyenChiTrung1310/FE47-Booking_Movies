@@ -7,7 +7,7 @@ import './TabPanel.scss';
 
 const TabPanel = (props) => {
   const classes = useStyles();
-  const {children, handleChange, propsValue} = props;
+  const {children, handleChange, propsValue, orientation = ['horizontal', 'vertical']} = props;
 
   return (
     <div>
@@ -18,7 +18,7 @@ const TabPanel = (props) => {
           indicator: classes.indicator,
         }}
         onChange={handleChange}
-        orientation='vertical'
+        orientation={orientation}
         textColor='secondary'
         value={propsValue}
         variant='scrollable'
@@ -32,6 +32,7 @@ const TabPanel = (props) => {
 TabPanel.propTypes = {
   children: PropTypes.array,
   handleChange: PropTypes.func,
+  orientation: PropTypes.string,
   propsValue: PropTypes.number,
 };
 

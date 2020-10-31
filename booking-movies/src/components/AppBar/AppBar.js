@@ -103,7 +103,7 @@ const AppBar = () => {
               <Link
                 className='link link-menu'
                 to={NEWS_PAGE}
-              >News</Link>
+              >Cinema</Link>
               <Link
                 className='link link-menu'
                 to={CONTACT_PAGE}

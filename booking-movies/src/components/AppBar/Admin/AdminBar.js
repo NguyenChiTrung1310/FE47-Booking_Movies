@@ -13,9 +13,9 @@ import {
   Button,
   Menu,
   MenuItem,
+  Tab,
   withStyles,
 } from '@material-ui/core';
-import Tab from '@material-ui/core/Tab';
 
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
@@ -199,6 +199,7 @@ const AdminBar = () => {
         <Divider className={classes.divider}/>
         <TabPanel
           handleChange={handleChange}
+          orientation='vertical'
           propsValue={value}
         >
           <Tab
