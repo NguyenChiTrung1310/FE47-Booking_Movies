@@ -56,7 +56,7 @@ const RegisterPage = () => {
       toast.success('Register success');
     };
     const notify_failed = () => {
-      toast.error('Register failed');
+      toast.error('Email Registered');
     };
 
     if(error===1){ 
@@ -97,7 +97,7 @@ const RegisterPage = () => {
       maxWidth='xs'
     >
       {
-        registerStatus
+        registerStatus == REGISTER_SUCESS
           ? isLoading() 
           : (
             <div className={classes.paper}>
