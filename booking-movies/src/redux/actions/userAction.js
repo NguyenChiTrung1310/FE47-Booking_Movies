@@ -109,6 +109,7 @@ export const registerAction =(
     )
       .then(res=>{ 
         dispatch(registerSucess(res)) 
+        console.log('REGISTER', res.data);
         notify_success();
       })
       .catch(err=>{ 
