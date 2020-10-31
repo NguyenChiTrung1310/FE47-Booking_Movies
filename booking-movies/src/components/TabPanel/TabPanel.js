@@ -30,7 +30,7 @@ const TabPanel = (props) => {
 }
 
 TabPanel.propTypes = {
-  children: PropTypes.array,
+  children: PropTypes.object,
   handleChange: PropTypes.func,
   orientation: PropTypes.string,
   propsValue: PropTypes.number,
