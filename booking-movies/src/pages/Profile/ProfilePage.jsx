@@ -4,10 +4,14 @@ import { Container, TextField, Typography } from '@material-ui/core';
 import Button from '../../components/Button/Button';
 
 import { useStyles } from '../Register/useStyles';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
+import { updateProfileAction } from '../../redux/actions/profileAction';
 
 const ProfilePage = () => {
   const classes = useStyles();
+  const dispatch = useDispatch();
+
   const userProfile = useSelector(state=> state.profile.initialProfile)
   const userCredentials = useSelector(state => state.user.credentials)
 
@@ -19,7 +23,7 @@ const ProfilePage = () => {
     email: '',
     soDT: '',
     maNhom: '',
-    loaiNguoiDung: '',
+    maLoaiNguoiDung: '',
     thongTinDatVe: []
         
   });
@@ -33,7 +37,7 @@ const ProfilePage = () => {
         email: userProfile.email,
         soDT: userProfile.soDT,
         maNhom: userProfile.maNhom,
-        loaiNguoiDung: userProfile.maLoaiNguoiDung,
+        maLoaiNguoiDung: userCredentials.maLoaiNguoiDung,
         thongTinDatVe: []
       });
     }
@@ -46,7 +50,45 @@ const ProfilePage = () => {
     });
   }
 
-  const handleUpdate = () => {}
+  // handle update profile
+  const handleUpdate = (e) => {
+    e.preventDefault();
+
+    const {taiKhoan, 
+      matKhau, 
+      hoTen, 
+      email, 
+      soDT, 
+      maNhom,
+      maLoaiNguoiDung, 
+      thongTinDatVe} = fields;
+
+    const profileData = {taiKhoan, 
+      matKhau, 
+      hoTen, 
+      email, 
+      soDT, 
+      maNhom,
+      maLoaiNguoiDung, 
+      thongTinDatVe}
+
+    const notify_success = () => {
+      toast.success('Update profile success !');
+    }
+      
+    const notify_failed = () => {
+      toast.error('Update profile failed !');
+    } 
+
+    dispatch(
+      updateProfileAction(
+        profileData,
+        notify_success,
+        notify_failed
+      )
+    );
+  }
+  
   return (
     <Container
       component='main'
@@ -144,7 +186,7 @@ const ProfilePage = () => {
                   className={classes.field}
                   fullWidth
                   id='maNhom'
-                  label='Group code'
+                  label='Type Group'
                   margin='normal'
                   name='maNhom'
                   onChange={(event) => handleChange(event)}
@@ -153,16 +195,30 @@ const ProfilePage = () => {
                   value={fields.maNhom}
                   variant='outlined'
                 />
+                <TextField
+                  autoComplete='maLoaiNguoiDung'
+                  className={classes.field}
+                  fullWidth
+                  id='maLoaiNguoiDung'
+                  label='Type User'
+                  margin='normal'
+                  name='maLoaiNguoiDung'
+                  onChange={(event) => handleChange(event)}
+                  required
+                  type='text'
+                  value={fields.maLoaiNguoiDung}
+                  variant='outlined'
+                />
+                <Button
+                  color='primary'
+                  type='submit'
+                  variant='contained'
+                >
+                  Update
+                </Button>
               </form>
             ) : null
         }
-        <Button
-          color='primary'
-          type='submit'
-          variant='contained'
-        >
-            Update
-        </Button>
       </div>
     </Container>
   )

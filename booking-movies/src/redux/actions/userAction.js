@@ -28,13 +28,12 @@ const logOut = () => {
 }
 
 export const loginAction = (
-  taiKhoan, 
-  matKhau,
+  loginData,
   notify_success = () => {},
   notify_failed = () => {},
 ) => {
   return (dispatch) => {
-    LoginService(taiKhoan, matKhau)
+    LoginService(loginData)
       .then(res => {
         const { accessToken } = res.data;
         const {data} = res;        
@@ -60,7 +59,7 @@ export const loginAction = (
         notify_failed();
       });
   }
-}
+} 
  
 const registerSucess=(registerData)=>{
   const {data} =registerData;

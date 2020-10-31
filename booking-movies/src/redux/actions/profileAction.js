@@ -1,5 +1,5 @@
-import { USER_PROFILE } from '../../constants/constant';
-import { ProfileService } from '../../services';
+import { UPDATE_PROFILE, USER_PROFILE } from '../../constants/constant';
+import { ProfileService, UpdateProfileService } from '../../services';
 import { storeProfile } from '../../utils/LocalStorage/LocalStorage';
 
 const profile = (userData) => {
@@ -10,17 +10,50 @@ const profile = (userData) => {
   }
 }
 
-export const inforUserAction = (taiKhoan) => {
+const updateProfile = (profileData) => {
+  const {data} = profileData;
+  return {
+    type: UPDATE_PROFILE,
+    payload: data
+  }
+}
+
+export const inforUserAction = (dataProfile) => {
   return (dispatch) => {
-    ProfileService(taiKhoan)
+    if(dataProfile){
+      ProfileService(dataProfile.taiKhoan)
+        .then(res => {
+          const {data} = res;
+          dispatch(profile(res));
+          storeProfile(JSON.stringify(data));
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
+  }
+}
+
+export const updateProfileAction = (
+  profileData,
+  notify_success = () => {},
+  notify_failed = () => {},
+) => {
+  return (dispatch) => {
+    UpdateProfileService(profileData)
       .then(res => {
         const {data} = res;
-        dispatch(profile(res));
+        dispatch(updateProfile(res));
         storeProfile(JSON.stringify(data));
+
+        // Notify Success
+        notify_success();
       })
       .catch(err => {
         console.log(err);
-      });
+        // Notify Failed
+        notify_failed();
+      })
   }
 }
 

@@ -46,6 +46,7 @@ const LoginPage = () => {
     e.preventDefault();
 
     const {taiKhoan, matKhau} = fields;
+    const loginData = {taiKhoan, matKhau};
   
     // handle validation form
     const error = handleLoginForm(fields);
@@ -66,7 +67,7 @@ const LoginPage = () => {
     if(error === 1){
       // dispatch action
       dispatch(
-        loginAction(taiKhoan.trim(), matKhau.trim(), notify_success, notify_failed)
+        loginAction(loginData, notify_success, notify_failed)
       );    
     } 
   }

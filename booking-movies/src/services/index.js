@@ -1,5 +1,6 @@
 import {LoginService, RegisterService} from './user';
-import {ProfileService} from './profile';
+import {ProfileService, UpdateProfileService} from './profile';
 import {MovieListService} from './movielist'
 
-export {LoginService, RegisterService, ProfileService, MovieListService}; 
+export {LoginService, RegisterService, ProfileService, UpdateProfileService, MovieListService}; 
+
