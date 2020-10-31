@@ -15,6 +15,7 @@ import {
   MenuItem,
   withStyles,
 } from '@material-ui/core';
+import Tab from '@material-ui/core/Tab';
 
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
@@ -199,15 +200,29 @@ const AdminBar = () => {
         <TabPanel
           handleChange={handleChange}
           propsValue={value}
-          tabProps={a11yProps}
-        />
+        >
+          <Tab
+            className='tab'
+            label='Item One'
+            {...a11yProps(0)}
+          />
+          <Tab
+            className='tab'
+            label='Item Two'
+            {...a11yProps(1)}
+          />
+          <Tab
+            className='tab'
+            label='Item Three'
+            {...a11yProps(2)}
+          />
+        </TabPanel>
       </Drawer>
       <main
         className={clsx(classes.content, {
           [classes.contentShift]: open,
         })}
       >
-        {/* <div className={classes.drawerHeader} /> */}
         <TabItem
           index={0}
           value={value}
