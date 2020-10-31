@@ -1,4 +1,4 @@
 import {LoginService, RegisterService} from './user';
-import {ProfileService} from './profile';
+import {ProfileService, UpdateProfileService} from './profile';
 
-export {LoginService, RegisterService, ProfileService};
+export {LoginService, RegisterService, ProfileService, UpdateProfileService};

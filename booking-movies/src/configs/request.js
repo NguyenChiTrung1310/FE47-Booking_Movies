@@ -5,6 +5,7 @@ export const request = (url = '', method = '', data = {}) => {
   const config = {};
 
   const token = getTokenFromLocalStorage();
+  
 
   if (token){
     config.headers = {
