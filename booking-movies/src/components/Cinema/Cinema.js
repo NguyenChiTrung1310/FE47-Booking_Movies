@@ -17,6 +17,18 @@ const a11yProps = (index) => {
   };
 }
 
+const imgCinema = (img) => {
+  return (
+    <CardMedia 
+      alt='cinema'
+      className='cinema-item'
+      image={img}
+    />
+  )
+}
+
+////////////////////////////////////////////////////////////////////
+
 const Cinema = () => {
   const dispatch = useDispatch();
   const [value, setValue] = useState(0);
@@ -27,18 +39,8 @@ const Cinema = () => {
 
   const cinemaList = useSelector(state => state.cinemaList.initialCinemaList);
 
-  const imgCinema = (img) => {
-    return (
-      <CardMedia 
-        alt='cinema'
-        className='cinema-item'
-        image={img}
-      />
-    )
-  }
-
   const renderTab = (index, key) => {
-    return cinemaList[index] 
+    return cinemaList
       ? (
         <Tab
           className='tab'
@@ -49,7 +51,7 @@ const Cinema = () => {
       ) : (
         <Tab
           className='tab'
-          label='Item ONE'
+          label={cinemaList[index].tenHeThongRap}
           {...a11yProps(index)}
           key={key}
         />
@@ -125,7 +127,12 @@ const Cinema = () => {
       >
         Item FIVE
       </TabItem>
-     
+      <TabItem
+        index={5}
+        value={value}
+      >
+        Item SIX
+      </TabItem>
     </Container>
   )
 }
