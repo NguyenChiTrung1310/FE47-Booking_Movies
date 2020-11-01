@@ -21,6 +21,21 @@
                     height: 100px;
                 }
             }
+            .tabs{
+                position: absolute;
+                top: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                z-index: 10;
+            }
+            .tab{
+                margin-right: 10px;
+
+            }
+            .cinema-item{
+                width: 100px;
+                height: 100px;
+            }
         }
     
 }
