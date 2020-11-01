@@ -2,13 +2,14 @@ import React, { useEffect, useState } from 'react'
 import { CardMedia, Container, Grid, Tab } from '@material-ui/core';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { cinemaListAction } from '../../redux/actions/cinemaListAction';
+import { cinemaListAction, showCinemaListAction } from '../../redux/actions/cinemaListAction';
 
 import TabPanel from '../TabPanel/TabPanel';
 import { TabItem } from '../TabPanel/TabItem/TabItem';
 
 import cinemaBannerImg from '../../assets/images/cinema-banner.jpg'
 import './Cinema.scss';
+import CinemaItem from './CinemaItem/CinemaItem';
 
 const a11yProps = (index) => {
   return {
@@ -38,8 +39,20 @@ const Cinema = () => {
   };
 
   const cinemaList = useSelector(state => state.cinemaList.initialCinemaList);
+  const branchList = useSelector(state => state.cinemaList.initialBranchCinemaList);
+  
+  if(branchList){
+    console.log('BRANCH: ', branchList);
+
+  }
 
   const renderTab = (index, key) => {
+    const handleClick = () => {
+      if(cinemaList){
+        dispatch(showCinemaListAction(cinemaList[index].maHeThongRap));
+      }
+    }
+
     return cinemaList
       ? (
         <Tab
@@ -47,6 +60,7 @@ const Cinema = () => {
           label={imgCinema(cinemaList[index].logo)}
           {...a11yProps(index)}
           key={key}
+          onClick={handleClick}
         />
       ) : (
         <Tab
@@ -57,7 +71,6 @@ const Cinema = () => {
         />
       )
   }
-
 
   const mapTab = () => {
     return cinemaList.map((item, index) => {
@@ -98,40 +111,46 @@ const Cinema = () => {
         </div>
       </Grid>
       <TabItem
+        className='tab-item'
         index={0}
         value={value}
       >
-        Item ONE
+        <CinemaItem />
       </TabItem>
       <TabItem
+        className='tab-item'
         index={1}
         value={value}
       >
-        Item TWO
+        <CinemaItem />
       </TabItem>
       <TabItem
+        className='tab-item'
         index={2}
         value={value}
       >
-        Item THREE
+        <CinemaItem />
       </TabItem>
       <TabItem
+        className='tab-item'
         index={3}
         value={value}
       >
-        Item FOUR
+        <CinemaItem />
       </TabItem>
       <TabItem
+        className='tab-item'
         index={4}
         value={value}
       >
-        Item FIVE
+        <CinemaItem />
       </TabItem>
       <TabItem
+        className='tab-item'
         index={5}
         value={value}
       >
-        Item SIX
+        <CinemaItem />
       </TabItem>
     </Container>
   )
