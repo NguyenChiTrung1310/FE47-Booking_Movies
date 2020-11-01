@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { CardMedia, Container, Grid, Tab } from '@material-ui/core';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { cinemaListAction, showCinemaListAction } from '../../redux/actions/cinemaListAction';
+import { cinemaListAction, showCinemaListAction, showTheaterScheduleAction } from '../../redux/actions/cinemaListAction';
 
 import TabPanel from '../TabPanel/TabPanel';
 import { TabItem } from '../TabPanel/TabItem/TabItem';
@@ -10,6 +10,7 @@ import { TabItem } from '../TabPanel/TabItem/TabItem';
 import cinemaBannerImg from '../../assets/images/cinema-banner.jpg'
 import './Cinema.scss';
 import CinemaItem from './CinemaItem/CinemaItem';
+import MovieItem from './MovieItem/MovieItem';
 
 const a11yProps = (index) => {
   return {
@@ -39,17 +40,13 @@ const Cinema = () => {
   };
 
   const cinemaList = useSelector(state => state.cinemaList.initialCinemaList);
-  const branchList = useSelector(state => state.cinemaList.initialBranchCinemaList);
-  
-  if(branchList){
-    console.log('BRANCH: ', branchList);
-
-  }
+  // const branchList = useSelector(state => state.cinemaList.initialBranchCinemaList);
 
   const renderTab = (index, key) => {
     const handleClick = () => {
       if(cinemaList){
         dispatch(showCinemaListAction(cinemaList[index].maHeThongRap));
+        dispatch(showTheaterScheduleAction(cinemaList[index].maHeThongRap));
       }
     }
 
@@ -77,6 +74,7 @@ const Cinema = () => {
       return renderTab(index, index);
     });
   }
+  
 
   useEffect(() => {
     dispatch(cinemaListAction());
@@ -110,48 +108,55 @@ const Cinema = () => {
           
         </div>
       </Grid>
-      <TabItem
-        className='tab-item'
-        index={0}
-        value={value}
-      >
-        <CinemaItem />
-      </TabItem>
-      <TabItem
-        className='tab-item'
-        index={1}
-        value={value}
-      >
-        <CinemaItem />
-      </TabItem>
-      <TabItem
-        className='tab-item'
-        index={2}
-        value={value}
-      >
-        <CinemaItem />
-      </TabItem>
-      <TabItem
-        className='tab-item'
-        index={3}
-        value={value}
-      >
-        <CinemaItem />
-      </TabItem>
-      <TabItem
-        className='tab-item'
-        index={4}
-        value={value}
-      >
-        <CinemaItem />
-      </TabItem>
-      <TabItem
-        className='tab-item'
-        index={5}
-        value={value}
-      >
-        <CinemaItem />
-      </TabItem>
+      <Grid className='info-section'>
+        <Grid className='left-section'>
+          <TabItem
+            className='tab-item'
+            index={0}
+            value={value}
+          >
+            <CinemaItem />
+          </TabItem>
+          <TabItem
+            className='tab-item'
+            index={1}
+            value={value}
+          >
+            <CinemaItem />
+          </TabItem>
+          <TabItem
+            className='tab-item'
+            index={2}
+            value={value}
+          >
+            <CinemaItem />
+          </TabItem>
+          <TabItem
+            className='tab-item'
+            index={3}
+            value={value}
+          >
+            <CinemaItem />
+          </TabItem>
+          <TabItem
+            className='tab-item'
+            index={4}
+            value={value}
+          >
+            <CinemaItem />
+          </TabItem>
+          <TabItem
+            className='tab-item'
+            index={5}
+            value={value}
+          >
+            <CinemaItem />
+          </TabItem>
+        </Grid>
+        <Grid className='right-section'>
+          <MovieItem />
+        </Grid>
+      </Grid>
     </Container>
   )
 }
