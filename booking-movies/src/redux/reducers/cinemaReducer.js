@@ -1,10 +1,11 @@
-import { FECTH_BRANCH_CINEMA_LIST, FETCH_CINEMA_LIST, FETCH_THEATER_SCHEDULE } from '../../constants/constant'
+import { FECTH_BRANCH_CINEMA_LIST, FETCH_CINEMA_LIST, FETCH_THEATER_SCHEDULE, SCHEDULE_MOVIE } from '../../constants/constant'
 
 let initialState={
   initialCinemaList: [],
   initialBranchCinemaList: [],
   initialTheaterSchedule: {},
-  initialListTheater: []
+  initialListTheater: [],
+  initialScheduleMovie: []
 } 
  
 const CinemaListReducer = (state = initialState, { type, payload }) => {
@@ -18,6 +19,9 @@ const CinemaListReducer = (state = initialState, { type, payload }) => {
     case FETCH_THEATER_SCHEDULE: 
       state.initialTheaterSchedule = payload;
       state.initialListTheater = payload.lstCumRap;
+      return {...state};
+    case SCHEDULE_MOVIE: 
+      state.initialScheduleMovie = payload;
       return {...state};
     default:
       return state;

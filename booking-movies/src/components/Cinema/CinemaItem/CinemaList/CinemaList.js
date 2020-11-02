@@ -1,14 +1,18 @@
 import React from 'react'
 import { Divider, Grid, ListItem, Typography } from '@material-ui/core';
 import {useStyles} from './ueStyles';
+import { useDispatch } from 'react-redux';
+import { showMoviesList } from '../../../../redux/actions/cinemaListAction';
 
 
 const CinemaList = ({theaterSchedule = []}) => {
+  const dispatch = useDispatch();
   const classes = useStyles();
   return theaterSchedule.map((item,index) => {
 
     const handleClick = () => {
-    //   showListMovie();
+      const {danhSachPhim} = item;
+      dispatch(showMoviesList(danhSachPhim));
     }
     
     return theaterSchedule ? (
