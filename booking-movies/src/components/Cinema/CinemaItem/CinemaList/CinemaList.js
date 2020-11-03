@@ -1,56 +1,53 @@
 import React from 'react'
-import { Divider, Grid, ListItem, Typography } from '@material-ui/core';
+import { Divider, Grid, ListItem, Typography } from '@material-ui/core'
+import PropTypes from 'prop-types';
+
 import {useStyles} from './ueStyles';
-import { useDispatch } from 'react-redux';
-import { showMoviesList } from '../../../../redux/actions/cinemaListAction';
 
-
-const CinemaList = ({theaterSchedule = []}) => {
-  const dispatch = useDispatch();
+const CinemaList = ({item, index, handleClick = () => {}}) => {
   const classes = useStyles();
-  return theaterSchedule.map((item,index) => {
 
-    const handleClick = () => {
-      const {danhSachPhim} = item;
-      dispatch(showMoviesList(danhSachPhim));
-    }
-    
-    return theaterSchedule ? (
-      <Grid
-        className={classes.root}
+  return (
+    <Grid
+      className={classes.root}
+      component={'span'}
+      key={index}
+    >
+      <ListItem
+        alignItems='flex-start'
+        className={classes.inline}
         component={'span'}
-        key={index}
-      >
-        <ListItem
-          alignItems='flex-start'
-          className={classes.inline}
+        onClick={handleClick}
+      > 
+        <Typography
+          className={classes.nameTheater}
+          color='textPrimary'
           component={'span'}
-          onClick={handleClick}
-        > 
-          <Typography
-            className={classes.nameTheater}
-            color='textPrimary'
-            component={'span'}
-            variant='body2'
-          >
-            {item.tenCumRap}
-          </Typography>
-          <Typography
-            className={classes.address}
-            color='textPrimary'
-            component={'span'}
-            variant='body2'
-          >
-            {item.diaChi}
-          </Typography>
-          <Divider
-            className={classes.divider}
-            component={'span'}
-          />   
-        </ListItem>
-      </Grid>
-    ) : (<Typography key={index}>NOT FOUND</Typography>)
-  });
+          variant='body2'
+        >
+          {item.tenCumRap}
+        </Typography>
+        <Typography
+          className={classes.address}
+          color='textPrimary'
+          component={'span'}
+          variant='body2'
+        >
+          {item.diaChi}
+        </Typography>
+        <Divider
+          className={classes.divider}
+          component={'span'}
+        />   
+      </ListItem>
+    </Grid>
+  )
 }
+
+CinemaList.propTypes = {
+  handleClick: PropTypes.func,
+  index: PropTypes.number,
+  item: PropTypes.object,
+};
 
 export default CinemaList

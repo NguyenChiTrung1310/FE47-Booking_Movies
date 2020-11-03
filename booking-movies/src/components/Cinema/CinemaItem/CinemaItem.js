@@ -1,19 +1,32 @@
-import { Grid } from '@material-ui/core';
 import React from 'react'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { Typography } from '@material-ui/core';
 
 import './CinemaItem.scss';
+import { showMoviesList } from '../../../redux/actions/cinemaListAction';
 import CinemaList from './CinemaList/CinemaList';
 
 const CinemaItem = () => {
-  
+  const dispatch = useDispatch();
+ 
   const theaterSchedule = useSelector(state => state.cinemaList.initialListTheater);
 
-  return (
-    <Grid component={'span'}>
-      <CinemaList theaterSchedule={theaterSchedule}/>
-    </Grid>
-  )
+  return theaterSchedule.map((item,index) => {
+
+    const handleClick = () => {
+      const {danhSachPhim} = item;
+      dispatch(showMoviesList(danhSachPhim));
+    }
+    
+    return theaterSchedule ? (
+      <CinemaList
+        handleClick={handleClick}
+        index={index}
+        item={item}
+        key={index}
+      />
+    ) : (<Typography key={index}>NOT FOUND</Typography>)
+  });
 }
 
 export default CinemaItem

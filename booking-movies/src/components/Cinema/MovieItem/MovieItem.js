@@ -9,7 +9,6 @@ const MovieItem = () => {
 
   const renderMovieSchedule = () => {
     return movieSchedule.map((item, index) => {
-      console.log(item);
       return (
         <Grid
           className='movie-item'

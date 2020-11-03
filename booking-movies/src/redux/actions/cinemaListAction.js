@@ -48,13 +48,11 @@ export const showTheaterScheduleAction = (id) => {
 export const showMoviesList = (movieList) => {
   return (dispatch) => {
     try{
-      // const schedule = {}; 
       const schedule = movieList.map((item, index) => {
         return item;
       });
       
       dispatch(createAction(SCHEDULE_MOVIE, schedule))
-      // const {} = scheduleMovie;
 
     }
     catch{
