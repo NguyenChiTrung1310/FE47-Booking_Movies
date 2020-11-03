@@ -1,18 +1,19 @@
 /* eslint-disable react/sort-prop-types */
 /* eslint-disable react/prop-types */
 import React from 'react';
-import { Button, Paper, Typography } from '@material-ui/core';
+import { Button, Paper, Typography, CardMedia } from '@material-ui/core';
 import PropTypes from 'prop-types';
 
 import './Carousel.scss';
 
-const CarouselBanner = (props) => {
+const CarouselBanner = ({item}) => {
   const {
-    name = 'Harry Potter', 
-    description='a boy is given the ability to become an adult superhero in times of need with a single magic word', 
-    children='By: david f. sandberg',
-    bannerImg='../../../public/images/banner2.jpg'
-  } = props;
+    tenPhim = 'NOT FOUND', 
+    moTa= 'NOT FOUND', 
+    ngayKhoiChieu= 'NOT FOUND',
+    danhGia= 'NOT FOUND',
+    hinhAnh= 'NOT FOUND',
+  } = item;
   return (
     <Paper
       className='banner'
@@ -24,22 +25,29 @@ const CarouselBanner = (props) => {
           component='h3'
           variant='h3'
         >
-          {name}
+          {tenPhim}
         </Typography>
         <Typography
           className='style description'
           component='h6'
           variant='h6'
         >
-          {description}
+          {moTa}
         </Typography>
         <Typography
           className='style author'
           component='h4'
           variant='h4'
         >
-          {children}
+          {ngayKhoiChieu}
         </Typography>
+        <Typography
+        className='style author'
+        component='h4'
+        variant='h4'
+      >
+        {danhGia}
+      </Typography>
         <Button
           className='style detail-btn'
         >
@@ -47,22 +55,24 @@ const CarouselBanner = (props) => {
         </Button>
       </div>
       <div className='overload' />
-      <img
+      <CardMedia
         alt=''
         className='bannerImg'
-        src={bannerImg}
+        src={hinhAnh}
       />
     </Paper>
   )
 }
 
 CarouselBanner.propTypes = {
-  name: PropTypes.string,
-  children: PropTypes.string,
-  bannerImg: PropTypes.string,
-  description: PropTypes.string,
+  tenPhim: PropTypes.string,
+  danhGia: PropTypes.string,
+  hinhAnh: PropTypes.string,
+  ngayKhoiChieu: PropTypes.string,
+  moTa: PropTypes.string,
 };
 
 export default CarouselBanner;
 
 
+ 

@@ -9,12 +9,20 @@ import {
   CardMedia,
   Typography,
   withStyles,
+  makeStyles ,
 } from '@material-ui/core'; 
 import './SliderItems.scss'
- 
+const useStyles = makeStyles({
+  root: {
+    maxWidth: 345,
+  },
+  media: {
+    height: 140,
+  },
+});
 const SliderItems=({item})=>{ 
   const {maPhim, tenPhim, hinhAnh} =  item;  
-  
+  const classes = useStyles();
   const check_img=()=>{ 
       if(maPhim ===  3394 || maPhim === 4301 || maPhim === 4300 || maPhim === 4303
       ) {
@@ -31,16 +39,19 @@ const SliderItems=({item})=>{
   }
 
   return(
-    <div className='imgCard' > 
-    { check_img()} 
-  <div className='cardBody'>
-    <div className='cardTitle'>
-    {tenPhim}</div>
-    <div className='cardText'>{maPhim}</div>
-  </div>
-  </div>
+    <Card className='imgCard' >
+    <CardActionArea>
+      {check_img()} 
+      <CardContent className='cardBody'>
+        <Typography gutterBottom variant="h5" component="h2" className='cardTitle'>
+          {tenPhim}
+        </Typography>
+        <Typography variant="body2"   component="p" className='cardText'>
+         {maPhim}
+        </Typography>
+      </CardContent>
+    </CardActionArea> 
+  </Card>
   )
 }
-export default SliderItems; 
- 
- 
+export default SliderItems;  
