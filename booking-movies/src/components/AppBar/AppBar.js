@@ -52,6 +52,7 @@ const AppBar = () => {
   };
 
   const userCredentials = useSelector(state => state.user.credentials);
+  const userProfile = useSelector(state=> state.profile.initialProfile)
   const loginStatus = useSelector(state => state.user.loginStatus);
   
   // handle logout
@@ -142,7 +143,10 @@ const AppBar = () => {
                         className='user link-user hover-link'
                         // onClick={handleProfileClick}
                         to={PROFILE_PAGE}
-                      >{userCredentials.hoTen}</Link>
+                      >{ userProfile ?
+                          userProfile.hoTen
+                          : userCredentials.hoTen
+                        }</Link>
                     </StyledMenuItem>
                     {
                       userCredentials.maLoaiNguoiDung === 'KhachHang' 
