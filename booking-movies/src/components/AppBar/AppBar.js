@@ -1,40 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
 import { Link, useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 
-import { AppBar as App, Button, IconButton, Menu, MenuItem, Toolbar, Typography, withStyles } from '@material-ui/core';
+import { AppBar as App, Button, IconButton, Menu, Toolbar, Typography } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
+
+import { clearStoreAction } from '../../redux/actions/userAction';
+import { inforUserAction } from '../../redux/actions/profileAction';
 import {ADMIN_PAGE, CONTACT_PAGE, HOME_PAGE, LOGIN_PAGE, NEWS_PAGE, PROFILE_PAGE, REGISTER_PAGE} from '../../constants/constant';
 
-import {useStyles} from './useStyles';
-import './AppBar.scss';
-import { useDispatch, useSelector } from 'react-redux';
-import { clearStoreAction } from '../../redux/actions/userAction';
 import { toast } from 'react-toastify';
-import { inforUserAction } from '../../redux/actions/profileAction';
-
-const StyledMenuItem = withStyles({
-  root: {
-    height: '50px',
-    position: 'relative',
-    '&:hover': {
-      backgroundColor: 'transparent',
-    },
-  },
-})(MenuItem);
-
-const StyleButton = withStyles({
-  root: {
-    '&:hover': {
-      backgroundColor: 'transparent',
-    },
-    '&:hover::after': {
-      backgroundColor: 'transparent',
-    },
-  },
-})(Button);
+import {useStyles, StyleButton, StyledMenuItem} from './useStyles';
+import './AppBar.scss';
 
 const AppBar = () => {
   const classes = useStyles();
@@ -42,6 +22,9 @@ const AppBar = () => {
   const history = useHistory();
 
   const [anchorEl, setAnchorEl] = useState(null);
+  const userCredentials = useSelector(state => state.user.credentials);
+  const userProfile = useSelector(state=> state.profile.initialProfile)
+  const loginStatus = useSelector(state => state.user.loginStatus);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -50,10 +33,6 @@ const AppBar = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
-
-  const userCredentials = useSelector(state => state.user.credentials);
-  const userProfile = useSelector(state=> state.profile.initialProfile)
-  const loginStatus = useSelector(state => state.user.loginStatus);
   
   // handle logout
   const handleLogOutBtnClick = (e) => {
@@ -192,6 +171,7 @@ AppBar.propTypes = {
   handleClose: PropTypes.func,
   handleLogOutBtnClick: PropTypes.func,
   handleProfileClick: PropTypes.func,
+  loginStatus: PropTypes.bool,
   onClick: PropTypes.func,
   onClose: PropTypes.func,
   open: PropTypes.bool,

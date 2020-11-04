@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useHistory } from 'react-router-dom';
+
 import clsx from 'clsx';
-import { useTheme } from '@material-ui/core/styles';
-import { useStyles } from './useStyles';
 
 import {
   Drawer, 
@@ -12,26 +13,24 @@ import {
   IconButton,
   Button,
   Menu,
-  MenuItem,
   Tab,
-  withStyles,
 } from '@material-ui/core';
-
+import { useTheme } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
-import { toast } from 'react-toastify';
 
 import {TabItem} from '../../TabPanel/TabItem/TabItem';
 import TabPanel from '../../TabPanel/TabPanel';
 
-import './AdminBar.scss';
-import { useDispatch, useSelector } from 'react-redux';
 import { clearStoreAction } from '../../../redux/actions/userAction';
 import { HOME_PAGE, PROFILE_PAGE } from '../../../constants/constant';
-import { Link, useHistory } from 'react-router-dom';
+
+import { toast } from 'react-toastify';
+import { useStyles, StyleButton, StyledMenuItem } from './useStyles';
+import './AdminBar.scss';
 
 const a11yProps = (index) => {
   return {
@@ -40,24 +39,6 @@ const a11yProps = (index) => {
   };
 }
 
-const StyledMenuItem = withStyles({
-  root: {
-    '&:hover': {
-      backgroundColor: 'transparent',
-    },
-  },
-})(MenuItem);
-
-const StyleButton = withStyles({
-  root: {
-    '&:hover': {
-      backgroundColor: 'transparent',
-    },
-    '&:hover::after': {
-      backgroundColor: 'transparent',
-    },
-  },
-})(Button);
 
 const AdminBar = () => {
   const classes = useStyles();

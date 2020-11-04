@@ -1,6 +1,5 @@
 /* eslint-disable linebreak-style */
 import React, { useEffect } from 'react';
-import './App.scss';
 import 'react-toastify/dist/ReactToastify.css';
 import {LoginPage, RegisterPage, ErrorPage, HomePage, NewsPage, ContactPage, ProfilePage, AdminPage} from './pages';
 import { Route, Switch} from 'react-router-dom';  
@@ -11,6 +10,7 @@ import { createAction } from './redux/actions';
 import { getDataFromLocalStorage } from './utils/LocalStorage/LocalStorage';
 import { toast } from 'react-toastify';
 
+import './App.scss';
 
 toast.configure({
   autoClose: 2000,
