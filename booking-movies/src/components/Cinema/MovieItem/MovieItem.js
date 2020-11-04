@@ -1,41 +1,70 @@
 import React from 'react'
-import { CardMedia, Grid, Typography } from '@material-ui/core'
+import { useSelector } from 'react-redux';
+import { CardMedia, Divider, Grid } from '@material-ui/core'
+import { Link } from 'react-router-dom'
 
 import './MovieItem.scss';
-import { useSelector } from 'react-redux';
+// import Schedule from './Schedule/Schedules/Schedule';
+import { CONTACT_PAGE } from '../../../constants/constant';
+import ScheduleMovie from './Schedule/ScheduleMovie/SheduleMovie';
 
 const MovieItem = () => {
   const movieSchedule = useSelector(state => state.cinemaList.initialScheduleMovie)
 
   const renderMovieSchedule = () => {
     return movieSchedule.map((item, index) => {
+      const {hinhAnh, tenPhim, lstLichChieuTheoPhim} = item;
+      // const handleClickMovie = () => {
+      //   console.log('Clicked movie');
+      // }
+
       return (
         <Grid
           className='movie-item'
           key={index}
+          // onClick={handleClickMovie}
         >
-          <CardMedia
-            className='movie-img'
-            image={item.hinhAnh}
-          />
-          <Typography
-            className='movie-content'
-            color='textPrimary'
-            variant='body2'
-          >
-            {item.tenPhim}
-          </Typography>
+          <Grid className='item'>
+            <Link to={CONTACT_PAGE}>
+              <CardMedia
+                className='movie-img'
+                image={hinhAnh}
+              />
+            </Link>
+            <Grid className='content'>
+              <Link
+                className='movie-content'
+                color='textPrimary'
+                to={CONTACT_PAGE}
+                variant='body2'
+              >
+                {tenPhim}
+              </Link>
+              <Grid
+                className='schedule-content'
+              >
+                <ScheduleMovie schedule={lstLichChieuTheoPhim}/>
+              </Grid>
+            </Grid>
+          </Grid>
+          <Divider className='movie-divider'/>
         </Grid>
       )
     });
   }
 
   return (
-    <Grid
-      className='movie-schedule'
-    >
-      {renderMovieSchedule()}
-    </Grid>
+    <div>
+      {
+        movieSchedule ? (
+          <Grid
+            className='movie-schedule'
+          >
+            {renderMovieSchedule()}
+          </Grid>
+        ) : null
+      }
+    </div>
   )
 }
 

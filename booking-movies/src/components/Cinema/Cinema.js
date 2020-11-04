@@ -40,7 +40,6 @@ const Cinema = () => {
   };
 
   const cinemaList = useSelector(state => state.cinemaList.initialCinemaList);
-  // const branchList = useSelector(state => state.cinemaList.initialBranchCinemaList);
 
   const renderTab = (index, key) => {
     const handleClick = () => {
@@ -156,7 +155,7 @@ const Cinema = () => {
         <Grid className='right-section'>
           <MovieItem />
         </Grid>
-      </Grid>
+      </Grid>  
     </Container>
   )
 }

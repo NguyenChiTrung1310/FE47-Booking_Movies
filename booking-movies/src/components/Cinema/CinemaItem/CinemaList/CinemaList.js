@@ -6,7 +6,7 @@ import {useStyles} from './ueStyles';
 
 const CinemaList = ({item, index, handleClick = () => {}}) => {
   const classes = useStyles();
-
+  const {tenCumRap, diaChi} = item;
   return (
     <Grid
       className={classes.root}
@@ -25,7 +25,7 @@ const CinemaList = ({item, index, handleClick = () => {}}) => {
           component={'span'}
           variant='body2'
         >
-          {item.tenCumRap}
+          {tenCumRap}
         </Typography>
         <Typography
           className={classes.address}
@@ -33,7 +33,7 @@ const CinemaList = ({item, index, handleClick = () => {}}) => {
           component={'span'}
           variant='body2'
         >
-          {item.diaChi}
+          {diaChi}
         </Typography>
         <Divider
           className={classes.divider}
