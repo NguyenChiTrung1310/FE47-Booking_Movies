@@ -1,18 +1,18 @@
 /* eslint-disable react/sort-prop-types */
 /* eslint-disable react/prop-types */
 import React from 'react';
-import { Button, Paper, Typography, CardMedia } from '@material-ui/core';
+import { Button, Paper, Typography } from '@material-ui/core';
 import PropTypes from 'prop-types';
 
 import './Carousel.scss';
 
-const CarouselBanner = ({item}) => {
+const CarouselBanner = ({ item }) => {
   const {
-    tenPhim = 'NOT FOUND', 
-    moTa= 'NOT FOUND', 
-    ngayKhoiChieu= 'NOT FOUND',
-    danhGia= 'NOT FOUND',
-    hinhAnh= 'NOT FOUND',
+    tenPhim = 'Harry Potter',
+    moTa = 'a boy is given the ability to become an adult superhero in times of need with a single magic word',
+    ngayKhoiChieu = 'By: david f. sandberg',
+    danhGia = 'NOT FOUND',
+    hinhAnh = 'NOT FOUND'
   } = item;
   return (
     <Paper
@@ -20,7 +20,7 @@ const CarouselBanner = ({item}) => {
       elevation={10}
     >
       <div className='titles'>
-        <Typography 
+        <Typography
           className='style name'
           component='h3'
           variant='h3'
@@ -41,13 +41,6 @@ const CarouselBanner = ({item}) => {
         >
           {ngayKhoiChieu}
         </Typography>
-        <Typography
-        className='style author'
-        component='h4'
-        variant='h4'
-      >
-        {danhGia}
-      </Typography>
         <Button
           className='style detail-btn'
         >
@@ -55,7 +48,7 @@ const CarouselBanner = ({item}) => {
         </Button>
       </div>
       <div className='overload' />
-      <CardMedia
+      <img
         alt=''
         className='bannerImg'
         src={hinhAnh}
@@ -65,14 +58,12 @@ const CarouselBanner = ({item}) => {
 }
 
 CarouselBanner.propTypes = {
-  tenPhim: PropTypes.string,
-  danhGia: PropTypes.string,
-  hinhAnh: PropTypes.string,
-  ngayKhoiChieu: PropTypes.string,
-  moTa: PropTypes.string,
+  name: PropTypes.string,
+  children: PropTypes.string,
+  bannerImg: PropTypes.string,
+  description: PropTypes.string,
 };
 
 export default CarouselBanner;
 
 
- 
