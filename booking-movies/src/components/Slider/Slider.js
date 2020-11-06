@@ -56,8 +56,6 @@ const SliderSlick=()=> {
   );
 }
 SliderSlick.propTypes={
-  img: PropTypes.string,
-  text: PropTypes.string,
-  title: PropTypes.string, 
+  SliderItems: PropTypes.object,
 }
 export default SliderSlick;

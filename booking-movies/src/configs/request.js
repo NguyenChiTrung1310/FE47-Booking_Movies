@@ -22,3 +22,9 @@ export const request = (url = '', method = '', data = {}) => {
 }
 
 export default request;
+
+
+
+
+  
+

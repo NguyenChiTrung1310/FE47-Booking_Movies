@@ -41,6 +41,13 @@ const CarouselBanner = ({ item }) => {
         >
           {ngayKhoiChieu}
         </Typography>
+        <Typography
+          className='style author'
+          component='h4'
+          variant='h4'
+        >
+          {danhGia}
+        </Typography>
         <Button
           className='style detail-btn'
         >
@@ -50,7 +57,7 @@ const CarouselBanner = ({ item }) => {
       <div className='overload' />
       <img
         alt=''
-        className='bannerImg'
+        className='banner-img'
         src={hinhAnh}
       />
     </Paper>
@@ -58,10 +65,11 @@ const CarouselBanner = ({ item }) => {
 }
 
 CarouselBanner.propTypes = {
-  name: PropTypes.string,
-  children: PropTypes.string,
-  bannerImg: PropTypes.string,
-  description: PropTypes.string,
+  tenPhim: PropTypes.string,
+  moTa: PropTypes.string,
+  ngayKhoiChieu: PropTypes.string,
+  danhGia: PropTypes.string,
+  hinhAnh: PropTypes.string,
 };
 
 export default CarouselBanner;

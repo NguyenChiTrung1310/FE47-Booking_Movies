@@ -14,7 +14,7 @@
     );
     z-index: 1;
   }
-  .bannerImg {
+  .banner-img {
     position: relative;
     height: 100%;
     width: 100%;
@@ -83,5 +83,8 @@
         right: 18px;
       }
     }
+  }
+  .Carousel-indicators-7 {
+    display: none;
   }
 }

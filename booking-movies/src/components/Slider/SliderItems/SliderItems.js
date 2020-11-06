@@ -1,28 +1,17 @@
 /* eslint-disable no-unused-vars */
-import React, { Component } from 'react' 
+import React from 'react' 
 import LoadingCool from './../../Spinner_Cool/SpinnerCool'
 import { 
   Card,
-  CardActionArea,
-  CardActions,
-  CardContent,
-  CardMedia,
-  Typography,
-  withStyles,
-  makeStyles ,
-} from '@material-ui/core'; 
-import './SliderItems.scss'
-const useStyles = makeStyles({
-  root: {
-    maxWidth: 345,
-  },
-  media: {
-    height: 140,
-  },
-});
+  CardActionArea, 
+  CardContent, 
+  Typography,  
+} from '@material-ui/core';  
+import PropTypes from 'prop-types'; 
+import './SliderItems.scss' 
+
 const SliderItems=({item})=>{ 
-  const {maPhim, tenPhim, hinhAnh} =  item;  
-  const classes = useStyles();
+  const {maPhim, tenPhim, hinhAnh} =  item;   
   const check_img=()=>{ 
       if(maPhim ===  3394 || maPhim === 4301 || maPhim === 4300 || maPhim === 4303
       ) {
@@ -53,5 +42,10 @@ const SliderItems=({item})=>{
     </CardActionArea> 
   </Card>
   )
+} 
+SliderItems.propTypes={
+  tenPhim: PropTypes.string,
+  moTa: PropTypes.string,
+  hinhAnh: PropTypes.string,
 }
 export default SliderItems;  
