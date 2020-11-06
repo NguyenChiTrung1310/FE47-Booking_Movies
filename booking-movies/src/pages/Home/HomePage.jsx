@@ -1,6 +1,7 @@
 import React from 'react';
 import Banner from '../../components/Carousel/Banners/Banner';
 import SliderSlick from '../../components/Slider/Slider';
+import DetailMovie from '../DetailMovie/DetailMovie';
 
 import './HomePage';
 
@@ -11,6 +12,7 @@ const HomePage=()=>{
         <Banner />
       </div>
       <SliderSlick/>
+      <DetailMovie/>
     </div>
   )
 }
