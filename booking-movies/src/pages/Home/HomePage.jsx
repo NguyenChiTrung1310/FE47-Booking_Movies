@@ -1,7 +1,7 @@
 import React from 'react';
 import Banner from '../../components/Carousel/Banners/Banner';
-import SliderSlick from '../../components/Slider/Slider';
-import DetailMovie from '../DetailMovie/DetailMovie';
+import DetailMovie from '../../components/DetailMovie/DetailMovie';
+import SliderSlick from '../../components/Slider/Slider'; 
 
 import './HomePage';
 

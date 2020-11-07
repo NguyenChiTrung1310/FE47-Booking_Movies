@@ -19,7 +19,7 @@ export const fetchMovieDetail=()=>{
         return (dispatch)=> {
             MovieDetailService().then(
                 (res)=>{
-                    console.log('CHI TIET PHIM', res.data);
+                    // console.log('CHI TIET PHIM', res.data);
                     dispatch(createAction(FETCH_MOVIE_DETAIL, res.data))
                 }
             ).catch((err)=>{
