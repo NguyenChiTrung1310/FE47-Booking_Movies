@@ -1,6 +1,12 @@
 import request from '../configs/request';
-import { BRANCH_CINEMA_LIST_API, CINEMA_LIST_API, THEATER_SCHEDULE_API } from './api';
+import { 
+  BRANCH_CINEMA_LIST_API, 
+  CINEMA_LIST_API, 
+  THEATERS_SCHEDULE_API,
+  DETAIL_MOVIE_SCHEDULE_BY_THEATER_API 
+} from './api';
 
+// Export cinemas list
 export async function CinemaService() {
   return (
     request(
@@ -10,6 +16,7 @@ export async function CinemaService() {
   );
 }
 
+// Export Theater branches list of each cinema
 export async function BranchCinemaService (id) {
   return (
     request(
@@ -19,11 +26,22 @@ export async function BranchCinemaService (id) {
   );
 }
 
+// Export Theater schedules list (movies info, movies schedule,...)
 export async function TheaterScheduleService (id) {
   return (
     request (
-      THEATER_SCHEDULE_API + `${id}&maNhom=GP01`,
-      'GET'
+      THEATERS_SCHEDULE_API + `${id}&maNhom=GP01`,
+      'GET',
+    )
+  )
+}
+
+// Export Movie schedule by theater
+export async function DetailMovieBScheduleByTheaterService (id) {
+  return (
+    request (
+      DETAIL_MOVIE_SCHEDULE_BY_THEATER_API + `${id}`,
+      'GET',
     )
   )
 }
