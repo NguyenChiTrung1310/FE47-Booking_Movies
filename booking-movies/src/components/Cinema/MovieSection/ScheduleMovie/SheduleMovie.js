@@ -4,12 +4,12 @@ import { Grid } from '@material-ui/core';
 import { Link } from 'react-router-dom'
 
 import './ScheduleMovie.scss';
-import { CONTACT_PAGE } from '../../../../../constants/constant';
+import { CONTACT_PAGE } from '../../../../constants/constant';
 
-const ScheduleMovie = ({schedule}) => {
-  const item_copy = schedule.slice(0,5);
+const ScheduleMovie = ({movieSchedules}) => {
+  const schedules = movieSchedules.slice(0,5);
 
-  return item_copy.map((item, index) => {
+  return schedules.map((item, index) => {
     const {ngayChieuGioChieu} = item;
 
     return (

@@ -2,11 +2,12 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Typography } from '@material-ui/core';
 
-import './CinemaItem.scss';
 import { showMoviesList } from '../../../redux/actions/cinemaListAction';
 import CinemaList from './CinemaList/CinemaList';
 
-const CinemaItem = () => {
+import './CinemaSection.scss';
+
+const CinemaSection = () => {
   const dispatch = useDispatch();
  
   const theaterSchedule = useSelector(state => state.cinemaList.initialListTheater);
@@ -29,4 +30,4 @@ const CinemaItem = () => {
   });
 }
 
-export default CinemaItem
+export default CinemaSection

@@ -1,28 +1,24 @@
 import React from 'react'
 import { useSelector } from 'react-redux';
-import { CardMedia, Divider, Grid } from '@material-ui/core'
 import { Link } from 'react-router-dom'
+import { CardMedia, Divider, Grid } from '@material-ui/core'
 
-import './MovieItem.scss';
-// import Schedule from './Schedule/Schedules/Schedule';
 import { CONTACT_PAGE } from '../../../constants/constant';
-import ScheduleMovie from './Schedule/ScheduleMovie/SheduleMovie';
+import ScheduleMovie from './ScheduleMovie/SheduleMovie';
 
-const MovieItem = () => {
+import './MovieSection.scss';
+
+const MovieSection = () => {
   const movieSchedule = useSelector(state => state.cinemaList.initialScheduleMovie)
 
   const renderMovieSchedule = () => {
     return movieSchedule.map((item, index) => {
       const {hinhAnh, tenPhim, lstLichChieuTheoPhim} = item;
-      // const handleClickMovie = () => {
-      //   console.log('Clicked movie');
-      // }
 
       return (
         <Grid
           className='movie-item'
           key={index}
-          // onClick={handleClickMovie}
         >
           <Grid className='item'>
             <Link to={CONTACT_PAGE}>
@@ -43,7 +39,7 @@ const MovieItem = () => {
               <Grid
                 className='schedule-content'
               >
-                <ScheduleMovie schedule={lstLichChieuTheoPhim}/>
+                <ScheduleMovie movieSchedules={lstLichChieuTheoPhim}/>
               </Grid>
             </Grid>
           </Grid>
@@ -68,4 +64,4 @@ const MovieItem = () => {
   )
 }
 
-export default MovieItem
+export default MovieSection

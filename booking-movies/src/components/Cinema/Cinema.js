@@ -9,8 +9,8 @@ import { TabItem } from '../TabPanel/TabItem/TabItem';
 
 import cinemaBannerImg from '../../assets/images/cinema-banner.jpg'
 import './Cinema.scss';
-import CinemaItem from './CinemaItem/CinemaItem';
-import MovieItem from './MovieItem/MovieItem';
+import CinemaSection from './CinemaSection/CinemaSection';
+import MovieSection from './MovieSection/MovieSection';
 
 const a11yProps = (index) => {
   return {
@@ -114,46 +114,46 @@ const Cinema = () => {
             index={0}
             value={value}
           >
-            <CinemaItem />
+            <CinemaSection />
           </TabItem>
           <TabItem
             className='tab-item'
             index={1}
             value={value}
           >
-            <CinemaItem />
+            <CinemaSection />
           </TabItem>
           <TabItem
             className='tab-item'
             index={2}
             value={value}
           >
-            <CinemaItem />
+            <CinemaSection />
           </TabItem>
           <TabItem
             className='tab-item'
             index={3}
             value={value}
           >
-            <CinemaItem />
+            <CinemaSection />
           </TabItem>
           <TabItem
             className='tab-item'
             index={4}
             value={value}
           >
-            <CinemaItem />
+            <CinemaSection />
           </TabItem>
           <TabItem
             className='tab-item'
             index={5}
             value={value}
           >
-            <CinemaItem />
+            <CinemaSection />
           </TabItem>
         </Grid>
         <Grid className='right-section'>
-          <MovieItem />
+          <MovieSection />
         </Grid>
       </Grid>  
     </Container>
