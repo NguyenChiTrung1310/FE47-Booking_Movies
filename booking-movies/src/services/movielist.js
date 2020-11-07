@@ -1,5 +1,5 @@
 import request from '../configs/request';
-import { MOVIELIST_API } from './api'; 
+import { MOVIELIST_API, MOVIEDETAIL_API } from './api'; 
  
 export async function MovieListService() {
   return(
@@ -8,4 +8,13 @@ export async function MovieListService() {
       'GET', 
     )
   ) 
+}
+
+export async function MovieDetailService(){
+  return(
+    request(
+      MOVIEDETAIL_API,
+      'GET',
+    )
+  )
 }

@@ -1,4 +1,4 @@
-import { FETCH_MOVIELIST } from "../../constants/constant"
+import { FETCH_MOVIELIST, FETCH_MOVIE_DETAIL } from "../../constants/constant"
 
 let initialState={
   initialMovieList: [],
@@ -10,7 +10,7 @@ const MovieListReducer = (state = initialState, { type, payload }) => {
     case FETCH_MOVIELIST:
       state.initialMovieList = payload;
       return { ...state }; 
-    case 'FETCH_MOVIE_DETAIL':
+    case FETCH_MOVIE_DETAIL:
       state.initaialMovieList_Detail=payload;
       return {...state};
     default:
