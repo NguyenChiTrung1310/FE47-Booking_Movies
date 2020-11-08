@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { CardMedia, Divider, Grid } from '@material-ui/core'
 
 import { CONTACT_PAGE } from '../../../constants/constant';
+import LoadingCool from '../../Spinner_Cool/SpinnerCool';
 import ScheduleMovie from './ScheduleMovie/SheduleMovie';
 
 import './MovieSection.scss';
@@ -21,12 +22,22 @@ const MovieSection = () => {
           key={index}
         >
           <Grid className='item'>
-            <Link to={CONTACT_PAGE}>
-              <CardMedia
-                className='movie-img'
-                image={hinhAnh}
-              />
-            </Link>
+            <Grid className='movie-images'>
+              {
+                hinhAnh ? (
+                  <Link to={CONTACT_PAGE}>
+                    <CardMedia
+                      className='movie-img'
+                      image={hinhAnh}
+                    />
+                  </Link>
+                ) : (
+                  <Grid className='loading'>
+                    <LoadingCool />
+                  </Grid>
+                )
+              }      
+            </Grid>
             <Grid className='content'>
               <Link
                 className='movie-content'
