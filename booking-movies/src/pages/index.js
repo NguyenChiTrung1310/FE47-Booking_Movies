@@ -6,5 +6,5 @@ import NewsPage from './News/News';
 import ContactPage from './Contact/Contact';
 import ProfilePage from './Profile/ProfilePage';
 import AdminPage from './Admin/AdminPage';
-
-export {LoginPage,RegisterPage,ErrorPage, HomePage, NewsPage, ContactPage, ProfilePage, AdminPage} 
+import MovieDetailPage from './MovieDetail/MovieDetailPage'
+export {LoginPage,RegisterPage,ErrorPage, HomePage, NewsPage, ContactPage, ProfilePage, AdminPage, MovieDetailPage} 

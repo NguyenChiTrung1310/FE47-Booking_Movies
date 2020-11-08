@@ -3,12 +3,12 @@ import {useDispatch, useSelector} from 'react-redux';
 import { fetchMovieDetail } from '../../redux/actions/movieListAction';
 import ScheduleMovie from './ScheduleMovie/ScheduleMovie';
 
-const DetailMovie = () => {
+const DetailMovie = (props) => {
     const dispatch = useDispatch();
 
     useEffect(()=>{
-        dispatch(fetchMovieDetail());
-    },[dispatch]);
+        dispatch(fetchMovieDetail(1314));
+    },[dispatch,props]);
 
 
 

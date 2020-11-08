@@ -15,12 +15,12 @@ export const fetchMovieList = ()=>{
     }
 }
 
-export const fetchMovieDetail=()=>{ 
+export const fetchMovieDetail=(maPhim)=>{ 
         return (dispatch)=> {
-            MovieDetailService().then(
+            MovieDetailService(maPhim).then(
                 (res)=>{
                     // console.log('CHI TIET PHIM', res.data);
-                    dispatch(createAction(FETCH_MOVIE_DETAIL, res.data))
+                     dispatch(createAction(FETCH_MOVIE_DETAIL, res.data))
                 }
             ).catch((err)=>{
                 //console.log(err);

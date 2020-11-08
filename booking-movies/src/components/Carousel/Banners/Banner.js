@@ -11,7 +11,7 @@ const Banner = () => {
     timer: 500,
     animation: 'fade',
     indicators: true,
-    interval: 4000
+    interval: 1000
   })
 
   const dispatch = useDispatch();

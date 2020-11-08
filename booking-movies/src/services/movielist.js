@@ -10,10 +10,10 @@ export async function MovieListService() {
   ) 
 }
 
-export async function MovieDetailService(){
+export async function MovieDetailService(maPhim){
   return(
     request(
-      MOVIEDETAIL_API,
+      MOVIEDETAIL_API + `${maPhim}`,
       'GET',
     )
   )

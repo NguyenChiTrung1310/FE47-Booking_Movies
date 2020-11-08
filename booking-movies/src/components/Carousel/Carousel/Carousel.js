@@ -3,8 +3,9 @@
 import React from 'react';
 import { Button, Paper, Typography } from '@material-ui/core';
 import PropTypes from 'prop-types';
-
+import {Link} from 'react-router-dom'
 import './Carousel.scss';
+import { MOVIE_DETAIL_PAGE } from '../../../constants/constant';
 
 const CarouselBanner = ({ item }) => {
   const {
@@ -12,7 +13,8 @@ const CarouselBanner = ({ item }) => {
     moTa = 'a boy is given the ability to become an adult superhero in times of need with a single magic word',
     ngayKhoiChieu = 'By: david f. sandberg',
     danhGia = 'NOT FOUND',
-    hinhAnh = 'NOT FOUND'
+    hinhAnh = 'NOT FOUND',
+    maPhim  = 'NOT FOUND',
   } = item;
   return (
     <Paper
@@ -48,11 +50,12 @@ const CarouselBanner = ({ item }) => {
         >
           {danhGia}
         </Typography>
-        <Button
+        <Link 
+          to={`${MOVIE_DETAIL_PAGE}/${maPhim}`}
           className='style detail-btn'
         >
           <span>Detail</span>
-        </Button>
+        </Link>
       </div>
       <div className='overload' />
       <img

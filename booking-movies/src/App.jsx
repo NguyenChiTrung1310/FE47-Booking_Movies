@@ -2,9 +2,9 @@
 import React, { useEffect } from 'react';
 import './App.scss';
 import 'react-toastify/dist/ReactToastify.css';
-import {LoginPage, RegisterPage, ErrorPage, HomePage, NewsPage, ContactPage, ProfilePage, AdminPage} from './pages';
+import {LoginPage, RegisterPage, ErrorPage, HomePage, NewsPage, ContactPage, ProfilePage, AdminPage, MovieDetailPage} from './pages';
 import { Route, Switch} from 'react-router-dom';  
-import {LOGIN_PAGE, REGISTER_PAGE, HOME_PAGE, NEWS_PAGE, CONTACT_PAGE, LOGIN_SUCCESS, LOCAL_STORAGE_CREDENTIALS_KEY, PROFILE_PAGE, USER_PROFILE, LOCAL_STORAGE_PROFILE_KEY, ADMIN_PAGE} from './constants/constant';
+import {LOGIN_PAGE, REGISTER_PAGE, HOME_PAGE, NEWS_PAGE, CONTACT_PAGE, LOGIN_SUCCESS, LOCAL_STORAGE_CREDENTIALS_KEY, PROFILE_PAGE, USER_PROFILE, LOCAL_STORAGE_PROFILE_KEY, ADMIN_PAGE, MOVIE_DETAIL_PAGE} from './constants/constant';
 import AppBar from './components/AppBar/AppBar';
 import { useDispatch } from 'react-redux';
 import { createAction } from './redux/actions';
@@ -79,6 +79,11 @@ function App() {
           component={AdminPage}
           exact
           path={ADMIN_PAGE}
+        />
+         <Route 
+          component={MovieDetailPage}
+          exact
+          path={`${MOVIE_DETAIL_PAGE}/:maPhimId`}
         />
         <Route
           component={ErrorPage}
