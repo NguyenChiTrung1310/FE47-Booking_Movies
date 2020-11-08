@@ -69,7 +69,7 @@ const MovieSection = () => {
           >
             {renderMovieSchedule()}
           </Grid>
-        ) : null
+        ) : <LoadingCool />
       }
     </div>
   )
