@@ -1,6 +1,6 @@
 // fetch data  
 import {createAction} from '.';
-import { FETCH_MOVIELIST, FETCH_MOVIE_DETAIL } from '../../constants/constant';
+import { FETCH_MOVIELIST, FETCH_MOVIE_DETAIL,CLEAR_DETAIL_MOVIE } from '../../constants/constant';
 import { MovieDetailService, MovieListService } from '../../services/movielist';
 
 export const fetchMovieList = ()=>{
@@ -28,3 +28,5 @@ export const fetchMovieDetail=(maPhim)=>{
         }
     
 }
+
+ 

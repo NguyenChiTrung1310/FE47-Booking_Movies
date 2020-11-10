@@ -19,15 +19,21 @@
 
 import React, {useState, useEffect} from 'react';  
 import {useDispatch, useSelector} from 'react-redux'; 
-import { fetchMovieDetail } from '../../redux/actions/movieListAction';
+import {fetchMovieDetail } from '../../redux/actions/movieListAction';
 import ScheduleMovie from '../../components/DetailMovie/ScheduleMovie/ScheduleMovie';
 import LoadingCool from '../../components/Spinner_Cool/SpinnerCool';
+import { CLEAR_DETAIL_MOVIE } from '../../constants/constant';
+import { createAction } from '../../redux/actions';
 
 const MovieDetailPage = (props) => {
     const dispatch = useDispatch();
+   // const [status, setStatus]= useStatus(false);
 
     useEffect(()=>{
         dispatch(fetchMovieDetail(props.match.params.maPhimId));
+        return ()=>{ 
+            dispatch(createAction(CLEAR_DETAIL_MOVIE))
+        }
     },[dispatch,props]);
 
 
