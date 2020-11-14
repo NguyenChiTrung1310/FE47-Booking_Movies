@@ -1,9 +1,34 @@
 @import '../../../../styles/styles';
  
+
+.schedule-item{
+    border: 1px solid $white;
+    margin-bottom: 4px;
+    width: 220px;
+    height: 40px;
+    text-align: center;
+    display: flex;
+    align-items: center !important;
+    justify-content: center !important;
+
+    .devide{
+        width: 1px;
+        height: 100%;
+        background-color: $white;
+    }
+    
     .schedule-detail{
-        border: 1px solid $gray;
-        width: 200px;
+        width: 100%;
         text-decoration: none !important;
         color: $white !important;
     }
+
+    .cinema-name{
+        height: 100%;
+        width: 23%;
+        font-weight: bolder;
+        transition: all .3s ease-in-out;
+        background-color: $blue-3;
+    }
+}
 

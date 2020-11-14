@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Grid } from '@material-ui/core';
+import { Divider, Grid } from '@material-ui/core';
 import { Link } from 'react-router-dom'
 
 import './ScheduleMovie.scss';
@@ -10,12 +10,17 @@ const ScheduleMovie = ({movieSchedules}) => {
   const schedules = movieSchedules.slice(0,5);
 
   return schedules.map((item, index) => {
-    const {ngayChieuGioChieu} = item;
+    const {ngayChieuGioChieu, tenRap} = item;
 
     return (
       <Grid
+        className='schedule-item'
         key={index}
       >
+        <Grid className='cinema-name'>
+          {tenRap}
+        </Grid>
+        <Divider className='devide'/>
         <Link
           className='schedule-detail'
           to={CONTACT_PAGE}
