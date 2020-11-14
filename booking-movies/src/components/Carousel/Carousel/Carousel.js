@@ -3,11 +3,13 @@
 import React from 'react';
 import { Button, Paper, Typography } from '@material-ui/core';
 import PropTypes from 'prop-types';
-import {Link} from 'react-router-dom'
+import {useHistory} from 'react-router-dom'
 import './Carousel.scss';
 import { MOVIE_DETAIL_PAGE } from '../../../constants/constant';
 
 const CarouselBanner = ({ item }) => {
+  const history = useHistory();
+
   const {
     tenPhim = 'Harry Potter',
     moTa = 'a boy is given the ability to become an adult superhero in times of need with a single magic word',
@@ -16,6 +18,10 @@ const CarouselBanner = ({ item }) => {
     hinhAnh = 'NOT FOUND',
     maPhim  = 'NOT FOUND',
   } = item;
+
+  const detailLink=()=>{ 
+    history.push(`${MOVIE_DETAIL_PAGE}/${maPhim}`);
+  }
   return (
     <Paper
       className='banner'
@@ -50,12 +56,10 @@ const CarouselBanner = ({ item }) => {
         >
           {danhGia}
         </Typography>
-        <Link 
-          to={`${MOVIE_DETAIL_PAGE}/${maPhim}`}
+        <Button
           className='style detail-btn'
-        >
-          <span>Detail</span>
-        </Link>
+          onClick={detailLink}
+        >Detail</Button>
       </div>
       <div className='overload' />
       <img
@@ -65,8 +69,7 @@ const CarouselBanner = ({ item }) => {
       />
     </Paper>
   )
-}
-
+} 
 CarouselBanner.propTypes = {
   tenPhim: PropTypes.string,
   moTa: PropTypes.string,
