@@ -1,4 +1,26 @@
-import { makeStyles } from '@material-ui/core/styles';
+import { Button, MenuItem } from '@material-ui/core';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
+
+export const StyledMenuItem = withStyles({
+  root: {
+    height: '50px',
+    position: 'relative',
+    '&:hover': {
+      backgroundColor: 'transparent',
+    },
+  },
+})(MenuItem);
+
+export const StyleButton = withStyles({
+  root: {
+    '&:hover': {
+      backgroundColor: 'transparent',
+    },
+    '&:hover::after': {
+      backgroundColor: 'transparent',
+    },
+  },
+})(Button);
 
 export const useStyles = makeStyles(() => ({
   app: {

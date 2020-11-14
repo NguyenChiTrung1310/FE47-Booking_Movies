@@ -8,22 +8,17 @@
     font-family: "Montserrat", sans-serif;
 }
 
-// hover menu navigation
-// @mixin hover-btn(){
-//     display: block;
-//     position: absolute;
-//     margin: 0;
-//     top: 0;
-//     bottom: 0;
-//     left: 0;
-//     right: 0;
-//     content: '.';
-//     color: transparent;
-//     width: 1px;
-//     height: 1px;
-//     border-radius: 50%;
-//     background: transparent;
-// }
+@mixin text-style ($fontW: 'lighter', $fontF: '"Montserrat", sans-serif'){
+    color: $white;
+    text-decoration: none;
+    overflow: hidden;
+    font-weight: $fontW, sans-serif !important;;
+    font-family: $fontF, sans-serif !important;;
+}
+
+
+
+// HOVER + ANIMATION
 
 @mixin hover-menu(){
     display: block;

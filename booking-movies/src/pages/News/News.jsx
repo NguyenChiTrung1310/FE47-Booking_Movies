@@ -1,10 +1,10 @@
 import React from 'react';
+import Cinema from '../../components/Cinema/Cinema';
 
 const NewsPage = () => {
   return (
     <div>
-      <h1>News Page</h1>
-      <h1>News Page</h1>
+      <Cinema />
     </div>
   )
 }
