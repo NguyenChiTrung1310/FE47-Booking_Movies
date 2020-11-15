@@ -4,47 +4,47 @@ import { fetchMovieDetail } from '../../redux/actions/movieListAction';
 import ScheduleMovie from './ScheduleMovie/ScheduleMovie';
 
 const DetailMovie = (props) => {
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-    useEffect(()=>{
-        dispatch(fetchMovieDetail(1314));
-    },[dispatch,props]);
+  useEffect(()=>{
+    dispatch(fetchMovieDetail(1314));
+  },[dispatch,props]);
 
 
 
-    const movieList = useSelector((state) => {
-        return state.movieList.initaialMovieList_Detail;
-    });
+  const movieList = useSelector((state) => {
+    return state.movieList.initaialMovieList_Detail;
+  });
 
-    const renderMovieList=()=>{
-        const {  danhGia,
-                hinhAnh, 
-                biDanh,
-                maNhom, 
-                maPhim, 
-                moTa, 
-                ngayKhoiChieu, 
-                tenPhim,
-                lichChieu,
-                } = movieList; 
-        return (
-            <>
-            <h4>TÊN PHIM: {tenPhim}</h4>
-            <h4>MÃ PHIM: {maPhim}</h4>
-            <ScheduleMovie schedule ={lichChieu}/>
-            </>
+  const renderMovieList=()=>{
+    const {  danhGia,
+      hinhAnh, 
+      biDanh,
+      maNhom, 
+      maPhim, 
+      moTa, 
+      ngayKhoiChieu, 
+      tenPhim,
+      lichChieu,
+    } = movieList; 
+    return (
+      <>
+        <h4>TÊN PHIM: {tenPhim}</h4>
+        <h4>MÃ PHIM: {maPhim}</h4>
+        <ScheduleMovie schedule ={lichChieu}/>
+      </>
 
-        )
-    }
+    )
+  }
 
    
-    return (
-        <div>
-            {
-                movieList ? renderMovieList() : 'NOT FOUND'
-            }
-        </div>
-    )
+  return (
+    <div>
+      {
+        movieList ? renderMovieList() : 'NOT FOUND'
+      }
+    </div>
+  )
 }
 
 export default DetailMovie;
