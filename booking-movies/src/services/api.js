@@ -15,6 +15,8 @@ const BRANCH_CINEMA_LIST_API = 'https://movie0706.cybersoft.edu.vn/api/QuanLyRap
 const THEATERS_SCHEDULE_API = 'https://movie0706.cybersoft.edu.vn/api/QuanLyRap/LayThongTinLichChieuHeThongRap?maHeThongRap=';
 const DETAIL_MOVIE_SCHEDULE_BY_THEATER_API = 'https://movie0706.cybersoft.edu.vn/api/QuanLyRap/LayThongTinLichChieuPhim?MaPhim=';
 
+
+
 export {
   LOGIN_API, 
   REGISTER_API, 

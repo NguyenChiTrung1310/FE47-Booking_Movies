@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom'
 import { CardMedia, Divider, Grid } from '@material-ui/core'
 
-import { CONTACT_PAGE } from '../../../constants/constant';
+import { MOVIE_SCHEDULE_PAGE } from '../../../constants/constant';
 import LoadingCool from '../../Spinner_Cool/SpinnerCool';
 import ScheduleMovie from './ScheduleMovie/SheduleMovie';
 
@@ -14,7 +14,7 @@ const MovieSection = () => {
 
   const renderMovieSchedule = () => {
     return movieSchedule.map((item, index) => {
-      const {hinhAnh, tenPhim, lstLichChieuTheoPhim} = item;
+      const {hinhAnh, tenPhim, maPhim, lstLichChieuTheoPhim} = item;
 
       return (
         <Grid
@@ -25,7 +25,9 @@ const MovieSection = () => {
             <Grid className='movie-images'>
               {
                 hinhAnh ? (
-                  <Link to={CONTACT_PAGE}>
+                  <Link
+                    to={`${MOVIE_SCHEDULE_PAGE}/${maPhim}`}
+                  >
                     <CardMedia
                       className='movie-img'
                       image={hinhAnh}
@@ -42,7 +44,7 @@ const MovieSection = () => {
               <Link
                 className='movie-content'
                 color='textPrimary'
-                to={CONTACT_PAGE}
+                to={`${MOVIE_SCHEDULE_PAGE}/${maPhim}`}
                 variant='body2'
               >
                 {tenPhim}

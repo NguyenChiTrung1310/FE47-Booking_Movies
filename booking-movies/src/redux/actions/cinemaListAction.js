@@ -1,6 +1,11 @@
 import { createAction } from '.';
-import { FECTH_BRANCH_CINEMA_LIST, FETCH_CINEMA_LIST, FETCH_THEATER_SCHEDULE, SCHEDULE_MOVIE } from '../../constants/constant';
-import { BranchCinemaService, CinemaService, TheaterScheduleService } from '../../services';
+import { FECTH_BRANCH_CINEMA_LIST, FETCH_CINEMA_LIST, FETCH_THEATER_SCHEDULE, MOVIE_SCHEDULE_DETAIL, SCHEDULE_MOVIE } from '../../constants/constant';
+import { 
+  BranchCinemaService, 
+  CinemaService, 
+  TheaterScheduleService, 
+  DetailMovieBScheduleByTheaterService 
+} from '../../services';
 
 // call api render list Cinemas
 export const cinemaListAction = () => {
@@ -44,7 +49,7 @@ export const showTheaterScheduleAction = (id) => {
   }
 }
 
-// handle 
+// handle show Movie list by theater branch
 export const showMoviesList = (movieList) => {
   return (dispatch) => {
     try{
@@ -58,5 +63,21 @@ export const showMoviesList = (movieList) => {
     catch{
       console.log('Error');
     }
+  }
+}
+
+// handle call api to get detail movie schedule information
+
+export const DetailMovieScheduleAction = (id) => {
+  return (dispatch) => {
+    DetailMovieBScheduleByTheaterService(id)
+      .then(res => {
+        const {data} = res;
+        console.log(res);
+        dispatch(createAction(MOVIE_SCHEDULE_DETAIL, data))
+      })
+      .catch(err => {
+        console.log(err);
+      })
   }
 }

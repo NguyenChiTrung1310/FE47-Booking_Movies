@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Divider, Grid } from '@material-ui/core';
-import { Link } from 'react-router-dom'
 
 import './ScheduleMovie.scss';
 import { CONTACT_PAGE } from '../../../../constants/constant';
@@ -21,12 +20,12 @@ const ScheduleMovie = ({movieSchedules}) => {
           {tenRap}
         </Grid>
         <Divider className='devide'/>
-        <Link
+        <Grid
           className='schedule-detail'
           to={CONTACT_PAGE}
         >
           {ngayChieuGioChieu}
-        </Link>
+        </Grid>
       </Grid>
     ) 
   });
