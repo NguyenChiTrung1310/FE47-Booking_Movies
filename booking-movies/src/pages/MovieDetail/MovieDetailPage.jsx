@@ -1,6 +1,6 @@
-import React, {useState, useEffect} from 'react';  
+import React, { useEffect} from 'react';  
 import {useDispatch, useSelector} from 'react-redux'; 
-import { Container , Paper, TextField, Typography, Grid, InputLabel, Select, FormControl, MenuItem } from '@material-ui/core';
+import { Container  , Typography, Grid } from '@material-ui/core';
 import {fetchMovieDetail } from '../../redux/actions/movieListAction';
 import ScheduleMovie from '../../components/DetailMovie/ScheduleMovie/ScheduleMovie';
 import LoadingCool from '../../components/Spinner_Cool/SpinnerCool';
@@ -8,9 +8,9 @@ import { CLEAR_DETAIL_MOVIE } from '../../constants/constant';
 import { createAction } from '../../redux/actions';
 import Button from './../../components/Button/Button';
 import _ from 'lodash';
+import './MovieDetail.scss'
 const MovieDetailPage = (props) => {
-  const dispatch = useDispatch();
-  // const [status, setStatus]= useStatus(false);
+  const dispatch = useDispatch(); 
 
   useEffect(()=>{
     dispatch(fetchMovieDetail(props.match.params.maPhimId));
@@ -29,7 +29,7 @@ const MovieDetailPage = (props) => {
     const {  danhGia,
       hinhAnh, 
       biDanh,
-      maNhom, 
+      // maNhom, 
       maPhim, 
       moTa, 
       ngayKhoiChieu, 
@@ -60,10 +60,9 @@ const MovieDetailPage = (props) => {
     // console.log(xgrouped); 
 
     return (
-      <Container >
+      <Container className='main'>
         <Grid
-          container
-          // spacing={3} 
+          container 
         >
           {/* Poster&NameMovie */}
           <Grid
@@ -72,18 +71,18 @@ const MovieDetailPage = (props) => {
             xs={12}
           >
             <Grid
-              container
-              // spacing={12}
+              container  
             >
+              
               <Grid
                 item
-                sm={6}
+                sm={6} 
                 xs={12}
               >
                 <Typography
                   className='title'
-                  component='h3'
-                  variant='h3'
+                  component='h4'
+                  variant='h4' 
                 >
                   {tenPhim}
                 </Typography> 
@@ -95,22 +94,27 @@ const MovieDetailPage = (props) => {
               >
                 <Typography
                   className='title'
-                  component='h3'
-                  variant='h3'
+                  component='h4'
+                  variant='h4'
                 >
-                    - {maPhim}
+                  {maPhim}
                 </Typography> 
               </Grid>
+               
+             
               <img
+                alt='imagee'
+                className='image'
                 src={hinhAnh}
-                style={{height: '100%', width:'100%'}}
+                 
               />
             </Grid> 
           </Grid>
           {/* Schedule */}
           <Grid
+            className='title-detail' 
             item
-            sm={9}
+            sm={9} 
             xs={12}
           >
             <Typography
@@ -142,17 +146,18 @@ const MovieDetailPage = (props) => {
               Ngày khởi chiếu: {ngayKhoiChieu} 
             </Typography> 
             <Grid
-              container
-              // spacing={3}
+              container 
             >
               <Grid
+                className='button'
                 item
-                sm={3}
+                sm={3} 
                 xs={12}
               > <Button >Trailer</Button></Grid>
               <Grid
-                item
-                sm={3}
+                className='button'
+                item  
+                sm={3} 
                 xs={12}
               > <Button >Ticket</Button></Grid>
             </Grid> 

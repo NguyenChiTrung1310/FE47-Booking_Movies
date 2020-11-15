@@ -1,27 +1,24 @@
  
 import React from 'react'
 import TheaterInfo from '../TheaterInfo/TheaterInfo'
-import { Container , Paper, TextField, Typography, Grid, InputLabel, Select, FormControl, MenuItem } from '@material-ui/core'
-import _ from 'lodash';
+import { Container  , Typography, Grid  } from '@material-ui/core' 
 const ScheduleMovie = ({schedule}) => { 
   
   const renderScheduleMovie = () => {
     return schedule.map((item, index) => {
       const {
         thongTinRap, 
-        maLichChieu, 
-        maRap, 
-        maPhim, 
-        tenPhim, 
         ngayChieuGioChieu, 
-        giaVe, 
-        thoiLuong
-      } = item;
-      // console.log('LICH CHIEU', item); 
+        // maLichChieu, 
+        // maRap, 
+        // maPhim, 
+        // tenPhim, 
+        // giaVe, 
+        // thoiLuong
+      } = item; 
 
       return (
-        <Grid key={index}>
-          {/* <h4>MÃ LỊCH CHIẾU: {maLichChieu}</h4>  */}
+        <Grid key={index}> 
           <Typography
             className='title'
             component='h5'
