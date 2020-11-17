@@ -13,7 +13,9 @@ import { DetailMovieScheduleAction } from '../../redux/actions/cinemaListAction'
 
 import './MovieSchedule.scss';
 import ModalPopup from './Modal/Modal';
+import {CINEMA_SYSTEM, CLEAR_DETAIL_MOVIE} from '../../constants/constant';
 import CinemaSystems from './CinemaSystems/CinemaSystems';
+import { createAction } from '../../redux/actions';
 
 
 const MovieSchedulePage = (props) => {
@@ -21,6 +23,9 @@ const MovieSchedulePage = (props) => {
 
   useEffect(() => {
     dispatch(DetailMovieScheduleAction(props.match.params.maPhimId));
+    return () => {
+      dispatch(createAction(CLEAR_DETAIL_MOVIE))
+    }
   }, [dispatch, props])
 
   const movieScheduleDetail = useSelector(state => state.cinemaList.initialMovieScheduleByTheater);
@@ -33,6 +38,11 @@ const MovieSchedulePage = (props) => {
     trailer,
     heThongRapChieu
   } = movieScheduleDetail;
+
+
+  useEffect(() => {
+    dispatch(createAction(CINEMA_SYSTEM ,heThongRapChieu));
+  }, [dispatch, heThongRapChieu])
 
   return (
     <Container className='movie-schedule-page'>
@@ -50,70 +60,85 @@ const MovieSchedulePage = (props) => {
                     : <LoadingCool />
                 }         
               </Grid>
-              <Grid className='movie-info'>
-                <Typography 
-                  component={'h1'}
-                  style={{fontWeight: '300'}}
-                  variant='h1'
-                >
-                  {tenPhim}
-                </Typography>
-                <Typography 
-                  component={'h5'}
-                  style={{fontWeight: '600'}}
-                  variant='h5'
-                >
-                  Description:  
-                  <Typography 
-                    component={'span'}
-                    style={{paddingLeft: '5px'}}
-                    variant='h6'
-                  >
-                    {moTa}
-                  </Typography>
-                </Typography>
-                <Typography 
-                  component={'h5'}
-                  style={{fontWeight: '600'}}
-                  variant='h5'
-                >
-                  Release:  
-                  <Typography 
-                    component={'span'}
-                    style={{paddingLeft: '5px'}}
-                    variant='h6'
-                  >
-                    {ngayKhoiChieu}
-                  </Typography>
-                </Typography>
-                <Typography 
-                  component={'h5'}
-                  style={{fontWeight: '600'}}
-                  variant='h5'
-                >
-                  Rating:  
-                  <Typography 
-                    component={'span'}
-                    style={{paddingLeft: '5px', color: '#03a9f4', fontWeight: 'bold'}}
-                    variant='h6'
-                  >
-                    {danhGia}
-                  </Typography>
-                </Typography>
+              {
+                tenPhim ? (
+                  <Grid className='movie-info'>
+                    <Grid>                 
+                      <Typography 
+                        component={'h1'}
+                        style={{fontWeight: '400', color: '#03a9f4'}}
+                        variant='h2'
+                      >
+                        {tenPhim}
+                      </Typography>               
+                    </Grid>
 
-                <ModalPopup trailer={trailer}/>
-              </Grid> 
+                    <Grid>                 
+                      <Typography 
+                        component={'h5'}
+                        style={{fontWeight: '600'}}
+                        variant='h5'
+                      >
+                  Description:  
+                        <Typography 
+                          component={'span'}
+                          style={{paddingLeft: '5px'}}
+                          variant='h6'
+                        >
+                          {moTa}
+                        </Typography>
+                      </Typography>                  
+                    </Grid>
+
+                    <Grid>                 
+                      <Typography 
+                        component={'h5'}
+                        style={{fontWeight: '600'}}
+                        variant='h5'
+                      >
+                      Release:  
+                        <Typography 
+                          component={'span'}
+                          style={{paddingLeft: '5px'}}
+                          variant='h6'
+                        >
+                          {ngayKhoiChieu}
+                        </Typography>
+                      </Typography>         
+                    </Grid>
+
+                    <Grid>             
+                      <Typography 
+                        component={'h5'}
+                        style={{fontWeight: '600'}}
+                        variant='h5'
+                      >
+                      Rating:  
+                        <Typography 
+                          component={'span'}
+                          style={{paddingLeft: '5px', color: '#03a9f4', fontWeight: 'bold'}}
+                          variant='h6'
+                        >
+                          {danhGia}
+                        </Typography>
+                      </Typography>                  
+                    </Grid>             
+                    <ModalPopup trailer={trailer}/>
+                  </Grid> 
+                ) : null
+              }
+          
             </Grid>     
             <Grid className='schedule-by-theater'>
               {
-                heThongRapChieu ? <CinemaSystems heThongRapChieu={heThongRapChieu}/>
+                heThongRapChieu ? <CinemaSystems />
                   : <LoadingCool />
               }
               
             </Grid>
           </Grid>
         ) : <LoadingCool />
-      }
+      } 
     </Container>
   )
 }
