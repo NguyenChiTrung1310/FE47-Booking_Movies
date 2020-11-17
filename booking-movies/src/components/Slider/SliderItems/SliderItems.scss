@@ -16,18 +16,15 @@
   }
 
   .cardBody {
-    margin: 30px;
-    // background-color: blue;
+    background-color: $black-opacity;
     color: #ffffff;
-  }
-
-  .cardTitle {
-    font-size: 20px;
-    font-weight: 600;
-  }
-
-  .cardText {
-    margin-top: 10px;
+    .cardTitle {
+      font-size: 20px;
+      font-weight: 600;
+    }
+    .cardText {
+      margin-top: 10px;
+    }
   }
 }
 

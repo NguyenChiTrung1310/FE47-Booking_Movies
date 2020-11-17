@@ -1,6 +1,6 @@
 import React from 'react';
 import Banner from '../../components/Carousel/Banners/Banner';
-import SliderSlick from '../../components/Slider/Slider';
+import SliderSlick from '../../components/Slider/Slider'; 
 
 import './HomePage';
 

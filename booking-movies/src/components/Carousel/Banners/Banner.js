@@ -1,13 +1,9 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types'; 
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 import Carousel from 'react-material-ui-carousel';
 import CarouselBanner from '../Carousel/Carousel';
-
-import Banner_img from '../../../assets/images/banner.jpg';
-import Banner1_img from '../../../assets/images/banner1.jpg';
-import Banner2_img from '../../../assets/images/banner2.jpg';
-import Banner3_img from '../../../assets/images/banner3.jpg';
-import Banner4_img from '../../../assets/images/banner4.jpg';
+import { fetchMovieList } from '../../../redux/actions/movieListAction';
 
 const Banner = () => {
   const [carousel] = useState({
@@ -15,8 +11,29 @@ const Banner = () => {
     timer: 500,
     animation: 'fade',
     indicators: true,
-    interval: 4000
+    interval: 1000
   })
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchMovieList());
+  }, [dispatch]);
+
+  const movieList = useSelector((state) => {
+    return state.movieList.initialMovieList;
+  });
+
+  const renderSilerList = () => {
+    return movieList.map((item, index) => {
+      return (
+        <CarouselBanner
+          item={item}
+          key={index}
+        />
+      )
+    })
+  }
 
   return (
     <div className='carousel'>
@@ -27,53 +44,16 @@ const Banner = () => {
         indicators={carousel.indicators}
         interval={carousel.interval}
       >
-        <CarouselBanner
-          bannerImg={Banner_img}
-          className='carousel-banner'
-          description='a boy is given the ability to become an adult superhero in times of need with a single magic word.'
-          name='Avenger'
-        >
-            By: david f. sandberg
-        </CarouselBanner>
-        <CarouselBanner
-          bannerImg={Banner1_img}
-          className='carousel-banner'
-          description='a boy is given the ability to become an adult superhero in times of need with a single magic word.'
-          name='Avenger'
-        >
-            By: david f. sandberg
-        </CarouselBanner>
-        <CarouselBanner
-          bannerImg={Banner2_img}
-          className='carousel-banner'
-          description='a boy is given the ability to become an adult superhero in times of need with a single magic word.'
-          name='Avenger'
-        >
-            By: david f. sandberg
-        </CarouselBanner>
-        <CarouselBanner
-          bannerImg={Banner3_img}
-          className='carousel-banner'
-          description='a boy is given the ability to become an adult superhero in times of need with a single magic word.'
-          name='Avenger'
-        >
-            By: david f. sandberg
-        </CarouselBanner>
-        <CarouselBanner
-          bannerImg={Banner4_img}
-          className='carousel-banner'
-          description='a boy is given the ability to become an adult superhero in times of need with a single magic word.'
-          name='Avenger'
-        >
-            By: david f. sandberg
-        </CarouselBanner>
+        {
+          renderSilerList()
+        }
       </Carousel>
     </div>
   )
 }
 
 Banner.propTypes = {
-  carousel: PropTypes.object,  
+  carousel: PropTypes.object,
 }
 
 export default Banner

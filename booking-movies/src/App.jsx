@@ -1,7 +1,7 @@
 /* eslint-disable linebreak-style */
 import React, { useEffect } from 'react';
 import 'react-toastify/dist/ReactToastify.css';
-import {LoginPage, RegisterPage, ErrorPage, HomePage, CinemaPage, ContactPage, ProfilePage, AdminPage} from './pages';
+import {LoginPage, RegisterPage, ErrorPage, HomePage, CinemaPage, ContactPage, ProfilePage, AdminPage, MovieDetailPage} from './pages';
 import { Route, Switch} from 'react-router-dom';  
 import {
   LOGIN_PAGE, 
@@ -16,7 +16,8 @@ import {
   PROFILE_PAGE, 
   USER_PROFILE, 
   LOCAL_STORAGE_PROFILE_KEY, 
-  TICKET_ROOM_PAGE
+  TICKET_ROOM_PAGE,
+  MOVIE_DETAIL_PAGE
 } from './constants/constant';
 import AppBar from './components/AppBar/AppBar';
 import { useDispatch } from 'react-redux';
@@ -105,6 +106,11 @@ function App() {
           component={TicketRoomPage}
           exact
           path={`${TICKET_ROOM_PAGE}/:maLichChieu`}
+        />
+        <Route 
+          component={MovieDetailPage}
+          exact
+          path={`${MOVIE_DETAIL_PAGE}/:maPhimId`}
         />
         <Route
           component={ErrorPage}

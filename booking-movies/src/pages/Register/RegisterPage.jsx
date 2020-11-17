@@ -56,7 +56,7 @@ const RegisterPage = () => {
       toast.success('Register success');
     };
     const notify_failed = () => {
-      toast.error('Register failed');
+      toast.error('Email Registered');
     };
 
     if(error===1){ 
@@ -97,7 +97,7 @@ const RegisterPage = () => {
       maxWidth='xs'
     >
       {
-        registerStatus
+        registerStatus === REGISTER_SUCESS
           ? isLoading() 
           : (
             <div className={classes.paper}>
@@ -230,39 +230,7 @@ const RegisterPage = () => {
                     >GP06</MenuItem>
              
                   </Select>
-                </FormControl>
-               {/**
-               <FormControl
-                  className={classes.formControl}
-                  variant='filled'
-                >
-                  <InputLabel
-                    className={classes.inputLabel}
-                    htmlFor='filled-age-native-simple'
-                  >Select Type User</InputLabel>
-                  <Select
-                    className={classes.inputLabel} 
-                    name='maLoaiNguoiDung' 
-                    onChange={(event) => handleChange(event)} 
-                    value={fields.maLoaiNguoiDung} 
-          
-                  >
-                    <MenuItem
-                      aria-label='None'
-                      className={classes.inputLabel}
-                      value=' '
-                    />
-                    <MenuItem
-                      className={classes.inputLabel}
-                      value='KhachHang'
-                    >Member</MenuItem> 
-                    <MenuItem
-                      className={classes.inputLabel}
-                      value='QuanTri'
-                    >Admin</MenuItem> 
-                  </Select>
-                </FormControl>
-              */}
+                </FormControl> 
                 <Button
                   color='primary'
                   type='submit'

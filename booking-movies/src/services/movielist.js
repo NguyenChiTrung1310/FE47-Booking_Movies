@@ -1,10 +1,20 @@
-
-import axios from 'axios';
-import { MOVIELIST_API } from './api'; 
+import request from '../configs/request';
+import { MOVIELIST_API, MOVIEDETAIL_API } from './api'; 
  
 export async function MovieListService() {
-  return await axios({
-    method: 'GET',
-    url: MOVIELIST_API,
-  });
+  return(
+    request(
+      MOVIELIST_API,
+      'GET', 
+    )
+  ) 
+}
+
+export async function MovieDetailService(maPhim){
+  return(
+    request(
+      MOVIEDETAIL_API + `${maPhim}`,
+      'GET',
+    )
+  )
 }

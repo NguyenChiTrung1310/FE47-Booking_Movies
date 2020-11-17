@@ -6,5 +6,6 @@ import CinemaPage from './Cinema/CinemaPage';
 import ContactPage from './Contact/Contact';
 import ProfilePage from './Profile/ProfilePage';
 import AdminPage from './Admin/AdminPage';
+import MovieDetailPage from './MovieDetail/MovieDetailPage'
 
-export {LoginPage,RegisterPage,ErrorPage, HomePage, CinemaPage, ContactPage, ProfilePage, AdminPage} 
+export {LoginPage,RegisterPage,ErrorPage, HomePage, CinemaPage, ContactPage, ProfilePage, AdminPage, MovieDetailPage} 

@@ -1,46 +1,95 @@
 /* eslint-disable no-unused-vars */
-import React, { Component } from 'react' 
+
+import React from 'react' 
+
 import LoadingCool from './../../Spinner_Cool/SpinnerCool'
+
 import { 
+
   Card,
-  CardActionArea,
-  CardActions,
-  CardContent,
-  CardMedia,
-  Typography,
-  withStyles,
-} from '@material-ui/core'; 
-import './SliderItems.scss'
- 
+
+  CardActionArea, 
+
+  CardContent, 
+
+  Typography,  
+  CardMedia
+
+} from '@material-ui/core';  
+
+import PropTypes from 'prop-types'; 
+
+import './SliderItems.scss' 
+
+
+
 const SliderItems=({item})=>{ 
-  const {maPhim, tenPhim, hinhAnh} =  item;  
-  
-  const check_img=()=>{ 
-    if(maPhim ===  3394 || maPhim === 4301 || maPhim === 4300 || maPhim === 4303
-    ) {
-      return LoadingCool();
-    } else {
-      return (
-        <img
-          alt='movie_Image'
-          className='img'
-          src={hinhAnh}
-        />
-      )
-    } 
-  }
+
+  const {maPhim, tenPhim, hinhAnh} =  item;   
+ 
 
   return(
-    <div className='imgCard' > 
-      { check_img()} 
-      <div className='cardBody'>
-        <div className='cardTitle'>
-          {tenPhim}</div>
-        <div className='cardText'>{maPhim}</div>
-      </div>
-    </div>
+
+    <Card className='imgCard' >
+
+      <CardActionArea>
+
+       
+        <CardContent className='cardBody'>
+
+          {
+            hinhAnh ? (
+              <CardMedia
+
+                alt='movie_Image'
+
+                className='img'
+
+                image={hinhAnh}
+
+              />
+            ) : <LoadingCool/>
+          }  
+          <Typography
+            className='cardTitle'
+            component='h2'
+            gutterBottom
+            variant='h5'
+          >
+
+            {tenPhim}
+
+          </Typography>
+
+          <Typography
+            className='cardText'
+            component='p'
+            variant='body2'
+          >
+
+            {maPhim}
+
+          </Typography>
+
+        </CardContent>
+
+      </CardActionArea> 
+      
+    </Card>
+
   )
+
+} 
+
+SliderItems.propTypes={
+
+  tenPhim: PropTypes.string,
+
+  moTa: PropTypes.string,
+
+  hinhAnh: PropTypes.string,
+
 }
-export default SliderItems; 
- 
- 
+
+export default SliderItems;  
+
