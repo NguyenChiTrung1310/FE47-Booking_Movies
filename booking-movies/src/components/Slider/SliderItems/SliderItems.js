@@ -34,9 +34,22 @@ const SliderItems=({item})=>{
 
       <CardActionArea>
 
-        
+       
         <CardContent className='cardBody'>
 
+          {
+            hinhAnh ? (
+              <CardMedia
+
+                alt='movie_Image'
+
+                className='img'
+
+                image={hinhAnh}
+
+              />
+            ) : <LoadingCool/>
+          }  
           <Typography
             className='cardTitle'
             component='h2'
@@ -61,19 +74,7 @@ const SliderItems=({item})=>{
         </CardContent>
 
       </CardActionArea> 
-      {
-        hinhAnh ? (
-          <CardMedia
-
-            alt='movie_Image'
-
-            className='img'
-
-            image={hinhAnh}
-
-          />
-        ) : <LoadingCool/>
-      }  
+      
     </Card>
 
   )
