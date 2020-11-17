@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Container, Typography, Grid } from '@material-ui/core';
 import { fetchMovieDetail } from '../../redux/actions/movieListAction';
-import ScheduleMovie from '../../components/DetailMovie/ScheduleMovie/ScheduleMovie';
+// import ScheduleMovie from '../../components/DetailMovie/ScheduleMovie/ScheduleMovie';
 import LoadingCool from '../../components/Spinner_Cool/SpinnerCool';
 import { CLEAR_DETAIL_MOVIE } from '../../constants/constant';
 import { createAction } from '../../redux/actions';
@@ -37,30 +37,67 @@ const MovieDetailPage = (props) => {
       tenPhim,
       lichChieu,
     } = movieList;
-    console.log('USESELECTOR', lichChieu);
-    const arr = lichChieu.reduce((acc, lichChieu) => {
+    // console.log('ARRAY LICH CHIEU', lichChieu); 
+    // const arrr = lichChieu.reduce((acc, lichChieu) => {
+  
 
-      const found = acc.find(i => i.maRap === lichChieu.maRap);
+    //   const found = acc.find(i => i.maRap === lichChieu.maRap);
+      
+     
+    //   if (found) {
+    //     found.ngayChieuGioChieu.push(lichChieu.ngayChieuGioChieu);
+    //   } else {
+    //     acc.push({maRap: lichChieu.maRap, ngayChieuGioChieu: [lichChieu.ngayChieuGioChieu]}) 
+    //   }
+       
+    //   return acc;  
+    // }, []);
+    // console.log('XXXX',arrr);
+    // Declare a new array 
+    let newArray = []; 
+    // Declare an empty object 
+    let uniqueObject = {};
 
-      if (found) {
-        found.ngayChieuGioChieu.push(lichChieu.ngayChieuGioChieu);
-      } else {
-        acc.push({ maRap: lichChieu.maRap, ngayChieuGioChieu: [lichChieu.ngayChieuGioChieu] })
-      }
+    // Loop for the array elements 
+    for (let i in lichChieu) { 
+      
+      // Extract the title 
+      let objTitle = lichChieu[i]['maRap']; 
 
-      return acc;
-    }, []);
-    console.log(arr);
+      // Use the title as the index 
+      uniqueObject[objTitle] = lichChieu[i]; 
+    } 
+      
+    // Loop to push unique object into array 
+    for (let i in uniqueObject) { 
+      newArray.push(uniqueObject[i]); 
+    } 
+      
+    // Display the unique objects 
+    // console.log(newArray);   
+    
+    const yo=[];
+    for( let i in newArray){
+      // console.log(newArray[i]);
+      yo.push(newArray[i].thongTinRap);
+    }
+    // console.log('QQQ',yo);
 
-    //test
-    console.log(lichChieu[0].thongTinRap.tenRap);
-    // var sgrouped = _.mapValues(_.groupBy(lichChieu, 'maRap'),
-    //   clist => clist.map(x => _.omit(x, 'maRap'))); 
-    // console.log(sgrouped);  
+    // const arr = yo.reduce((acc, yo) => {
+  
 
-    // var xgrouped = _.mapValues(_.groupBy(lichChieu, 'ngayChieuGioChieu'),
-    //   clist => clist.map(x => _.omit(x, 'ngayChieuGioChieu'))); 
-    // console.log(xgrouped); 
+    //   const found = acc.find(i => i.tenCumRap === yo.tenCumRap);
+      
+    //   if(found) {
+ 
+    //     found.tenRap.push(yo.tenRap);
+    //   } else {
+    //     acc.push({tenCumRap: yo.tenCumRap, tenRap: [yo.tenRap]}) 
+    //   }
+       
+    //   return acc;  
+    // }, []);
+    // console.log('RESULT',arr);
 
     return (
       <Container className='main'>
@@ -167,7 +204,8 @@ const MovieDetailPage = (props) => {
           </Grid>
         </Grid>
         {/* <ScheduleMovie schedule={lichChieu} /> */}
-        <CustomScheduleMovie arrayData={arr} />
+        <CustomScheduleMovie arrayData={newArray} />
+        {/* <CustomScheduleMovie arrayData={arr} /> */}
       </Container>
 
     )
