@@ -1,7 +1,8 @@
 import React from 'react'
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom'
-import { CardMedia, Divider, Grid } from '@material-ui/core'
+import { CardMedia, Divider, Grid, Typography } from '@material-ui/core'
+import ArrowRightAltIcon from '@material-ui/icons/ArrowRightAlt';
 
 import { MOVIE_SCHEDULE_PAGE } from '../../../constants/constant';
 import LoadingCool from '../../Spinner_Cool/SpinnerCool';
@@ -24,15 +25,11 @@ const MovieSection = () => {
           <Grid className='item'>
             <Grid className='movie-images'>
               {
-                hinhAnh ? (
-                  <Link
-                    to={`${MOVIE_SCHEDULE_PAGE}/${maPhim}`}
-                  >
-                    <CardMedia
-                      className='movie-img'
-                      image={hinhAnh}
-                    />
-                  </Link>
+                hinhAnh ? (   
+                  <CardMedia
+                    className='movie-img'
+                    image={hinhAnh}
+                  />
                 ) : (
                   <Grid className='loading'>
                     <LoadingCool />
@@ -41,19 +38,28 @@ const MovieSection = () => {
               }      
             </Grid>
             <Grid className='content'>
-              <Link
+              <Typography
                 className='movie-content'
                 color='textPrimary'
-                to={`${MOVIE_SCHEDULE_PAGE}/${maPhim}`}
                 variant='body2'
               >
                 {tenPhim}
-              </Link>
+              </Typography>
               <Grid
                 className='schedule-content'
               >
                 <ScheduleMovie movieSchedules={lstLichChieuTheoPhim}/>
               </Grid>
+            </Grid>
+            <Grid className='next-detail'>
+              <Link
+                className='detail'
+                color='textPrimary'
+                to={`${MOVIE_SCHEDULE_PAGE}/${maPhim}`}
+                variant='body2'
+              >More detail </Link>
+              <ArrowRightAltIcon className='next-icon'/>
+              
             </Grid>
           </Grid>
           <Divider className='movie-divider'/>

@@ -63,6 +63,22 @@
                     justify-content: space-between;
                 }
             }
+
+            .next-detail{
+                display: flex;
+                align-items: center;
+
+                position: absolute;
+                bottom: 0;
+                right: 0;
+                color: $blue-3;
+                .detail{
+                    text-decoration: none;
+                    padding-right: 5px;
+                    color: $blue-3;
+                }
+            
+            }
         }
 
         .movie-divider{
