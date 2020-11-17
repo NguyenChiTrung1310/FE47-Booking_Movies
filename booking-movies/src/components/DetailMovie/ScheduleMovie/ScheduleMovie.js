@@ -2,6 +2,8 @@
 import React from 'react'
 import TheaterInfo from '../TheaterInfo/TheaterInfo'
 import { Container, Typography, Grid } from '@material-ui/core'
+import PropTypes from 'prop-types';
+
 const ScheduleMovie = ({ schedule }) => {
 
   const renderScheduleMovie = () => {
@@ -47,6 +49,11 @@ const ScheduleMovie = ({ schedule }) => {
     </Container>
   )
 }
+
+ScheduleMovie.propTypes={
+  schedule: PropTypes.array,
+}
+
 
 export default ScheduleMovie
 

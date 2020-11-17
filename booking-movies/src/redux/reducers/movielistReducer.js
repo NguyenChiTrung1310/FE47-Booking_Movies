@@ -1,4 +1,4 @@
-import { FETCH_MOVIELIST, FETCH_MOVIE_DETAIL, CLEAR_DETAIL_MOVIE } from "../../constants/constant"
+import { FETCH_MOVIELIST, FETCH_MOVIE_DETAIL, CLEAR_DETAIL_MOVIE } from '../../constants/constant'
 
 let initialState={
   initialMovieList: [],

@@ -2,12 +2,14 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Container, Typography, Grid } from '@material-ui/core';
 import { fetchMovieDetail } from '../../redux/actions/movieListAction';
-// import ScheduleMovie from '../../components/DetailMovie/ScheduleMovie/ScheduleMovie';
 import LoadingCool from '../../components/Spinner_Cool/SpinnerCool';
 import { CLEAR_DETAIL_MOVIE } from '../../constants/constant';
 import { createAction } from '../../redux/actions';
 import Button from './../../components/Button/Button';
-import _ from 'lodash';
+// import _ from 'lodash';
+import PropTypes from 'prop-types';
+
+
 import './MovieDetail.scss'
 import CustomScheduleMovie from '../../components/DetailMovie/CustomScheduleMovie/CustomScheduleMovie';
 const MovieDetailPage = (props) => {
@@ -220,6 +222,12 @@ const MovieDetailPage = (props) => {
     </div>
   )
 }
+
+MovieDetailPage.propTypes={
+  match: PropTypes.object,
+  params: PropTypes.object,
+}
+
 
 export default MovieDetailPage;
 

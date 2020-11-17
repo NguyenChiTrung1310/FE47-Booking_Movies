@@ -1,5 +1,8 @@
 import React   from 'react';   
 import { Container  , Typography, Grid  } from '@material-ui/core'
+import PropTypes from 'prop-types';
+
+
 const TheaterInfo = ({item}) => {
   const {
     tenCumRap, 
@@ -45,6 +48,10 @@ const TheaterInfo = ({item}) => {
       </Grid>
     </Container>
   )
+}
+
+TheaterInfo.propTypes={
+  item: PropTypes.object,
 }
 
 export default TheaterInfo

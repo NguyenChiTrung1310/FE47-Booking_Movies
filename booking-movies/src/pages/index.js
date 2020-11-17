@@ -8,4 +8,13 @@ import ProfilePage from './Profile/ProfilePage';
 import AdminPage from './Admin/AdminPage';
 import MovieDetailPage from './MovieDetail/MovieDetailPage'
 
-export {LoginPage,RegisterPage,ErrorPage, HomePage, CinemaPage, ContactPage, ProfilePage, AdminPage, MovieDetailPage} 
+export {
+  LoginPage,
+  RegisterPage,
+  ErrorPage, 
+  HomePage, 
+  CinemaPage, 
+  ContactPage, 
+  ProfilePage, 
+  AdminPage, 
+  MovieDetailPage} 

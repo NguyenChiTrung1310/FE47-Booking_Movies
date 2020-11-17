@@ -1,7 +1,9 @@
 
 import React from 'react'
 import { Container, Typography, Grid } from '@material-ui/core'
-// import CustomInforMovie from '../CustomInforMovie/CustomInforMovie'
+import PropTypes from 'prop-types';
+
+
 const CustomScheduleMovie = ({ arrayData }) => {
 
   const renderCustomMovie = () => {
@@ -61,11 +63,12 @@ const CustomScheduleMovie = ({ arrayData }) => {
                 sm={1} 
                 xs={6}
                 
-              >  <Typography
+              >  
+                <Typography
                   className='title'
                   component='h5'
                   variant='h5'
-                 >
+                >
                   {thongTinRap.tenRap}
                 </Typography></Grid>
               <Grid
@@ -73,11 +76,12 @@ const CustomScheduleMovie = ({ arrayData }) => {
                 item
                 sm={5} 
                 xs={12}
-              >  <Typography
+              >  
+                <Typography
                   className='title'
                   component='h5'
                   variant='h5'
-                 >
+                >
                   {ngayChieuGioChieu}
                 </Typography></Grid>
             </Grid>
@@ -95,6 +99,11 @@ const CustomScheduleMovie = ({ arrayData }) => {
     </Container>
   )
 }
+
+CustomScheduleMovie.propTypes={
+  arrayData: PropTypes.array,
+}
+
 
 export default CustomScheduleMovie
 

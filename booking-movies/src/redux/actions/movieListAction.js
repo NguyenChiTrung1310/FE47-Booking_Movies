@@ -19,7 +19,6 @@ export const fetchMovieDetail=(maPhim)=>{
   return (dispatch)=> {
     MovieDetailService(maPhim).then(
       (res)=>{
-        // console.log('CHI TIET PHIM', res.data);
         dispatch(createAction(FETCH_MOVIE_DETAIL, res.data))
       }
     ).catch((err)=>{

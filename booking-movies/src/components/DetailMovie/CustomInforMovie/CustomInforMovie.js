@@ -1,5 +1,7 @@
 import React   from 'react';   
 import { Container  , Typography, Grid  } from '@material-ui/core'
+import PropTypes from 'prop-types';
+
 const CustomInforMovie = ({item}) => {
   const {
     tenCumRap, 
@@ -46,5 +48,10 @@ const CustomInforMovie = ({item}) => {
     </Container>
   )
 }
+
+CustomInforMovie.propTypes={
+  item: PropTypes.object,
+}
+
 
 export default CustomInforMovie

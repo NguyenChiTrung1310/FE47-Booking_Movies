@@ -1,5 +1,11 @@
 import { createAction } from '.';
-import { FECTH_BRANCH_CINEMA_LIST, FETCH_CINEMA_LIST, FETCH_THEATER_SCHEDULE, MOVIE_SCHEDULE_DETAIL, SCHEDULE_MOVIE } from '../../constants/constant';
+import { 
+  FECTH_BRANCH_CINEMA_LIST, 
+  FETCH_CINEMA_LIST, 
+  FETCH_THEATER_SCHEDULE, 
+  MOVIE_SCHEDULE_DETAIL, 
+  SCHEDULE_MOVIE 
+} from '../../constants/constant';
 import { 
   BranchCinemaService, 
   CinemaService, 
