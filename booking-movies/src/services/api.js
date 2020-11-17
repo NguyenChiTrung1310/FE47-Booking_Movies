@@ -15,6 +15,8 @@ const BRANCH_CINEMA_LIST_API = 'https://movie0706.cybersoft.edu.vn/api/QuanLyRap
 const THEATERS_SCHEDULE_API = 'https://movie0706.cybersoft.edu.vn/api/QuanLyRap/LayThongTinLichChieuHeThongRap?maHeThongRap=';
 const DETAIL_MOVIE_SCHEDULE_BY_THEATER_API = 'https://movie0706.cybersoft.edu.vn/api/QuanLyRap/LayThongTinLichChieuPhim?MaPhim=';
 
+// BOOKING TICKET
+const GET_TICKET_ROOM_API = 'https://movie0706.cybersoft.edu.vn/api/QuanLyDatVe/LayDanhSachPhongVe?MaLichChieu=';
 
 
 export {
@@ -26,5 +28,6 @@ export {
   CINEMA_LIST_API, 
   BRANCH_CINEMA_LIST_API, 
   THEATERS_SCHEDULE_API,
-  DETAIL_MOVIE_SCHEDULE_BY_THEATER_API
+  DETAIL_MOVIE_SCHEDULE_BY_THEATER_API,
+  GET_TICKET_ROOM_API
 }; 
