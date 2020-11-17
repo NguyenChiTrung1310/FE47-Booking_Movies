@@ -1,6 +1,26 @@
 
-import { makeStyles } from '@material-ui/core/styles';
+import { MenuItem, Button } from '@material-ui/core';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
 const drawerWidth = 240;
+
+export const StyledMenuItem = withStyles({
+  root: {
+    '&:hover': {
+      backgroundColor: 'transparent',
+    },
+  },
+})(MenuItem);
+
+export const StyleButton = withStyles({
+  root: {
+    '&:hover': {
+      backgroundColor: 'transparent',
+    },
+    '&:hover::after': {
+      backgroundColor: 'transparent',
+    },
+  },
+})(Button);
 
 export const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,12 +41,6 @@ export const useStyles = makeStyles((theme) => ({
     }),
 
   },
-  // menuItem: {
-  //   fontSize: '16px',
-  //   color: '#fff',
-  //   fontWeight: '400',
-  //   margin: 'auto'
-  // },
   menuButton: {
     marginRight: theme.spacing(2),
   },

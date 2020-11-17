@@ -18,34 +18,16 @@
   }
 }
 
-.link, .logout {
-    color: #fff;
-    text-decoration: none;
-    overflow: hidden;
+.link, .logout, .user {
     position: relative;
     z-index: 1;
-
-    font-weight: lighter;
-    font-family: "Montserrat", sans-serif !important;
-    font-weight: 400!important;
-}
-
-.user{
-    color: $white!important;
-    text-decoration: none;
-    overflow: hidden;
-    position: relative;
-    z-index: 1;
-
-    font-weight: 400!important;
-    font-family: "Montserrat", sans-serif !important;
+    @include text-style('lighter', 'Montserrat');
 }
 
 .link-menu{
     width: 100px; 
     padding: 16px 0;
-    font-size: 22px;
-    
+    font-size: 22px;  
 
     &::after{
       @include hover-menu();
@@ -57,7 +39,6 @@
 }
 
 .link-user {
-
     width: 200px!important;
     text-align: center!important;
     font-size: 20px!important;
