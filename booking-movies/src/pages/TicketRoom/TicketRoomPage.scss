@@ -1,1 +1,21 @@
 @import '../../styles/styles';
+
+.movie-schedule-page{
+    height: 120vh;
+
+    .screen{
+        margin-top: 60px;
+        width: 100%;
+        height: 20px;
+        background-color: lightsalmon;
+        font-style: italic;
+        font-weight: bolder;
+    }
+    
+    .schedule-by-theater{
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+    }
+}

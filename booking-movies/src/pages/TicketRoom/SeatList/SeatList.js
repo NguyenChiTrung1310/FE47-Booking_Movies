@@ -1,30 +1,33 @@
 import React from 'react'
-import { Container, Grid } from '@material-ui/core'
-import { useSelector } from 'react-redux'
-import LoadingCool from '../../../components/Spinner_Cool/SpinnerCool'
+import { Grid } from '@material-ui/core'
 
-const SeatList = () => {
-  const seatList = useSelector(state => state.ticketRoom.initialSeatList)
-  console.log('SEAT: ', seatList);
+import './SeatList.scss'
 
-  const renderSeats = () => {
-    return seatList.map((item, index) => {
-      const {tenGhe} = item;
-      return (
-        <Grid key={index}>
-          {tenGhe}
-        </Grid>
-      )
-    })
-  }
+const SeatList = ({seatList}) => {
   
-  return (
-    <Container className='seat-section'>
-      {
-        seatList ? renderSeats() : <LoadingCool />
-      }
-    </Container>
-  )
+  return seatList.map((item,index) => {
+    const {tenGhe, loaiGhe} = item;
+    const handleClick = () => {
+      console.log('Seat type: ', loaiGhe);
+    }
+    return (
+      <Grid
+        className='seat'
+        key={index}
+        onClick={handleClick}
+      >
+        <Grid>
+          {
+            loaiGhe === 'Thuong' ? (
+              <Grid>{tenGhe}</Grid>
+            ) : (
+              <Grid style={{backgroundColor: '#ed1c2d'}}>{tenGhe}</Grid>
+            )
+          }
+        </Grid>
+      </Grid>
+    )
+  })
 }
 
 export default SeatList

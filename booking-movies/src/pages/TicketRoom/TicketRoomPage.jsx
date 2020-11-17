@@ -8,6 +8,8 @@ import { createAction } from '../../redux/actions';
 import { CLEAR_DETAIL_MOVIE, SEAT_LIST } from '../../constants/constant';
 import SeatList from './SeatList/SeatList';
 
+import './TicketRoomPage.scss'
+
 
 const TicketRoomPage = (props) => {
   const dispatch = useDispatch();
@@ -144,9 +146,10 @@ const TicketRoomPage = (props) => {
                       ) : null
                     }   
                   </Grid> 
+                  <Grid className='screen'>Screen</Grid>
                   <Grid className='schedule-by-theater'>
                     {
-                      danhSachGhe ? <SeatList />
+                      danhSachGhe ? <SeatList seatList={danhSachGhe}/>
                         : <LoadingCool />
                     }
               
