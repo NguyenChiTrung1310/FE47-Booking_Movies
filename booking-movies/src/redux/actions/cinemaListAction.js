@@ -73,7 +73,6 @@ export const DetailMovieScheduleAction = (id) => {
     DetailMovieBScheduleByTheaterService(id)
       .then(res => {
         const {data} = res;
-        console.log(res);
         dispatch(createAction(MOVIE_SCHEDULE_DETAIL, data))
       })
       .catch(err => {

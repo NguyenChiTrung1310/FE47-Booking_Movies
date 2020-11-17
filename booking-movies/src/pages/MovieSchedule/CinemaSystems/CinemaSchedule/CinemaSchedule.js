@@ -13,7 +13,6 @@ const CinemaSchedule = ({cinemaSchedule}) => {
     <Grid>
       {
         cinemaSchedule.map((item, index) => {
-          console.log('CUM RAP CHIEU: ',item);
           const {tenCumRap, lichChieuPhim} = item;
           
           return (

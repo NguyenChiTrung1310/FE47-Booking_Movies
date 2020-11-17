@@ -1,7 +1,7 @@
 /* eslint-disable linebreak-style */
 import React, { useEffect } from 'react';
 import 'react-toastify/dist/ReactToastify.css';
-import {LoginPage, RegisterPage, ErrorPage, HomePage, NewsPage, ContactPage, ProfilePage, AdminPage} from './pages';
+import {LoginPage, RegisterPage, ErrorPage, HomePage, CinemaPage, ContactPage, ProfilePage, AdminPage} from './pages';
 import { Route, Switch} from 'react-router-dom';  
 import {
   LOGIN_PAGE, 
@@ -16,6 +16,7 @@ import {
   PROFILE_PAGE, 
   USER_PROFILE, 
   LOCAL_STORAGE_PROFILE_KEY, 
+  TICKET_ROOM_PAGE
 } from './constants/constant';
 import AppBar from './components/AppBar/AppBar';
 import { useDispatch } from 'react-redux';
@@ -25,6 +26,7 @@ import { toast } from 'react-toastify';
 
 import './App.scss';
 import MovieSchedulePage from './pages/MovieSchedule/MovieSchedule';
+import TicketRoomPage from './pages/TicketRoom/TicketRoomPage';
 
 toast.configure({
   autoClose: 2000,
@@ -75,7 +77,7 @@ function App() {
           path={HOME_PAGE}
         />
         <Route
-          component={NewsPage}
+          component={CinemaPage}
           exact
           path={NEWS_PAGE}
         />
@@ -98,6 +100,11 @@ function App() {
           component={MovieSchedulePage}
           exact
           path={`${MOVIE_SCHEDULE_PAGE}/:maPhimId`}
+        />
+        <Route 
+          component={TicketRoomPage}
+          exact
+          path={`${TICKET_ROOM_PAGE}/:maLichChieu`}
         />
         <Route
           component={ErrorPage}

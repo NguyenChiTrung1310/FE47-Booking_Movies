@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import BookingTicketReducer from './bookingReducer';
 import CinemaListReducer from './cinemaReducer';
 import MovieListReducer from './movielistReducer';
 import ProfileReducer from './profileReducer';
@@ -8,6 +9,7 @@ const RootReducer = combineReducers({
   user: UserReducer,
   profile: ProfileReducer,
   movieList: MovieListReducer,
-  cinemaList: CinemaListReducer
+  cinemaList: CinemaListReducer,
+  ticketRoom: BookingTicketReducer
 });
 export default RootReducer;

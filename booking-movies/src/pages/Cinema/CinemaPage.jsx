@@ -1,7 +1,7 @@
 import React from 'react';
 import Cinema from '../../components/Cinema/Cinema';
 
-const NewsPage = () => {
+const CinemaPage = () => {
   return (
     <div>
       <Cinema />
@@ -9,4 +9,4 @@ const NewsPage = () => {
   )
 }
 
-export default NewsPage
+export default CinemaPage
