@@ -39,7 +39,6 @@ const MovieSchedulePage = (props) => {
     heThongRapChieu
   } = movieScheduleDetail;
 
-
   useEffect(() => {
     dispatch(createAction(CINEMA_SYSTEM ,heThongRapChieu));
   }, [dispatch, heThongRapChieu])
@@ -85,7 +84,10 @@ const MovieSchedulePage = (props) => {
                           style={{paddingLeft: '5px'}}
                           variant='h6'
                         >
-                          {moTa}
+                          {
+                            moTa.length > 200 ? 
+                              `${moTa.slice(0, 200)}...` : moTa
+                          }
                         </Typography>
                       </Typography>                  
                     </Grid>
