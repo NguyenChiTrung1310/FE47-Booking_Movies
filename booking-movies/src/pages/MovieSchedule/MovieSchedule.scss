@@ -22,8 +22,9 @@
         .movie-info{
             width: 100%;
             height: 100%;
+            overflow: scroll;
             text-align: left;
-            padding-left: 30px;
+            padding: 0 30px;
             color: $black;
             background-color: lightyellow;
             

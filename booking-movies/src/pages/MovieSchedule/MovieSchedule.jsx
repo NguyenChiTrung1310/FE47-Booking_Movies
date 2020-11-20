@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { 
   CardMedia, 
@@ -11,15 +11,22 @@ import PropTypes from 'prop-types';
 import LoadingCool from '../../components/Spinner_Cool/SpinnerCool'
 import { DetailMovieScheduleAction } from '../../redux/actions/cinemaListAction';
 
-import './MovieSchedule.scss';
 import ModalPopup from './Modal/Modal';
 import {CINEMA_SYSTEM, CLEAR_DETAIL_MOVIE} from '../../constants/constant';
 import CinemaSystems from './CinemaSystems/CinemaSystems';
 import { createAction } from '../../redux/actions';
+import ShowMoreText from 'react-show-more-text';
+import ExpandLess from '@material-ui/icons/ExpandLess';
+import ExpandMore from '@material-ui/icons/ExpandMore';
 
+import './MovieSchedule.scss';
 
 const MovieSchedulePage = (props) => {
   const dispatch = useDispatch();
+  const [expand, setExpand] = useState(false);
+  const onClick = () => {
+    setExpand(!expand);
+  };
 
   useEffect(() => {
     dispatch(DetailMovieScheduleAction(props.match.params.maPhimId));
@@ -72,24 +79,47 @@ const MovieSchedulePage = (props) => {
                       </Typography>               
                     </Grid>
 
-                    <Grid>                 
-                      <Typography 
-                        component={'h5'}
-                        style={{fontWeight: '600'}}
-                        variant='h5'
-                      >
-                  Description:  
-                        <Typography 
-                          component={'span'}
-                          style={{paddingLeft: '5px'}}
-                          variant='h6'
-                        >
-                          {
-                            moTa.length > 200 ? 
-                              `${moTa.slice(0, 200)}...` : moTa
-                          }
-                        </Typography>
-                      </Typography>                  
+                    <Grid>    
+                      {
+                        moTa.length > 200 ? (
+                          <Typography 
+                            component={'h5'}
+                            style={{fontWeight: '600'}}
+                            variant='h5'
+                          >
+                        Description:  
+                            <Typography 
+                              component={'span'}
+                              style={{paddingLeft: '5px'}}
+                              variant='h6'
+                            >
+                              <ShowMoreText
+                                expanded={expand}
+                                less={<ExpandLess style={{color: '#03a9f4'}}/>}
+                                lines={2}
+                                more={<ExpandMore style={{color: '#03a9f4'}}/>}
+                                onClick={onClick}
+                              >{moTa}
+                              </ShowMoreText>
+                            </Typography>
+                          </Typography>  
+                        ) : (
+                          <Typography 
+                            component={'h5'}
+                            style={{fontWeight: '600'}}
+                            variant='h5'
+                          >
+                        Description:  
+                            <Typography 
+                              component={'span'}
+                              style={{paddingLeft: '5px'}}
+                              variant='h6'
+                            >
+                              {moTa}
+                            </Typography>
+                          </Typography>  
+                        )
+                      }                             
                     </Grid>
 
                     <Grid>                 
