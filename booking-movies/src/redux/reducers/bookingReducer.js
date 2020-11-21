@@ -1,8 +1,12 @@
-import { FETCH_TICKET_ROOM, CLEAR_DETAIL_MOVIE, SEAT_LIST } from '../../constants/constant'
+import { FETCH_TICKET_ROOM, CLEAR_DETAIL_MOVIE, SEAT_LIST, TICKET_INFORMATION } from '../../constants/constant'
 
 let initialState={
   initialTicketRoom: {},
-  initialSeatList: []
+  initialSeatList: [],
+  initialTicketInfo: {
+    number: 0,
+    seats: []
+  }
 } 
    
 const BookingTicketReducer = (state = initialState, { type, payload }) => {
@@ -16,6 +20,16 @@ const BookingTicketReducer = (state = initialState, { type, payload }) => {
     case CLEAR_DETAIL_MOVIE: 
       state.initialTicketRoom = {};
       return { ...state }; 
+    case TICKET_INFORMATION: {
+      let ds = [...state.initialTicketInfo.seats];
+      ds.push(payload.seat);
+      
+      state.initialTicketInfo = {
+        number: payload.number,
+        seats: ds
+      };
+      return {...state };
+    }
     default:
       return state;
   }

@@ -2,13 +2,16 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getTicketRoomsAction } from '../../redux/actions/bookingAction';
-import { CardMedia, Container, Grid, Typography } from '@material-ui/core';
+import { Button, CardMedia, Container, Grid, Typography } from '@material-ui/core';
 import LoadingCool from '../../components/Spinner_Cool/SpinnerCool';
 import { createAction } from '../../redux/actions';
 import { CLEAR_DETAIL_MOVIE, SEAT_LIST } from '../../constants/constant';
+import LabelImportantIcon from '@material-ui/icons/LabelImportant';
+
 import SeatList from './SeatList/SeatList';
 
 import './TicketRoomPage.scss'
+import OrderTicket from './Order/Order';
 
 
 const TicketRoomPage = (props) => {
@@ -27,6 +30,7 @@ const TicketRoomPage = (props) => {
   useEffect(() => {
     dispatch(createAction(SEAT_LIST ,danhSachGhe));
   }, [dispatch, danhSachGhe])
+
 
   return (
     <Container className='movie-schedule-page'>
@@ -49,23 +53,24 @@ const TicketRoomPage = (props) => {
                     </Grid>
                     {
                       thongTinPhim.tenPhim ? (
-                        <Grid className='movie-info'>
+                        <Grid className='movie-information'>
                           <Grid>                 
                             <Typography 
                               component={'h1'}
-                              style={{fontWeight: '400', color: '#03a9f4'}}
-                              variant='h2'
+                              style={{fontWeight: '400', color: '#e61a27', textAlign: 'left'}}
+                              variant='h3'
                             >
                               {thongTinPhim.tenPhim}
                             </Typography>               
                           </Grid>
 
-                          <Grid>                 
+                          <Grid>             
                             <Typography 
                               component={'h5'}
                               style={{fontWeight: '600'}}
                               variant='h5'
                             >
+                              <LabelImportantIcon />
                   Theater:  
                               <Typography 
                                 component={'span'}
@@ -83,6 +88,7 @@ const TicketRoomPage = (props) => {
                               style={{fontWeight: '600'}}
                               variant='h5'
                             >
+                              <LabelImportantIcon />
                       Address:  
                               <Typography 
                                 component={'span'}
@@ -100,6 +106,7 @@ const TicketRoomPage = (props) => {
                               style={{fontWeight: '600'}}
                               variant='h5'
                             >
+                              <LabelImportantIcon />
                       Screening room:  
                               <Typography 
                                 component={'span'}
@@ -116,6 +123,7 @@ const TicketRoomPage = (props) => {
                               style={{fontWeight: '600'}}
                               variant='h5'
                             >
+                              <LabelImportantIcon />
                       Date:  
                               <Typography 
                                 component={'span'}
@@ -132,6 +140,7 @@ const TicketRoomPage = (props) => {
                               style={{fontWeight: '600'}}
                               variant='h5'
                             >
+                              <LabelImportantIcon />
                       Time start:  
                               <Typography 
                                 component={'span'}
@@ -141,7 +150,21 @@ const TicketRoomPage = (props) => {
                                 {thongTinPhim.gioChieu}
                               </Typography>
                             </Typography>                  
-                          </Grid>                  
+                          </Grid>  
+
+                          <Grid className='ticket'>
+                            <Typography 
+                              component={'h5'}
+                              style={{fontWeight: '600', textAlign: 'center', color: '#e61a27', fontSize: '30px'}}
+                              variant='h5'
+                            >
+                            Your Order
+                            </Typography>
+
+                            <OrderTicket />
+
+                            <Button className='style detail-btn'>Checkout</Button>
+                          </Grid>                
                         </Grid> 
                       ) : null
                     }   
