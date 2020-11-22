@@ -1,6 +1,7 @@
+/* eslint-disable no-mixed-spaces-and-tabs */
 
 import React from 'react'
-import { Container, Typography, Grid } from '@material-ui/core'
+import { Container, Typography, Grid,Divider } from '@material-ui/core'
 import PropTypes from 'prop-types';
 
 
@@ -29,7 +30,9 @@ const CustomScheduleMovie = ({ arrayData }) => {
       //   }, []);
       //   console.log(arr);
       return (
-        <Grid key={index}>
+        <Grid   
+          key={index}
+        >
           
           <Grid
             container
@@ -37,53 +40,24 @@ const CustomScheduleMovie = ({ arrayData }) => {
             <Grid
               
               item
-              sm={6}
+              sm={6} 
               xs={12}
             >  
-             
-              <Typography
-                className='title'
-                component='h5'
-                variant='h5'
-              >
-                {/* <CustomInforMovie item={thongTinRap} /> */} 
-                {thongTinRap.tenCumRap}
-              </Typography></Grid>
+              {thongTinRap.tenCumRap} </Grid>
             <Grid
-              
+              className='schedule-item'
               item
-              sm={6}
+              sm={2}
               style={{ display: 'flex' }}
-              xs={6}
-
+              xs={12}
             >
-              <Grid
-             
-                item
-                sm={1} 
-                xs={6}
-                
-              >  
-                <Typography
-                  className='title'
-                  component='h5'
-                  variant='h5'
-                >
-                  {thongTinRap.tenRap}
-                </Typography></Grid>
-              <Grid
-             
-                item
-                sm={5} 
-                xs={12}
-              >  
-                <Typography
-                  className='title'
-                  component='h5'
-                  variant='h5'
-                >
-                  {ngayChieuGioChieu}
-                </Typography></Grid>
+              <Grid className='cinema-name'>
+                {thongTinRap.tenRap} 
+			       </Grid>
+              <Divider className='devide'/>
+              <Grid className='schedule-detail'> 
+                {ngayChieuGioChieu} 
+			       </Grid>
             </Grid>
         
            

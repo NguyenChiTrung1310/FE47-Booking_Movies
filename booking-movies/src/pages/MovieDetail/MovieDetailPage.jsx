@@ -1,20 +1,22 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Container, Typography, Grid } from '@material-ui/core';
+import { Container, Typography, Grid, Button } from '@material-ui/core';
 import { fetchMovieDetail } from '../../redux/actions/movieListAction';
 import LoadingCool from '../../components/Spinner_Cool/SpinnerCool';
 import { CLEAR_DETAIL_MOVIE } from '../../constants/constant';
-import { createAction } from '../../redux/actions';
-import Button from './../../components/Button/Button';
+import { createAction } from '../../redux/actions'; 
+import ModalPopup from './Modal/Modal.js';
+
 // import _ from 'lodash';
 import PropTypes from 'prop-types';
 
 
 import './MovieDetail.scss'
 import CustomScheduleMovie from '../../components/DetailMovie/CustomScheduleMovie/CustomScheduleMovie';
+import { useStyles } from './Modal/useStyles';
 const MovieDetailPage = (props) => {
   const dispatch = useDispatch();
-
+  const classes= useStyles();
   useEffect(() => {
     dispatch(fetchMovieDetail(props.match.params.maPhimId));
     return () => {
@@ -38,6 +40,7 @@ const MovieDetailPage = (props) => {
       ngayKhoiChieu,
       tenPhim,
       lichChieu,
+      trailer,
     } = movieList;
     // console.log('ARRAY LICH CHIEU', lichChieu); 
     // const arrr = lichChieu.reduce((acc, lichChieu) => {
@@ -104,7 +107,7 @@ const MovieDetailPage = (props) => {
     return (
       <Container className='main'>
         <Grid
-          container
+          container 
         >
           {/* Poster&NameMovie */}
           <Grid
@@ -189,24 +192,32 @@ const MovieDetailPage = (props) => {
             </Typography>
             <Grid
               container
-            >
+            > 
+              <ModalPopup trailer={trailer}/>
               <Grid
                 className='button'
                 item
                 sm={3}
                 xs={12}
-              > <Button >Trailer</Button></Grid>
-              <Grid
-                className='button'
-                item
-                sm={3}
-                xs={12}
-              > <Button >Ticket</Button></Grid>
+              > 
+                <Button
+                  className={classes.trailerbtn}
+                >  
+                  <Typography
+                    component='h6'
+                    variant='h6'
+                  >
+                     Ticket
+                  </Typography></Button>
+              </Grid>
             </Grid>
           </Grid>
         </Grid>
         {/* <ScheduleMovie schedule={lichChieu} /> */}
-        <CustomScheduleMovie arrayData={newArray} />
+        <CustomScheduleMovie
+          arrayData={newArray}
+          className='schedule-movie' 
+        />
         {/* <CustomScheduleMovie arrayData={arr} /> */}
       </Container>
 
