@@ -6,7 +6,6 @@ export const getTicketRoomsAction = (id) => {
   return (dispatch) => {
     GetTicketRoomService(id)
       .then(res => {
-        console.log(res);
         const {data} = res;
         dispatch(createAction(FETCH_TICKET_ROOM, data))
       })

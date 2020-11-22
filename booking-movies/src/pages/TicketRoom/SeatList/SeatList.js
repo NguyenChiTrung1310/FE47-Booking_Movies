@@ -9,15 +9,19 @@ import { TICKET_INFORMATION } from '../../../constants/constant';
 const SeatList = ({seatList}) => {
   const dispatch = useDispatch();
   const [number, setNumber] = useState(1);
+  const [book, setBook] = useState(false);
   
   return seatList.map((item,index) => {
-    const {tenGhe, loaiGhe, stt} = item;
+    const {tenGhe, loaiGhe, stt, daDat} = item;
 
     const handleClick = () => {
-      setNumber(number+1)
+      setNumber(number+1);
+      setBook(!book);
+     
       const seat = {
         numID: stt,
-        typeSeat: loaiGhe
+        isBook: daDat,
+        typeSeat: loaiGhe,
       }
       return dispatch(createAction(TICKET_INFORMATION, { seat, number}))
     }
@@ -30,12 +34,12 @@ const SeatList = ({seatList}) => {
         <Grid>
           {
             loaiGhe === 'Thuong' ? (
-              <Grid>{tenGhe}</Grid>
+              <Grid >{tenGhe}</Grid>
             ) : (
               <Grid style={{backgroundColor: '#ed1c2d'}}>{tenGhe}</Grid>
             )
           }
-        </Grid>
+        </Grid>        
       </Grid>
     )
   })
