@@ -22,10 +22,26 @@ const BookingTicketReducer = (state = initialState, { type, payload }) => {
       return { ...state }; 
     case TICKET_INFORMATION: {
       let ds = [...state.initialTicketInfo.seats];
-      ds.push(payload.seat);
+      let check = false;
+      let num = 0;
+      ds.map(value => {
+        if (value.numID === payload.seat.numID) 
+        {
+          check = true;
+        }
+        return check;
+      })
+
+      if (check === false) {
+        ds.push(payload.seat);
+        num = num + 1;
+      } else {
+        ds = ds.filter(value => value.numID !== payload.seat.numID);
+        num = num - 1;
+      }
       
       state.initialTicketInfo = {
-        number: payload.number,
+        number: num,
         seats: ds
       };
       return {...state };

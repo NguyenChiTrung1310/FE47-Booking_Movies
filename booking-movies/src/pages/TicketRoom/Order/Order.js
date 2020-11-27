@@ -8,12 +8,11 @@ const OrderTicket = () => {
   const ticketInformation = useSelector(state => state.ticketRoom.initialTicketInfo);
 
   const renderSeats = () => {
-    console.log(ticketInformation.seats);
     const {seats} = ticketInformation;
 
     return seats.map((item, index)=>{
       const {numID, typeSeat} = item;
-
+    
       return (
         <Typography
           component={'span'}
@@ -46,8 +45,6 @@ const OrderTicket = () => {
       )
     });
   }
-
-  //   renderSeats();
   return (
     <Grid className='ticket-section'>
       {
