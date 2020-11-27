@@ -8,13 +8,14 @@ import { TICKET_INFORMATION } from '../../../constants/constant';
 
 const SeatList = ({seatList}) => {
   const dispatch = useDispatch();
-  // const [number, setNumber] = useState(1);
-  // const [select, setSelect] = useState(false);
+  const [number, setNumber] = useState(0);
+  // const [book, setBook] = useState(false);
   const [orderedList, setOrderedList] = useState([]);
 
   
   return seatList.map((item,index) => {
     const {tenGhe, loaiGhe, stt, daDat} = item;
+
 
     const checkSelected = (tenGhe) => {
       let check = false;
@@ -29,11 +30,20 @@ const SeatList = ({seatList}) => {
     
     const handleClick = () => {
       const test = JSON.parse(JSON.stringify(orderedList));
+      console.log(test);
       test.push(tenGhe);
       setOrderedList(test);
 
-      // setNumber(number+1);
-      // setSelect(!select);
+      let book = checkSelected(tenGhe);
+
+      if(book === false){
+        setNumber(number+1);
+        console.log('BOOK false: ', book);
+
+      }else{
+        setNumber(number-1);
+        console.log('BOOK true: ', book);
+      }
       
       const seat = {
         numID: stt,
@@ -41,7 +51,7 @@ const SeatList = ({seatList}) => {
         typeSeat: loaiGhe,
       }
       
-      return dispatch(createAction(TICKET_INFORMATION, seat))
+      return dispatch(createAction(TICKET_INFORMATION, {seat, number}))
     }
 
     return (

@@ -6,10 +6,10 @@ import { useSelector } from 'react-redux';
 const OrderTicket = () => {
 
   const ticketInformation = useSelector(state => state.ticketRoom.initialTicketInfo);
+  const {seats, number} = ticketInformation;
 
   const renderSeats = () => {
-    const {seats} = ticketInformation;
-
+    
     return seats.map((item, index)=>{
       const {numID, typeSeat} = item;
     
@@ -48,7 +48,7 @@ const OrderTicket = () => {
   return (
     <Grid className='ticket-section'>
       {
-        ticketInformation.number ? (
+        number ? (
           <Grid>
             <Grid className='ticket-info'>
               <LabelImportantIcon className='label-icon'/>
@@ -57,7 +57,7 @@ const OrderTicket = () => {
                 style={{fontWeight: '600'}}
                 variant='h5'
               >
-            Tickets: {ticketInformation.number}
+            Tickets: {number}
               </Typography>
             </Grid>
             <Grid className='ticket-info'>
