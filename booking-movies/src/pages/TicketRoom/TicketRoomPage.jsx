@@ -33,19 +33,19 @@ const TicketRoomPage = (props) => {
 
 
   return (
-    <Container className='movie-schedule-page'>
+    <Container className='ticket-room-page'>
       {
         ticketRoom ? (
           <Grid>
             {
               thongTinPhim ? (
                 <Grid>
-                  <Grid className='movie-detail'>
-                    <Grid className='movie-trailer'>
+                  <Grid className='ticket-detail'>
+                    <Grid className='trailer-film'>
                       {
                         thongTinPhim.hinhAnh ?  
                           <CardMedia
-                            className='movie-img'
+                            className='img-film'
                             image={thongTinPhim.hinhAnh}
                           />
                           : <LoadingCool />
@@ -166,11 +166,11 @@ const TicketRoomPage = (props) => {
                             <Button className='style detail-btn'>Checkout</Button>
                           </Grid>                
                         </Grid> 
-                      ) : null
+                      ) : <LoadingCool />
                     }   
                   </Grid> 
                   <Grid className='screen'>Screen</Grid>
-                  <Grid className='schedule-by-theater'>
+                  <Grid className='seat-list-by-theater'>
                     {
                       danhSachGhe ? <SeatList seatList={danhSachGhe}/>
                         : <LoadingCool />

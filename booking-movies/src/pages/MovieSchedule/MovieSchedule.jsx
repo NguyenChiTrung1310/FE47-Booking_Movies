@@ -157,7 +157,7 @@ const MovieSchedulePage = (props) => {
                     </Grid>             
                     <ModalPopup trailer={trailer}/>
                   </Grid> 
-                ) : null
+                ) : <LoadingCool />
               }
           
             </Grid>     
