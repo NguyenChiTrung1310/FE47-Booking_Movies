@@ -9,41 +9,36 @@ import { TICKET_INFORMATION } from '../../../constants/constant';
 const SeatList = ({seatList}) => {
   const dispatch = useDispatch();
   const [number, setNumber] = useState(0);
-  // const [book, setBook] = useState(false);
   const [orderedList, setOrderedList] = useState([]);
 
-  
+  const checkSelected = (tenGhe) => {
+    let check = false;
+    orderedList.forEach(value => {
+      if (value === tenGhe) 
+      {
+        check = true;
+      }
+    })
+    return check;
+  }
+
   return seatList.map((item,index) => {
     const {tenGhe, loaiGhe, stt, daDat} = item;
-
-
-    const checkSelected = (tenGhe) => {
-      let check = false;
-      orderedList.forEach(value => {
-        if (value === tenGhe) 
-        {
-          check = true;
-        }
-      })
-      return check;
-    }
     
     const handleClick = () => {
-      const test = JSON.parse(JSON.stringify(orderedList));
-      console.log(test);
-      test.push(tenGhe);
-      setOrderedList(test);
-
-      let book = checkSelected(tenGhe);
-
-      if(book === false){
+      let ordered = JSON.parse(JSON.stringify(orderedList));
+      let newNumber = number;
+    
+      if (!checkSelected(tenGhe)) {
+        ordered.push(tenGhe);
         setNumber(number+1);
-        console.log('BOOK false: ', book);
-
-      }else{
+        newNumber += 1;
+      } else {
+        ordered = ordered.filter(value => value !== tenGhe);
         setNumber(number-1);
-        console.log('BOOK true: ', book);
+        newNumber -= 1;
       }
+      setOrderedList(ordered);
       
       const seat = {
         numID: stt,
@@ -51,7 +46,7 @@ const SeatList = ({seatList}) => {
         typeSeat: loaiGhe,
       }
       
-      return dispatch(createAction(TICKET_INFORMATION, {seat, number}))
+      dispatch(createAction(TICKET_INFORMATION, {seat, number: newNumber}))
     }
 
     return (
