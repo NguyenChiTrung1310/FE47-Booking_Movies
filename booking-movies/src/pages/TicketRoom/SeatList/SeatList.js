@@ -9,6 +9,7 @@ import { TICKET_INFORMATION } from '../../../constants/constant';
 const SeatList = ({seatList}) => {
   const dispatch = useDispatch();
   const [number, setNumber] = useState(0);
+  const [price, setPrice] = useState(0);
   const [orderedList, setOrderedList] = useState([]);
 
   const checkSelected = (tenGhe) => {
@@ -23,20 +24,25 @@ const SeatList = ({seatList}) => {
   }
 
   return seatList.map((item,index) => {
-    const {tenGhe, loaiGhe, stt, daDat} = item;
+    const {tenGhe, loaiGhe, stt, daDat, giaVe} = item;
     
     const handleClick = () => {
       let ordered = JSON.parse(JSON.stringify(orderedList));
       let newNumber = number;
+      let newPrice = price;
     
       if (!checkSelected(tenGhe)) {
         ordered.push(tenGhe);
         setNumber(number+1);
+        setPrice(price+giaVe);
         newNumber += 1;
+        newPrice += giaVe;
       } else {
         ordered = ordered.filter(value => value !== tenGhe);
         setNumber(number-1);
+        setPrice(price-giaVe);
         newNumber -= 1;
+        newPrice -= giaVe;
       }
       setOrderedList(ordered);
       
@@ -46,7 +52,7 @@ const SeatList = ({seatList}) => {
         typeSeat: loaiGhe,
       }
       
-      dispatch(createAction(TICKET_INFORMATION, {seat, number: newNumber}))
+      dispatch(createAction(TICKET_INFORMATION, {seat, number: newNumber, price: newPrice}))
     }
 
     return (

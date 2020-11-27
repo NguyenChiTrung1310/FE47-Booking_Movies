@@ -5,6 +5,7 @@ let initialState={
   initialSeatList: [],
   initialTicketInfo: {
     number: 0,
+    price: 0,
     seats: []
   }
 } 
@@ -24,6 +25,7 @@ const BookingTicketReducer = (state = initialState, { type, payload }) => {
       let ds = [...state.initialTicketInfo.seats];
       let check = false;
       let num = payload.number;
+      let initialPrice = payload.price;
       ds.map(value => {
         if (value.numID === payload.seat.numID) 
         {
@@ -34,14 +36,13 @@ const BookingTicketReducer = (state = initialState, { type, payload }) => {
 
       if (check === false) {
         ds.push(payload.seat);
-        // num = num + 1;
       } else {
         ds = ds.filter(value => value.numID !== payload.seat.numID);
-        // num = num - 1;
       }
       
       state.initialTicketInfo = {
         number: num,
+        price: initialPrice,
         seats: ds
       };
       return {...state };

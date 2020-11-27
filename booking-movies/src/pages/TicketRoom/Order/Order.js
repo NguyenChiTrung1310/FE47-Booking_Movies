@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 const OrderTicket = () => {
 
   const ticketInformation = useSelector(state => state.ticketRoom.initialTicketInfo);
-  const {seats, number} = ticketInformation;
+  const {seats, number, price} = ticketInformation;
 
   const renderSeats = () => {
     
@@ -45,6 +45,24 @@ const OrderTicket = () => {
       )
     });
   }
+
+  // const renderTotalPrice = () => {
+  //   return seats.map((item, index) => {
+  //     const {price} = item;
+
+  //     return (
+  //       <Typography
+  //         component={'span'}
+  //         key={index}
+  //         style={{fontWeight: '600', color: '#03a9f4'}}
+  //         variant='h5'
+  //       >
+  //         {price}
+  //       </Typography>
+  //     )
+  //   });
+  // }
+
   return (
     <Grid className='ticket-section'>
       {
@@ -78,7 +96,13 @@ const OrderTicket = () => {
                 style={{fontWeight: '600'}}
                 variant='h5'
               >
-            Total: $0
+            Total (VND) : {
+                  <Typography
+                    component={'span'}
+                    style={{fontWeight: '600',color: '#03a9f4'}}
+                    variant='h5'
+                  >{price}</Typography>
+                } 
               </Typography>
             </Grid>
           </Grid>
@@ -111,7 +135,7 @@ const OrderTicket = () => {
                 style={{fontWeight: '600'}}
                 variant='h5'
               >
-            Total: $0
+            Total (VND):  0
               </Typography>
             </Grid>
           </Grid>
