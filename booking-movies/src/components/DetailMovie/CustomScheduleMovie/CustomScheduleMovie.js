@@ -1,7 +1,7 @@
 /* eslint-disable no-mixed-spaces-and-tabs */
 
 import React from 'react'
-import { Container, Typography, Grid,Divider } from '@material-ui/core'
+import { Container, Grid,Divider } from '@material-ui/core'
 import PropTypes from 'prop-types';
 
 
