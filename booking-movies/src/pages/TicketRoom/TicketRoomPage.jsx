@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getTicketRoomsAction } from '../../redux/actions/bookingAction';
-import { Button, CardMedia, Container, Grid, Typography } from '@material-ui/core';
+import { CardMedia, Container, Grid, Typography } from '@material-ui/core';
 import LoadingCool from '../../components/Spinner_Cool/SpinnerCool';
 import { createAction } from '../../redux/actions';
 import { CLEAR_DETAIL_MOVIE, SEAT_LIST } from '../../constants/constant';
@@ -12,6 +12,7 @@ import SeatList from './SeatList/SeatList';
 
 import './TicketRoomPage.scss'
 import OrderTicket from './Order/Order';
+import CheckoutBtn from './CheckoutBtn/CheckoutBtn';
 
 
 const TicketRoomPage = (props) => {
@@ -25,22 +26,12 @@ const TicketRoomPage = (props) => {
   }, [dispatch, props])
 
   const ticketRoom = useSelector(state => state.ticketRoom.initialTicketRoom);
-  const orderInformation = useSelector(state => state.ticketRoom.initialTicketInfo);
+  
   const{thongTinPhim, danhSachGhe} = ticketRoom;
-  const {price} = orderInformation;
 
   useEffect(() => {
     dispatch(createAction(SEAT_LIST ,danhSachGhe));
   }, [dispatch, danhSachGhe])
-
-  const handleCheckout = () => {
-    if(price !== 0){
-      console.log('CHECKOUT')
-    }else{
-      console.log('PLEASE SELECT YOUR SEAT !')
-      console.log('PRICE: ', price)
-    }
-  }
 
   return (
     <Container className='ticket-room-page'>
@@ -173,10 +164,9 @@ const TicketRoomPage = (props) => {
 
                             <OrderTicket />
 
-                            <Button
-                              className='style detail-btn'
-                              onClick={handleCheckout}
-                            >Checkout</Button>
+                            <Grid className='checkout'>
+                              <CheckoutBtn />
+                            </Grid>
                           </Grid>                
                         </Grid> 
                       ) : <LoadingCool />
