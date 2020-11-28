@@ -182,8 +182,7 @@ const TicketRoomPage = (props) => {
                   </Grid>
                 </Grid>
               ) : <LoadingCool />
-            }
-                
+            }     
           </Grid>
         ) : <LoadingCool />
       }
@@ -192,8 +191,11 @@ const TicketRoomPage = (props) => {
 }
 
 TicketRoomPage.propTypes={
+  danhSachGhe: PropTypes.array,
   match: PropTypes.object,
   params: PropTypes.object,
+  thongTinPhim: PropTypes.object,
+
 }
 
 export default TicketRoomPage
