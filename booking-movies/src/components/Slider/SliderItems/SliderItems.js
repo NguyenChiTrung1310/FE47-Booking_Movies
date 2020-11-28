@@ -1,52 +1,30 @@
-/* eslint-disable no-unused-vars */
-
 import React from 'react' 
-
 import LoadingCool from './../../Spinner_Cool/SpinnerCool'
+import PropTypes from 'prop-types'; 
 
 import { 
-
   Card,
-
   CardActionArea, 
-
   CardContent, 
-
   Typography,  
   CardMedia
-
 } from '@material-ui/core';  
-
-import PropTypes from 'prop-types'; 
 
 import './SliderItems.scss' 
 
-
-
 const SliderItems=({item})=>{ 
-
   const {maPhim, tenPhim, hinhAnh} =  item;   
- 
 
   return(
-
     <Card className='imgCard' >
-
-      <CardActionArea>
-
-       
+      <CardActionArea>      
         <CardContent className='cardBody'>
-
           {
             hinhAnh ? (
               <CardMedia
-
                 alt='movie_Image'
-
                 className='img'
-
                 image={hinhAnh}
-
               />
             ) : <LoadingCool/>
           }  
@@ -56,39 +34,26 @@ const SliderItems=({item})=>{
             gutterBottom
             variant='h5'
           >
-
             {tenPhim}
-
           </Typography>
-
           <Typography
             className='cardText'
             component='p'
             variant='body2'
           >
-
             {maPhim}
-
           </Typography>
-
         </CardContent>
-
-      </CardActionArea> 
-      
+      </CardActionArea>     
     </Card>
-
   )
-
 } 
 
 SliderItems.propTypes={
-
-  tenPhim: PropTypes.string,
-
-  moTa: PropTypes.string,
-
   hinhAnh: PropTypes.string,
-
+  item: PropTypes.object,
+  moTa: PropTypes.string,
+  tenPhim: PropTypes.string,
 }
 
 export default SliderItems;  
