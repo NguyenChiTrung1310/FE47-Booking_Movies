@@ -13,7 +13,7 @@ const Banner = () => {
     indicators: true,
     interval: 1000
   })
-
+  
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -25,7 +25,9 @@ const Banner = () => {
   });
 
   const renderSilerList = () => {
-    return movieList.map((item, index) => {
+    const shortList = movieList.slice(0,8);
+
+    return shortList.map((item, index) => {
       return (
         <CarouselBanner
           item={item}

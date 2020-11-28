@@ -18,6 +18,10 @@
     position: relative;
     height: 100%;
     width: 100%;
+
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
   }
   .titles {
     width: 400px;
@@ -29,9 +33,9 @@
     text-align: left;
 
     .style {
-      color: #fff;
+      color: $white;
       font-family: 'Montserrat', sans-serif !important;
-      font-weight: 300;
+      font-weight: 500;
     }
     .name {
       font-size: 40px;

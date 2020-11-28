@@ -1,11 +1,12 @@
-/* eslint-disable react/sort-prop-types */
-/* eslint-disable react/prop-types */
 import React from 'react';
-import { Button, Paper, Typography } from '@material-ui/core';
-import PropTypes from 'prop-types';
 import {useHistory} from 'react-router-dom'
-import './Carousel.scss';
+import { Button, CardMedia, Grid, Paper, Typography } from '@material-ui/core';
+import PropTypes from 'prop-types';
 import { MOVIE_DETAIL_PAGE } from '../../../constants/constant';
+
+import BannerImg from '../../../assets/images/banner2.jpg';
+
+import './Carousel.scss';
 
 const CarouselBanner = ({ item }) => {
   const history = useHistory();
@@ -15,7 +16,7 @@ const CarouselBanner = ({ item }) => {
     moTa = 'a boy is given the ability to become an adult superhero in times of need with a single magic word',
     ngayKhoiChieu = 'By: david f. sandberg',
     danhGia = 'NOT FOUND',
-    hinhAnh = 'NOT FOUND',
+    hinhAnh = {BannerImg},
     maPhim  = 'NOT FOUND',
   } = item;
 
@@ -27,7 +28,7 @@ const CarouselBanner = ({ item }) => {
       className='banner'
       elevation={10}
     >
-      <div className='titles'>
+      <Grid className='titles'>
         <Typography
           className='style name'
           component='h3'
@@ -60,22 +61,23 @@ const CarouselBanner = ({ item }) => {
           className='style detail-btn'
           onClick={detailLink}
         >Detail</Button>
-      </div>
-      <div className='overload' />
-      <img
-        alt=''
+      </Grid>
+      {/* <Grid className='overload' /> */}
+      <CardMedia
+        alt='banner-img'
         className='banner-img'
-        src={hinhAnh}
+        image={hinhAnh}
       />
     </Paper>
   )
 } 
 CarouselBanner.propTypes = {
-  tenPhim: PropTypes.string,
-  moTa: PropTypes.string,
-  ngayKhoiChieu: PropTypes.string,
   danhGia: PropTypes.string,
   hinhAnh: PropTypes.string,
+  item: PropTypes.object,
+  moTa: PropTypes.string,
+  ngayKhoiChieu: PropTypes.string,
+  tenPhim: PropTypes.string,
 };
 
 export default CarouselBanner;
