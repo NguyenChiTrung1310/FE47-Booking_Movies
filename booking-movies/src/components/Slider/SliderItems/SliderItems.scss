@@ -1,29 +1,42 @@
 @import ' ./../../../../styles/styles.scss';
 
-.imgCard {
+.img-card {
   position: relative;
   border-radius: 4px;
+  margin-top: 20px;
   background: $black-opacity;
-  color: #666;
+  
   overflow: hidden;
   box-shadow: 0 2px 4px 0 rgba(59, 43, 43, 0.2);
   transition: 0.3s;
-  height: 300px;
+  height: 400px;
   .img {
     width: 100%;
-    height: 200px;
+    height: 280px;
     object-fit: cover;
   }
-  .MuiCardContent-root.cardBody {
+
+  .card-body{
+    width: 100%;
+  }
+
+  .MuiCardContent-root.card-body {
     border: 1px solid $black-opacity;
-    color: #ffffff;
+    color: $white;
     padding: 0px;
-    .cardTitle {
-      font-size: 20px;
+    .card-title {
+      font-size: 24px;
       font-weight: 600;
     }
-    .cardText {
+    .card-text {
       margin-top: 10px;
+      font-size: 20px;
+
+      .icon-star{
+        vertical-align: bottom;
+        padding-bottom: 2px;
+        color: $orange;
+      }
     }
   }
 }

@@ -6,19 +6,21 @@ import {
   Card,
   CardActionArea, 
   CardContent, 
-  Typography,  
+  Typography, 
+  Grid, 
   CardMedia
 } from '@material-ui/core';  
+import StarIcon from '@material-ui/icons/Star';
 
 import './SliderItems.scss' 
 
 const SliderItems=({item})=>{ 
-  const {maPhim, tenPhim, hinhAnh} =  item;   
+  const {ngayKhoiChieu, tenPhim, hinhAnh, danhGia} =  item;   
 
   return(
-    <Card className='imgCard' >
+    <Card className='img-card' >
       <CardActionArea>      
-        <CardContent className='cardBody'>
+        <CardContent className='card-body'>
           {
             hinhAnh ? (
               <CardMedia
@@ -29,20 +31,48 @@ const SliderItems=({item})=>{
             ) : <LoadingCool/>
           }  
           <Typography
-            className='cardTitle'
+            className='card-title'
             component='h2'
             gutterBottom
             variant='h5'
           >
             {tenPhim}
           </Typography>
-          <Typography
-            className='cardText'
-            component='p'
-            variant='body2'
-          >
-            {maPhim}
-          </Typography>
+          <Grid style={{textAlign: 'left', width: '50%', margin: 'auto'}}>
+            <Typography
+              className='card-text'
+              component='h5'
+              variant='h5'
+            >
+             Date: 
+              <Typography
+                component='span'
+                style={{paddingLeft: '8px', color: '#03a9f4'}}
+                variant='p'
+              >
+                {ngayKhoiChieu}
+              </Typography>
+            </Typography>
+            <Typography
+              className='card-text'
+              component='h5'
+              variant='h5'
+            >
+             Rating: 
+              <Typography
+                component='span'
+                style={{paddingLeft: '8px', color: '#03a9f4'}}
+                variant='p'
+              >
+                {danhGia} 
+                <StarIcon className='icon-star'/>
+                <StarIcon className='icon-star'/>
+                <StarIcon className='icon-star'/>
+                <StarIcon className='icon-star'/>
+                <StarIcon className='icon-star'/>
+              </Typography>
+            </Typography>
+          </Grid>
         </CardContent>
       </CardActionArea>     
     </Card>
