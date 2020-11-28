@@ -28,6 +28,8 @@ import { toast } from 'react-toastify';
 import './App.scss';
 import MovieSchedulePage from './pages/MovieSchedule/MovieSchedule';
 import TicketRoomPage from './pages/TicketRoom/TicketRoomPage';
+import { Grid } from '@material-ui/core';
+import Footer from './components/Footer/Footer';
 
 toast.configure({
   autoClose: 2000,
@@ -58,7 +60,7 @@ function App() {
   });
 
   return (
-    <div className='App'>
+    <Grid className='App'>
       <AppBar />
       <Switch> 
         
@@ -116,7 +118,8 @@ function App() {
           component={ErrorPage}
         />
       </Switch>
-    </div>
+      <Footer />
+    </Grid>
   );
 }
 
