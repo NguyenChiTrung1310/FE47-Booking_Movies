@@ -17,6 +17,7 @@ const DETAIL_MOVIE_SCHEDULE_BY_THEATER_API = 'https://movie0706.cybersoft.edu.vn
 
 // BOOKING TICKET
 const GET_TICKET_ROOM_API = 'https://movie0706.cybersoft.edu.vn/api/QuanLyDatVe/LayDanhSachPhongVe?MaLichChieu=';
+const BOOKING_TICKET_API = 'https://movie0706.cybersoft.edu.vn/api/QuanLyDatVe/DatVe';
 
 
 export {
@@ -30,5 +31,6 @@ export {
   THEATERS_SCHEDULE_API,
   DETAIL_MOVIE_SCHEDULE_BY_THEATER_API,
   GET_TICKET_ROOM_API,
-  MOVIEDETAIL_API
+  MOVIEDETAIL_API,
+  BOOKING_TICKET_API
 }; 
