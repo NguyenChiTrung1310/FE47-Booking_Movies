@@ -25,12 +25,22 @@ const TicketRoomPage = (props) => {
   }, [dispatch, props])
 
   const ticketRoom = useSelector(state => state.ticketRoom.initialTicketRoom);
+  const orderInformation = useSelector(state => state.ticketRoom.initialTicketInfo);
   const{thongTinPhim, danhSachGhe} = ticketRoom;
+  const {price} = orderInformation;
 
   useEffect(() => {
     dispatch(createAction(SEAT_LIST ,danhSachGhe));
   }, [dispatch, danhSachGhe])
 
+  const handleCheckout = () => {
+    if(price !== 0){
+      console.log('CHECKOUT')
+    }else{
+      console.log('PLEASE SELECT YOUR SEAT !')
+      console.log('PRICE: ', price)
+    }
+  }
 
   return (
     <Container className='ticket-room-page'>
@@ -163,7 +173,10 @@ const TicketRoomPage = (props) => {
 
                             <OrderTicket />
 
-                            <Button className='style detail-btn'>Checkout</Button>
+                            <Button
+                              className='style detail-btn'
+                              onClick={handleCheckout}
+                            >Checkout</Button>
                           </Grid>                
                         </Grid> 
                       ) : <LoadingCool />
