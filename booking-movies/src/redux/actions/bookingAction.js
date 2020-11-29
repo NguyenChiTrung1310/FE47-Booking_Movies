@@ -1,6 +1,6 @@
 import { createAction } from '.';
 import { BookingTicketService, GetTicketRoomService } from '../../services';
-import {FETCH_TICKET_ROOM} from '../../constants/constant';
+import {FETCH_TICKET_ROOM, BOOKING_SUCCESS} from '../../constants/constant';
 
 export const getTicketRoomsAction = (id) => {
   return (dispatch) => {
@@ -15,14 +15,30 @@ export const getTicketRoomsAction = (id) => {
   }
 }
 
-export const BookingTicketAction = (booking) => {
+const bookingSucceeded = (bookingData) => {
+  const {data, status, config} = bookingData;
+  const order = {data, status, config}
+  
+  return {
+    type: BOOKING_SUCCESS,
+    payload: order
+  }
+}
+
+export const BookingTicketAction = (
+  booking, 
+  notify_success = () => {},
+  notify_failed = () => {},
+) => {
   return (dispatch) => {
     BookingTicketService(booking)
       .then(res => {
-        console.log('CHECKOUT INFO: ', res);
+        dispatch(bookingSucceeded(res));
+        notify_success();
       })
       .catch(err => {
-        console.log('CHECKOUT INFO: ', err);
+        console.log(err);
+        notify_failed();
       })
   }
 }

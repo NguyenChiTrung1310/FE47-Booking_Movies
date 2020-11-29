@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
+import { toast } from 'react-toastify';
 
 import { 
   Grid,
@@ -32,6 +33,14 @@ const CheckoutBtn = ({maLichChieu}) => {
     setOpen(false);
   };
 
+  const notify_success = () => {
+    toast.success('Booking success !');
+  }
+  
+  const notify_failed = () => {
+    toast.error('Booking failure !');
+  }
+
   const handleCheckout = () => {
     if(price !== 0){
       const newTickets = tickets.map(item => item.ticket);
@@ -42,7 +51,7 @@ const CheckoutBtn = ({maLichChieu}) => {
         taiKhoanNguoiDung: taiKhoan
       }
 
-      dispatch(BookingTicketAction(checkout))
+      dispatch(BookingTicketAction(checkout, notify_success, notify_failed))
       setOpen(false);
     }
   }

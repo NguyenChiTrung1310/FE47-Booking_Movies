@@ -43,8 +43,6 @@ export const loginAction = (
         // store data (localstorage)
         storeUserToken(accessToken);
         storeCredentials(JSON.stringify(data));
-        
-        console.log(res) 
 
         // Notify Success
         notify_success();
@@ -108,10 +106,10 @@ export const registerAction =(
     )
       .then(res=>{ 
         dispatch(registerSucess(res)) 
-        console.log('REGISTER', res.data);
         notify_success();
       })
       .catch(err=>{ 
+        console.log(err);
         dispatch(registerFailed());
         notify_failed();
       })

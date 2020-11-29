@@ -1,4 +1,10 @@
-import { FETCH_TICKET_ROOM, CLEAR_DETAIL_MOVIE, SEAT_LIST, TICKET_INFORMATION } from '../../constants/constant'
+import { 
+  FETCH_TICKET_ROOM, 
+  CLEAR_DETAIL_MOVIE, 
+  SEAT_LIST, 
+  TICKET_INFORMATION, 
+  BOOKING_SUCCESS
+} from '../../constants/constant'
 
 let initialState={
   initialTicketRoom: {},
@@ -8,7 +14,8 @@ let initialState={
     price: 0,
     seats: [],
     tickets: []
-  }
+  },
+  initialBooking: {}
 } 
    
 const BookingTicketReducer = (state = initialState, { type, payload }) => {
@@ -62,6 +69,10 @@ const BookingTicketReducer = (state = initialState, { type, payload }) => {
       };
       return {...state };
     }
+
+    case BOOKING_SUCCESS: 
+      state.initialBooking = payload;
+      return {...state}
     default:
       return state;
   }
