@@ -8,7 +8,7 @@ import {
   DetailMovieBScheduleByTheaterService
 } from './cinemaList';
 
-import {GetTicketRoomService} from './booking';
+import {GetTicketRoomService, BookingTicketService} from './booking';
 
 export {
   LoginService, 
@@ -20,6 +20,7 @@ export {
   BranchCinemaService, 
   TheaterScheduleService,
   DetailMovieBScheduleByTheaterService,
-  GetTicketRoomService
+  GetTicketRoomService,
+  BookingTicketService
 }; 
 
