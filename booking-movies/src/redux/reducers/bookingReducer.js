@@ -3,7 +3,8 @@ import {
   CLEAR_DETAIL_MOVIE, 
   SEAT_LIST, 
   TICKET_INFORMATION, 
-  BOOKING_SUCCESS
+  BOOKING_SUCCESS,
+  TICKET_MOVIE
 } from '../../constants/constant'
 
 let initialState={
@@ -15,7 +16,8 @@ let initialState={
     seats: [],
     tickets: []
   },
-  initialBooking: {}
+  initialBooking: {},
+  initialTicketMovie: {}
 } 
    
 const BookingTicketReducer = (state = initialState, { type, payload }) => {
@@ -69,9 +71,11 @@ const BookingTicketReducer = (state = initialState, { type, payload }) => {
       };
       return {...state };
     }
-
     case BOOKING_SUCCESS: 
       state.initialBooking = payload;
+      return {...state}
+    case TICKET_MOVIE:
+      state.initialTicketMovie = payload;
       return {...state}
     default:
       return state;

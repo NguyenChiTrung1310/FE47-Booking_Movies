@@ -16,9 +16,10 @@ import { BookingTicketAction } from '../../../redux/actions/bookingAction';
 
 import './CheckoutBtn.scss';
 import { useHistory } from 'react-router-dom';
-import { TICKET_ORDER_PAGE } from '../../../constants/constant';
+import { TICKET_MOVIE, TICKET_ORDER_PAGE } from '../../../constants/constant';
+import { createAction } from '../../../redux/actions';
 
-const CheckoutBtn = ({maLichChieu}) => {
+const CheckoutBtn = ({maLichChieu, movieInfo}) => {
   const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
   const history = useHistory();
@@ -57,6 +58,7 @@ const CheckoutBtn = ({maLichChieu}) => {
       }
 
       dispatch(BookingTicketAction(checkout, notify_success, notify_failed))
+      dispatch(createAction(TICKET_MOVIE, movieInfo))
       setOpen(false);
     }
   }
@@ -124,6 +126,7 @@ const CheckoutBtn = ({maLichChieu}) => {
 
 CheckoutBtn.propTypes={
   maLichChieu: PropTypes.number,
+  movieInfo: PropTypes.object,
 }
 
 export default CheckoutBtn;

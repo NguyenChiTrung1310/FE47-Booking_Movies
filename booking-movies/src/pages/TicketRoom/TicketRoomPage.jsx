@@ -165,7 +165,17 @@ const TicketRoomPage = (props) => {
                             <OrderTicket />
 
                             <Grid className='checkout'>
-                              <CheckoutBtn maLichChieu={thongTinPhim.maLichChieu}/>
+                              <CheckoutBtn
+                                maLichChieu={thongTinPhim.maLichChieu}
+                                movieInfo={{
+                                  movie: thongTinPhim.tenPhim,
+                                  theater: thongTinPhim.tenCumRap,
+                                  address: thongTinPhim.diaChi,
+                                  screeningRoom: thongTinPhim.tenRap,
+                                  date: thongTinPhim.ngayChieu,
+                                  time: thongTinPhim.gioChieu
+                                }}
+                              />
                             </Grid>
                           </Grid>                
                         </Grid> 
