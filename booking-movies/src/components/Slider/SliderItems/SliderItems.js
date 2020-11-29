@@ -38,7 +38,7 @@ const SliderItems=({item})=>{
           >
             {tenPhim}
           </Typography>
-          <Grid style={{textAlign: 'left', width: '50%', margin: 'auto'}}>
+          <Grid style={{textAlign: 'center', width: '80%', margin: 'auto'}}>
             <Typography
               className='card-text'
               component='h5'
