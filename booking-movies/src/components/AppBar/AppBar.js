@@ -3,7 +3,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { AppBar as App, Button, IconButton, Menu, Toolbar, Typography } from '@material-ui/core';
+import { AppBar as App, Button, IconButton, Menu, Toolbar, Typography, Drawer } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
@@ -20,6 +20,196 @@ const AppBar = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const history = useHistory();
+
+  const [state, setState]= useState({
+    mobieView: false,
+    drawerOpen: false,
+  });
+
+  const {mobieView, drawerOpen}= state;
+
+  useEffect(()=>{
+    const setResponsiveness=()=>{
+      return window.innerWidth <900 ?
+        setState((prevState)=> ({...prevState, mobieView: true}))
+        : setState((prevState)=>({...prevState, mobieView: false}));
+    };
+
+    setResponsiveness();
+
+    window.addEventListener('resize',()=> setResponsiveness());
+
+  },[]);
+
+  const iconUser=()=>{
+    return(
+      <div style={{position:'absolute', right:'0px'}}>
+        <Button
+          aria-controls='simple-menu'
+          aria-haspopup='true'
+          onClick={handleClick}
+        >
+          <span className={classes.userIcon}>
+            <AccountCircleIcon
+              fontSize='large'
+              htmlColor='#fff'
+            /></span>
+        </Button>
+        <Menu
+          anchorEl={anchorEl}
+          id='simple-menu'
+          keepMounted
+          onClose={handleClose}
+          open={Boolean(anchorEl)}
+        >
+          {
+            userCredentials
+              ? (<div>
+                <StyledMenuItem onClick={handleClose}>
+                  <StyleButton
+                    className='user logout link-user hover-btn'
+                    onClick={handleLogOutBtnClick}
+                  >Logout</StyleButton>
+                </StyledMenuItem>
+
+                <StyledMenuItem onClick={handleClose}>
+                  <Link
+                    className='user link-user hover-link'
+                    // onClick={handleProfileClick}
+                    to={PROFILE_PAGE}
+                  >{ userProfile ?
+                      userProfile.hoTen
+                      : userCredentials.hoTen
+                    }</Link>
+                </StyledMenuItem>
+                {
+                  userCredentials.maLoaiNguoiDung === 'KhachHang' 
+                    ? null
+                    : (
+                      <StyledMenuItem onClick={handleClose}>
+                        <Link
+                          className='user link-user hover-link'
+                          onClick={handleProfileClick}
+                          to={ADMIN_PAGE}
+                        >Admin</Link>
+                      </StyledMenuItem>
+                    )
+                }
+              </div>
+              ) 
+              : (<div>
+                <StyledMenuItem onClick={handleClose}>
+                  <Link
+                    className='link link-user hover-link'
+                    to={LOGIN_PAGE}
+                  >Login</Link></StyledMenuItem>
+
+                <StyledMenuItem onClick={handleClose}>
+                  <Link
+                    className='link link-user hover-link'
+                    to={REGISTER_PAGE}
+                  >Register</Link></StyledMenuItem>
+              </div>
+              )
+          }
+        </Menu>
+      </div>
+    )
+  }
+  const linkPage=()=>{
+    return(
+      <>
+        <Link
+          className='link link-menu'
+          to={HOME_PAGE}
+        >Home</Link>
+        <Link
+          className='link link-menu'
+          to={NEWS_PAGE}
+        >Cinema</Link>
+        <Link
+          className='link link-menu'
+          to={CONTACT_PAGE}
+        >Contact</Link>
+      </>
+    )
+  }
+  const displayDesktop=()=>{
+    return (
+      <div>
+        <App
+          className={classes.app}
+          position='static'
+        >
+          <Toolbar className={classes.toolBar}>
+            <IconButton
+              aria-label='menu'
+              className={classes.menuButton}
+              color='inherit'
+              edge='start'
+            >
+              <span className={classes.brand}>Cinnema <span className={classes.plusIcon}><AddIcon fontSize='inherit'/></span></span>
+            </IconButton>
+            <Typography
+              className={classes.menuLinks}
+              variant='h6'
+            >
+              <div className={classes.links}>
+                {linkPage()}
+              </div>
+              {iconUser()}
+            </Typography>
+          </Toolbar>
+        </App>
+      </div>
+ 
+    )
+  }
+
+  const displayMobile= ()=>{
+    const handleDrawerOpen=()=>{
+      setState((prevState)=> ({...prevState, drawerOpen: true}));
+    }
+    const handleDrawerClose= ()=>{
+      setState((prevState)=> ({...prevState, drawerOpen: false}));
+    }
+
+    return (
+      <Toolbar className={classes.toolBar}>
+        <IconButton
+          aria-haspopup= 'true'
+          aria-label='menu'
+          className={classes.menuButton}
+          color='inherit'
+          edge='start'
+          onClick= {handleDrawerOpen} 
+        >
+          <span className={classes.brand}>Cinnema <span className={classes.plusIcon}><AddIcon fontSize='inherit'/></span></span>
+        </IconButton>
+         
+        <Drawer
+          {...{
+            anchor: 'left',
+            open: drawerOpen,
+            onClose: handleDrawerClose,  
+            width:'10px'
+          }}
+        >
+          <Typography
+            className={classes.menuLinkss} 
+            variant='h6'
+          >
+            <div className={classes.linkss}>
+              {linkPage()}
+            </div>
+          </Typography> 
+        </Drawer>
+        {iconUser()}
+        
+      </Toolbar>
+
+    )
+  }
 
   const [anchorEl, setAnchorEl] = useState(null);
   const userCredentials = useSelector(state => state.user.credentials);
@@ -62,104 +252,7 @@ const AppBar = () => {
         className={classes.app}
         position='static'
       >
-        <Toolbar className={classes.toolBar}>
-          <IconButton
-            aria-label='menu'
-            className={classes.menuButton}
-            color='inherit'
-            edge='start'
-          >
-            <span className={classes.brand}>Cinnema <span className={classes.plusIcon}><AddIcon fontSize='inherit'/></span></span>
-          </IconButton>
-          <Typography
-            className={classes.menuLinks}
-            variant='h6'
-          >
-            <div className={classes.links}>
-              <Link
-                className='link link-menu'
-                to={HOME_PAGE}
-              >Home</Link>
-              <Link
-                className='link link-menu'
-                to={NEWS_PAGE}
-              >Cinema</Link>
-              <Link
-                className='link link-menu'
-                to={CONTACT_PAGE}
-              >Contact</Link>
-            </div>
-            <Button
-              aria-controls='simple-menu'
-              aria-haspopup='true'
-              onClick={handleClick}
-            >
-              <span className={classes.userIcon}>
-                <AccountCircleIcon
-                  fontSize='large'
-                  htmlColor='#fff'
-                /></span>
-            </Button>
-            <Menu
-              anchorEl={anchorEl}
-              id='simple-menu'
-              keepMounted
-              onClose={handleClose}
-              open={Boolean(anchorEl)}
-            >
-              {
-                userCredentials
-                  ? (<div>
-                    <StyledMenuItem onClick={handleClose}>
-                      <StyleButton
-                        className='user logout link-user hover-btn'
-                        onClick={handleLogOutBtnClick}
-                      >Logout</StyleButton>
-                    </StyledMenuItem>
-
-                    <StyledMenuItem onClick={handleClose}>
-                      <Link
-                        className='user link-user hover-link'
-                        // onClick={handleProfileClick}
-                        to={PROFILE_PAGE}
-                      >{ userProfile ?
-                          userProfile.hoTen
-                          : userCredentials.hoTen
-                        }</Link>
-                    </StyledMenuItem>
-                    {
-                      userCredentials.maLoaiNguoiDung === 'KhachHang' 
-                        ? null
-                        : (
-                          <StyledMenuItem onClick={handleClose}>
-                            <Link
-                              className='user link-user hover-link'
-                              onClick={handleProfileClick}
-                              to={ADMIN_PAGE}
-                            >Admin</Link>
-                          </StyledMenuItem>
-                        )
-                    }
-                  </div>
-                  ) 
-                  : (<div>
-                    <StyledMenuItem onClick={handleClose}>
-                      <Link
-                        className='link link-user hover-link'
-                        to={LOGIN_PAGE}
-                      >Login</Link></StyledMenuItem>
-
-                    <StyledMenuItem onClick={handleClose}>
-                      <Link
-                        className='link link-user hover-link'
-                        to={REGISTER_PAGE}
-                      >Register</Link></StyledMenuItem>
-                  </div>
-                  )
-              }
-            </Menu>
-          </Typography>
-        </Toolbar>
+        {mobieView ? displayMobile() : displayDesktop()}
       </App>
     </div>
   )

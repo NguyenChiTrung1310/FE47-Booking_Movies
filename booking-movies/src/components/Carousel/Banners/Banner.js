@@ -7,7 +7,7 @@ import { fetchMovieList } from '../../../redux/actions/movieListAction';
 
 const Banner = () => {
   const [carousel] = useState({
-    autoPlay: true,
+    autoPlay: false,
     timer: 500,
     animation: 'fade',
     indicators: true,

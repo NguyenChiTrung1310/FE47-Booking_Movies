@@ -25,7 +25,7 @@ export const StyleButton = withStyles({
 export const useStyles = makeStyles(() => ({
   app: {
     backgroundColor: '#1b1b1b',
-    marginBottom: '10px'
+    // marginBottom: '10px'
   },
   brand: {
     fontSize: 30,
@@ -37,8 +37,16 @@ export const useStyles = makeStyles(() => ({
   },
   menuLinks: {
     flexGrow: 1,
-    display: 'flex',
+    display: 'flex', 
     textDecoration: 'none',
+  },
+  linkss:{ 
+    display: 'flex', 
+    flexDirection: 'column',  
+    width: 300,
+    margin: 'auto', 
+    textDecoration: 'none',
+    alignItems:'center',
   },
   links: {
     width: 300,
