@@ -24,10 +24,11 @@ const SeatList = ({seatList}) => {
   }
 
   return seatList.map((item,index) => {
-    const {tenGhe, loaiGhe, stt, daDat, giaVe} = item;
+    const {tenGhe, loaiGhe, stt, daDat, giaVe, maGhe} = item;
     
     const handleClick = () => {
       let ordered = JSON.parse(JSON.stringify(orderedList));
+      
       let newNumber = number;
       let newPrice = price;
     
@@ -50,6 +51,8 @@ const SeatList = ({seatList}) => {
         numID: stt,
         isBook: daDat,
         typeSeat: loaiGhe,
+        seatID: maGhe,
+        initialPrice: giaVe
       }
       
       dispatch(createAction(TICKET_INFORMATION, {seat, number: newNumber, price: newPrice}))

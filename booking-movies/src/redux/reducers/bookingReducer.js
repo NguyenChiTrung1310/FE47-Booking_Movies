@@ -6,7 +6,8 @@ let initialState={
   initialTicketInfo: {
     number: 0,
     price: 0,
-    seats: []
+    seats: [],
+    tickets: []
   }
 } 
    
@@ -22,11 +23,22 @@ const BookingTicketReducer = (state = initialState, { type, payload }) => {
       state.initialTicketRoom = {};
       return { ...state }; 
     case TICKET_INFORMATION: {
-      let ds = [...state.initialTicketInfo.seats];
+      let seatList = [...state.initialTicketInfo.seats];
+      let ticketList = [...state.initialTicketInfo.tickets];
+
+      const booking = {
+        IdNum: payload.seat.numID,
+        ticket: {
+          maGhe: payload.seat.seatID,
+          giaVe: payload.seat.initialPrice
+        }
+      }
+
       let check = false;
       let num = payload.number;
       let initialPrice = payload.price;
-      ds.map(value => {
+
+      seatList.map(value => {
         if (value.numID === payload.seat.numID) 
         {
           check = true;
@@ -35,15 +47,18 @@ const BookingTicketReducer = (state = initialState, { type, payload }) => {
       })
 
       if (check === false) {
-        ds.push(payload.seat);
+        seatList.push(payload.seat);
+        ticketList.push(booking);
       } else {
-        ds = ds.filter(value => value.numID !== payload.seat.numID);
+        seatList = seatList.filter(value => value.numID !== payload.seat.numID);
+        ticketList = ticketList.filter(value => value.IdNum !== payload.seat.numID);
       }
       
       state.initialTicketInfo = {
         number: num,
         price: initialPrice,
-        seats: ds
+        seats: seatList,
+        tickets: ticketList
       };
       return {...state };
     }
