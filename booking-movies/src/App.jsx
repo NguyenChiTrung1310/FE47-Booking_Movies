@@ -1,8 +1,25 @@
-/* eslint-disable linebreak-style */
+
 import React, { useEffect } from 'react';
-import 'react-toastify/dist/ReactToastify.css';
-import {LoginPage, RegisterPage, ErrorPage, HomePage, CinemaPage, ContactPage, ProfilePage, AdminPage, MovieDetailPage} from './pages';
+import { useDispatch } from 'react-redux';
+import { createAction } from './redux/actions';
 import { Route, Switch} from 'react-router-dom';  
+
+import 'react-toastify/dist/ReactToastify.css';
+import {
+  LoginPage, 
+  RegisterPage, 
+  ErrorPage, 
+  HomePage, 
+  CinemaPage, 
+  ContactPage, 
+  ProfilePage, 
+  AdminPage, 
+  MovieDetailPage,
+  MovieSchedulePage, 
+  TicketRoomPage, 
+  TicketOrderPage
+} from './pages';
+
 import {
   LOGIN_PAGE, 
   REGISTER_PAGE, 
@@ -17,19 +34,17 @@ import {
   USER_PROFILE, 
   LOCAL_STORAGE_PROFILE_KEY, 
   TICKET_ROOM_PAGE,
-  MOVIE_DETAIL_PAGE
+  MOVIE_DETAIL_PAGE,
+  TICKET_ORDER_PAGE
 } from './constants/constant';
+import { Grid } from '@material-ui/core';
 import AppBar from './components/AppBar/AppBar';
-import { useDispatch } from 'react-redux';
-import { createAction } from './redux/actions';
+import Footer from './components/Footer/Footer';
+
 import { getDataFromLocalStorage } from './utils/LocalStorage/LocalStorage';
 import { toast } from 'react-toastify';
 
 import './App.scss';
-import MovieSchedulePage from './pages/MovieSchedule/MovieSchedule';
-import TicketRoomPage from './pages/TicketRoom/TicketRoomPage';
-import { Grid } from '@material-ui/core';
-import Footer from './components/Footer/Footer';
 
 toast.configure({
   autoClose: 2000,
@@ -108,6 +123,11 @@ function App() {
           component={TicketRoomPage}
           exact
           path={`${TICKET_ROOM_PAGE}/:maLichChieu`}
+        />
+        <Route 
+          component={TicketOrderPage}
+          exact
+          path={TICKET_ORDER_PAGE}
         />
         <Route 
           component={MovieDetailPage}

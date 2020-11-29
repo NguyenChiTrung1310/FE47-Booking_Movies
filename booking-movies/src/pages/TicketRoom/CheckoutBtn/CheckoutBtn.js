@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
@@ -15,13 +15,18 @@ import {
 import { BookingTicketAction } from '../../../redux/actions/bookingAction';
 
 import './CheckoutBtn.scss';
+import { useHistory } from 'react-router-dom';
+import { TICKET_ORDER_PAGE } from '../../../constants/constant';
 
 const CheckoutBtn = ({maLichChieu}) => {
   const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const orderInformation = useSelector(state => state.ticketRoom.initialTicketInfo);
   const account = useSelector(state => state.user.credentials);
+  const bookingStatus = useSelector(state => state.ticketRoom.initialBooking.status);
+
   const {price, tickets} = orderInformation;
   const {taiKhoan} = account;
 
@@ -55,6 +60,14 @@ const CheckoutBtn = ({maLichChieu}) => {
       setOpen(false);
     }
   }
+
+  useEffect(()=> {
+    if(bookingStatus === 200) {
+      setTimeout(() => {
+        history.push(TICKET_ORDER_PAGE)
+      }, 2000);
+    }
+  })
 
   return (
     <div>

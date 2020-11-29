@@ -8,6 +8,7 @@ const PROFILE_PAGE = '/user-profile';
 const ADMIN_PAGE = '/admin';
 const MOVIE_SCHEDULE_PAGE = '/movie-schedule';
 const TICKET_ROOM_PAGE = '/ticket-room';
+const TICKET_ORDER_PAGE = '/ticket-order';
 const MOVIE_DETAIL_PAGE='/movie-detail'
 
 
@@ -57,7 +58,8 @@ export {
   PROFILE_PAGE, 
   ADMIN_PAGE, 
   MOVIE_SCHEDULE_PAGE, 
-  TICKET_ROOM_PAGE, 
+  TICKET_ROOM_PAGE,
+  TICKET_ORDER_PAGE, 
   MOVIE_DETAIL_PAGE
 };
 
