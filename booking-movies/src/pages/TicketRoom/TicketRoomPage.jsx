@@ -165,7 +165,7 @@ const TicketRoomPage = (props) => {
                             <OrderTicket />
 
                             <Grid className='checkout'>
-                              <CheckoutBtn />
+                              <CheckoutBtn maLichChieu={thongTinPhim.maLichChieu}/>
                             </Grid>
                           </Grid>                
                         </Grid> 
@@ -195,7 +195,6 @@ TicketRoomPage.propTypes={
   match: PropTypes.object,
   params: PropTypes.object,
   thongTinPhim: PropTypes.object,
-
 }
 
 export default TicketRoomPage

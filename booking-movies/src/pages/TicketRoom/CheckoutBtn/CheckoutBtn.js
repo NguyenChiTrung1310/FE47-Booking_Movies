@@ -1,17 +1,28 @@
 import React, {useState} from 'react';
-import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
+import { useDispatch, useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
+
+import { 
+  Grid,
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText
+} from '@material-ui/core';
+
+import { BookingTicketAction } from '../../../redux/actions/bookingAction';
 
 import './CheckoutBtn.scss';
-import { useSelector } from 'react-redux';
 
-const CheckoutBtn = () => {
+const CheckoutBtn = ({maLichChieu}) => {
   const [open, setOpen] = useState(false);
+  const dispatch = useDispatch();
+
   const orderInformation = useSelector(state => state.ticketRoom.initialTicketInfo);
-  const {price} = orderInformation;
+  const account = useSelector(state => state.user.credentials);
+  const {price, tickets} = orderInformation;
+  const {taiKhoan} = account;
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -23,11 +34,16 @@ const CheckoutBtn = () => {
 
   const handleCheckout = () => {
     if(price !== 0){
-      console.log('CHECKOUT')
-      console.log('PRICE: ', price)
-    }else{
-      console.log('PLEASE SELECT YOUR SEAT !')
-      console.log('PRICE: ', price)
+      const newTickets = tickets.map(item => item.ticket);
+
+      const checkout = {
+        maLichChieu: maLichChieu,
+        danhSachVe: newTickets,
+        taiKhoanNguoiDung: taiKhoan
+      }
+
+      dispatch(BookingTicketAction(checkout))
+      setOpen(false);
     }
   }
 
@@ -48,27 +64,44 @@ const CheckoutBtn = () => {
       >
         <DialogContent>
           <DialogContentText className='confirm-dialog'>
-            Confirm your order?
+            {price !== 0 ? 'Confirm your order?' : 'Please select your seat !'}
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button
-            className='btn-style'
-            onClick={handleClose}
-          >
+          {
+            price !== 0 ? (
+              <Grid>
+                <Button
+                  className='btn-style'
+                  onClick={handleClose}
+                >
             Disagree
-          </Button>
-          <Button
-            autoFocus
-            className='btn-style'
-            onClick={handleCheckout}
-          >
+                </Button>
+                <Button
+                  autoFocus
+                  className='btn-style'
+                  onClick={handleCheckout}
+                >
             Agree
-          </Button>
+                </Button>
+              </Grid>
+            ) : (
+              <Button
+                className='btn-style'
+                onClick={handleClose}
+              >
+            OK
+              </Button>
+            )
+          }
         </DialogActions>
       </Dialog>
     </div>
   );
+}
+
+CheckoutBtn.propTypes={
+  maLichChieu: PropTypes.number,
 }
 
 export default CheckoutBtn;
