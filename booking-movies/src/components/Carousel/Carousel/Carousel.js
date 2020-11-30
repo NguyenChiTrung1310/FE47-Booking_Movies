@@ -62,7 +62,6 @@ const CarouselBanner = ({ item }) => {
           onClick={detailLink}
         >Detail</Button>
       </Grid>
-      {/* <Grid className='overload' /> */}
       <CardMedia
         alt='banner-img'
         className='banner-img'

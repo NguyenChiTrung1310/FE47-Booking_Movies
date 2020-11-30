@@ -2,7 +2,7 @@ import { CLEAR_STORE, LOGIN_FAILURE, LOGIN_SUCCESS, REGISTER_FAILURE, REGISTER_S
 
 let initialState = {
   credentials: null,
-  loginStatus: null,
+  loginStatus: false,
   registerStatus:null,
 };
   
@@ -39,6 +39,7 @@ const UserReducer = (state = initialState, action) => {
       state = undefined;
       return {
         ...state,
+        loginStatus:false,
       }
     default:
       return state;

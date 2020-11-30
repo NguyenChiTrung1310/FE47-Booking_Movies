@@ -24,9 +24,9 @@ const LoginPage = () => {
   /* START ______GET DATA FROM REDUCER______ */
   
   // Get loginStatus from reducer using useSelector
-  const loginStatus = useSelector(state => {
-    return state.user.loginStatus;
-  });
+  const loginStatus = useSelector(state => state.user.loginStatus);
+
+  const linkScheduleID = useSelector(state => state.cinemaList.initialScheduleIDLink);
 
   /* END ________________________________________ */
 
@@ -74,12 +74,15 @@ const LoginPage = () => {
 
   useEffect(() => {
     if(loginStatus === true){
-      setTimeout(() => {
-        history.push(HOME_PAGE)
-      }, 2000);
-      
+      if(linkScheduleID){
+        history.push(linkScheduleID);
+      }else{
+        setTimeout(() => {
+          history.push(HOME_PAGE)
+        }, 2000);
+      }
     }
-  }, [loginStatus, history]);
+  }, [loginStatus, linkScheduleID, history]);
 
   const loading = () => {
     return (<LoadingCool />);

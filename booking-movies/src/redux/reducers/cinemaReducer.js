@@ -5,7 +5,8 @@ import {
   FETCH_THEATER_SCHEDULE, 
   MOVIE_SCHEDULE_DETAIL, 
   SCHEDULE_MOVIE, 
-  CLEAR_DETAIL_MOVIE 
+  CLEAR_DETAIL_MOVIE,
+  SCHEDULE_ID_LINK 
 } from '../../constants/constant'
 
 let initialState={
@@ -15,7 +16,8 @@ let initialState={
   initialListTheater: [],
   initialScheduleMovie: [],
   initialMovieScheduleByTheater: {},
-  initialCinemaSystem: []
+  initialCinemaSystem: [],
+  initialScheduleIDLink: ''
 } 
  
 const CinemaListReducer = (state = initialState, { type, payload }) => {
@@ -42,6 +44,9 @@ const CinemaListReducer = (state = initialState, { type, payload }) => {
     case CLEAR_DETAIL_MOVIE:
       state.initialMovieScheduleByTheater = {};
       return {...state};
+    case SCHEDULE_ID_LINK:
+      state.initialScheduleIDLink = payload;
+      return {...state}
     default:
       return state;
   }
