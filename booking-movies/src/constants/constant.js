@@ -3,7 +3,7 @@ const HOME_PAGE = '/';
 const LOGIN_PAGE = '/login';
 const REGISTER_PAGE = '/register';
 const CONTACT_PAGE = '/contact';
-const NEWS_PAGE = '/news';
+const CINEMA_PAGE = '/cinema';
 const PROFILE_PAGE = '/user-profile';
 const ADMIN_PAGE = '/admin';
 const MOVIE_SCHEDULE_PAGE = '/movie-schedule';
@@ -55,7 +55,7 @@ export {
   LOGIN_PAGE, 
   REGISTER_PAGE, 
   CONTACT_PAGE, 
-  NEWS_PAGE, 
+  CINEMA_PAGE, 
   PROFILE_PAGE, 
   ADMIN_PAGE, 
   MOVIE_SCHEDULE_PAGE, 

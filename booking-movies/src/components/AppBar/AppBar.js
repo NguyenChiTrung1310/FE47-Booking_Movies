@@ -10,7 +10,15 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
 import { clearStoreAction } from '../../redux/actions/userAction';
 import { inforUserAction } from '../../redux/actions/profileAction';
-import {ADMIN_PAGE, CONTACT_PAGE, HOME_PAGE, LOGIN_PAGE, NEWS_PAGE, PROFILE_PAGE, REGISTER_PAGE} from '../../constants/constant';
+import { 
+  ADMIN_PAGE, 
+  CONTACT_PAGE,
+  HOME_PAGE, 
+  LOGIN_PAGE, 
+  CINEMA_PAGE, 
+  PROFILE_PAGE, 
+  REGISTER_PAGE
+} from '../../constants/constant';
 
 import { toast } from 'react-toastify';
 import {useStyles, StyleButton, StyledMenuItem} from './useStyles';
@@ -82,7 +90,7 @@ const AppBar = () => {
               >Home</Link>
               <Link
                 className='link link-menu'
-                to={NEWS_PAGE}
+                to={CINEMA_PAGE}
               >Cinema</Link>
               <Link
                 className='link link-menu'

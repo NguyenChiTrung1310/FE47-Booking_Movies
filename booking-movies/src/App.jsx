@@ -24,7 +24,7 @@ import {
   LOGIN_PAGE, 
   REGISTER_PAGE, 
   HOME_PAGE, 
-  NEWS_PAGE, 
+  CINEMA_PAGE, 
   CONTACT_PAGE, 
   ADMIN_PAGE, 
   MOVIE_SCHEDULE_PAGE,
@@ -97,7 +97,7 @@ function App() {
         <Route
           component={CinemaPage}
           exact
-          path={NEWS_PAGE}
+          path={CINEMA_PAGE}
         />
         <Route
           component={ContactPage}
