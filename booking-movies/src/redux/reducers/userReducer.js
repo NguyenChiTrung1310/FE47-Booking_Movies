@@ -36,10 +36,13 @@ const UserReducer = (state = initialState, action) => {
         registerStatus: type  
       }
     case CLEAR_STORE:
-      state = undefined;
+      state = {
+        credentials: null,
+        loginStatus: false,
+        registerStatus:null,
+      };
       return {
         ...state,
-        loginStatus:false,
       }
     default:
       return state;

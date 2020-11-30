@@ -15,7 +15,8 @@ import {createAction} from '../../../redux/actions';
  
 const AlertDialog = ({tenRap, ngayChieuGioChieu, maLichChieu}) => {
   const [open, setOpen] = useState(false);
-  const loginStatus = useSelector(state => state.user.loginStatus);
+  const user = useSelector(state => state.user.credentials);
+
   const history = useHistory();
   const dispatch = useDispatch()
 
@@ -30,9 +31,8 @@ const AlertDialog = ({tenRap, ngayChieuGioChieu, maLichChieu}) => {
 
   const handleClickSignIn = () => {
     const link = `${TICKET_ROOM_PAGE}/${maLichChieu}`;
-    console.log(link);
 
-    if(loginStatus === false){
+    if(!user){
       history.push(`${LOGIN_PAGE}`);
       dispatch(createAction(SCHEDULE_ID_LINK, link))
 

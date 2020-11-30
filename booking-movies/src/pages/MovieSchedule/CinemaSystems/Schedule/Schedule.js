@@ -9,7 +9,7 @@ import { useHistory } from 'react-router-dom';
 import { TICKET_ROOM_PAGE } from '../../../../constants/constant';
 
 const Schedule = ({schedule}) => {
-  const loginStatus = useSelector(state => state.user.loginStatus);
+  const user = useSelector(state => state.user.credentials);
   const history = useHistory();
   
   return (
@@ -19,7 +19,7 @@ const Schedule = ({schedule}) => {
           const {tenRap, ngayChieuGioChieu, maLichChieu} = item;
 
           const handleClick = () => {
-            if(loginStatus === true){
+            if(user){
               history.push(`${TICKET_ROOM_PAGE}/${maLichChieu}`)
             }
           }
@@ -30,7 +30,7 @@ const Schedule = ({schedule}) => {
               key={index}
             >
               {
-                loginStatus ? (
+                user ? (
                   <Button onClick={handleClick}>
                     <Grid className='cinema-name'>
                       {tenRap}
