@@ -1,16 +1,25 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Grid } from '@material-ui/core'
 
 import './SeatList.scss'
 import { useDispatch } from 'react-redux';
 import { createAction } from '../../../redux/actions';
-import { TICKET_INFORMATION } from '../../../constants/constant';
+import { CLEAR_ORDER, TICKET_INFORMATION } from '../../../constants/constant';
 
 const SeatList = ({seatList}) => {
   const dispatch = useDispatch();
   const [number, setNumber] = useState(0);
   const [price, setPrice] = useState(0);
   const [orderedList, setOrderedList] = useState([]);
+
+
+  useEffect(() => {
+    setOrderedList([]);
+    setPrice(0);
+    setNumber(0);
+    dispatch(createAction(CLEAR_ORDER))
+    console.log('Clear 2 !!!')
+  }, [dispatch])
 
   const checkSelected = (tenGhe) => {
     let check = false;

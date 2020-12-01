@@ -4,13 +4,15 @@ import PropTypes from 'prop-types';
 import './Schedule.scss'
 import AlertDialog from '../../AlertDialog/AlertDialog';
 import { Button, Divider, Grid } from '@material-ui/core';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { TICKET_ROOM_PAGE } from '../../../../constants/constant';
+import { CLEAR_ORDER, TICKET_ROOM_PAGE } from '../../../../constants/constant';
+import { createAction } from '../../../../redux/actions';
 
 const Schedule = ({schedule}) => {
   const user = useSelector(state => state.user.credentials);
   const history = useHistory();
+  const dispatch = useDispatch();
   
   return (
     <Grid className='schedule'>
@@ -19,6 +21,7 @@ const Schedule = ({schedule}) => {
           const {tenRap, ngayChieuGioChieu, maLichChieu} = item;
 
           const handleClick = () => {
+            dispatch(createAction(CLEAR_ORDER))
             if(user){
               history.push(`${TICKET_ROOM_PAGE}/${maLichChieu}`)
             }

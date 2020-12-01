@@ -1,13 +1,18 @@
-import React from 'react'
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import LabelImportantIcon from '@material-ui/icons/LabelImportant';
 import { Grid, Typography } from '@material-ui/core'
+import { createAction } from '../../../redux/actions';
+import { CLEAR_ORDER } from '../../../constants/constant';
 
 const OrderForm = ({config}) => {
+  const dispatch = useDispatch()
 
   const ticketInformation = useSelector(state => state.ticketRoom.initialTicketInfo);
   const movieInformation = useSelector(state => state.ticketRoom.initialTicketMovie);
+
+  const bookingStatus = useSelector(state => state.ticketRoom.initialBooking.status);
 
   const {seats, price} = ticketInformation;
   const {movie, theater, address, screeningRoom, date, time} = movieInformation;
@@ -16,6 +21,11 @@ const OrderForm = ({config}) => {
   const orderData = JSON.parse(data);
   const {maLichChieu} = orderData;
 
+  useEffect(() => {
+    if(bookingStatus === 200) {
+      dispatch(createAction(CLEAR_ORDER))
+    }
+  }, [dispatch, bookingStatus])
 
   const renderSeats = () => {
     return seats.map((item, index)=>{
