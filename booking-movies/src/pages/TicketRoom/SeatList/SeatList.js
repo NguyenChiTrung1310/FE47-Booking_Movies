@@ -18,7 +18,6 @@ const SeatList = ({seatList}) => {
     setPrice(0);
     setNumber(0);
     dispatch(createAction(CLEAR_ORDER))
-    console.log('Clear 2 !!!')
   }, [dispatch])
 
   const checkSelected = (tenGhe) => {
