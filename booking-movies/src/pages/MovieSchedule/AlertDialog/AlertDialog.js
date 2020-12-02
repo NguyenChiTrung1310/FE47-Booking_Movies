@@ -1,13 +1,17 @@
-import React, { useState } from 'react';
-import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import { Divider, Grid } from '@material-ui/core';
-
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  Divider,
+  Grid
+} from '@material-ui/core';
+
 import { LOGIN_PAGE, SCHEDULE_ID_LINK, TICKET_ROOM_PAGE } from '../../../constants/constant';
 import PropTypes from 'prop-types';
 import {createAction} from '../../../redux/actions';

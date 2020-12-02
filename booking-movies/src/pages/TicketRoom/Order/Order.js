@@ -1,7 +1,7 @@
 import React from 'react'
+import { useSelector } from 'react-redux';
 import { Grid, Typography } from '@material-ui/core'
 import LabelImportantIcon from '@material-ui/icons/LabelImportant';
-import { useSelector } from 'react-redux';
 
 const OrderTicket = () => {
 

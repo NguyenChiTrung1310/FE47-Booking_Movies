@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import LabelImportantIcon from '@material-ui/icons/LabelImportant';
 import { Grid, Typography } from '@material-ui/core'
+
 import { createAction } from '../../../redux/actions';
 import { CLEAR_BOOKING_STATUS } from '../../../constants/constant';
 
@@ -179,7 +180,12 @@ const OrderForm = ({config}) => {
 }
 
 OrderForm.propTypes={
-  config: PropTypes.object
+  bookingStatus: PropTypes.number,
+  config: PropTypes.object,
+  movieInformation: PropTypes.object,
+  orderData: PropTypes.object,
+  seats: PropTypes.array,
+  ticketInformation: PropTypes.object,
 }
 
 export default OrderForm

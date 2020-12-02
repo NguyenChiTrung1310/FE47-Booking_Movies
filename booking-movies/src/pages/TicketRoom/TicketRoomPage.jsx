@@ -1,18 +1,18 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
-import { getTicketRoomsAction } from '../../redux/actions/bookingAction';
 import { CardMedia, Container, Grid, Typography } from '@material-ui/core';
-import LoadingCool from '../../components/Spinner_Cool/SpinnerCool';
-import { createAction } from '../../redux/actions';
-import { CLEAR_DETAIL_MOVIE, SEAT_LIST } from '../../constants/constant';
 import LabelImportantIcon from '@material-ui/icons/LabelImportant';
 
-import SeatList from './SeatList/SeatList';
 
-import './TicketRoomPage.scss'
 import OrderTicket from './Order/Order';
+import SeatList from './SeatList/SeatList';
+import { createAction } from '../../redux/actions';
+import { getTicketRoomsAction } from '../../redux/actions/bookingAction';
 import CheckoutBtn from './CheckoutBtn/CheckoutBtn';
+import LoadingCool from '../../components/Spinner_Cool/SpinnerCool';
+import { CLEAR_DETAIL_MOVIE, SEAT_LIST } from '../../constants/constant';
+import './TicketRoomPage.scss'
 
 
 const TicketRoomPage = (props) => {

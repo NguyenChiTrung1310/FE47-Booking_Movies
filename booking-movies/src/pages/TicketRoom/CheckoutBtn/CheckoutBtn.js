@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
+import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
-import { toast } from 'react-toastify';
 
 import { 
   Grid,
@@ -13,11 +13,10 @@ import {
 } from '@material-ui/core';
 
 import { BookingTicketAction } from '../../../redux/actions/bookingAction';
-
-import './CheckoutBtn.scss';
-import { useHistory } from 'react-router-dom';
 import { TICKET_MOVIE, TICKET_ORDER_PAGE } from '../../../constants/constant';
 import { createAction } from '../../../redux/actions';
+import { toast } from 'react-toastify';
+import './CheckoutBtn.scss';
 
 const CheckoutBtn = ({maLichChieu, movieInfo}) => {
   const [open, setOpen] = useState(false);

@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux';
 import { Grid } from '@material-ui/core'
 
-import './SeatList.scss'
-import { useDispatch } from 'react-redux';
 import { createAction } from '../../../redux/actions';
 import { CLEAR_ORDER, TICKET_INFORMATION } from '../../../constants/constant';
+
+import './SeatList.scss'
 
 const SeatList = ({seatList}) => {
   const dispatch = useDispatch();

@@ -1,13 +1,14 @@
 import React from 'react'
+import { useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import './Schedule.scss'
 import AlertDialog from '../../AlertDialog/AlertDialog';
 import { Button, Divider, Grid } from '@material-ui/core';
-import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
 import { CLEAR_BOOKING_STATUS, CLEAR_ORDER, TICKET_ROOM_PAGE } from '../../../../constants/constant';
 import { createAction } from '../../../../redux/actions';
+
+import './Schedule.scss'
 
 const Schedule = ({schedule}) => {
   const user = useSelector(state => state.user.credentials);
@@ -64,6 +65,7 @@ const Schedule = ({schedule}) => {
 
 Schedule.propTypes = {
   schedule: PropTypes.array,
+  user: PropTypes.object,
 };
     
 
