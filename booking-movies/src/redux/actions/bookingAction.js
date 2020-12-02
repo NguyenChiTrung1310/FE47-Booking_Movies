@@ -21,7 +21,8 @@ const bookingSucceeded = (bookingData) => {
   
   return {
     type: BOOKING_SUCCESS,
-    payload: order
+    payload: order,
+    bookStatus: status
   }
 }
 

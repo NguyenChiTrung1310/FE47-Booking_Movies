@@ -9,12 +9,12 @@ import OrderForm from './OrderFrom/OrderForm';
 const TicketOrderPage = () => {
   const ticketOrder = useSelector(state => state.ticketRoom.initialBooking);
 
-  const {data, config} = ticketOrder;
+  const {data, config, status} = ticketOrder;
 
   return (
     <Grid>
       {
-        config ? (
+        status ? (
           <Grid>
             <Typography>
               {data}

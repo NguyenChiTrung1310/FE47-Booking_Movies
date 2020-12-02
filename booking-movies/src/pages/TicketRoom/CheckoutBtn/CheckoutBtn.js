@@ -26,7 +26,7 @@ const CheckoutBtn = ({maLichChieu, movieInfo}) => {
 
   const orderInformation = useSelector(state => state.ticketRoom.initialTicketInfo);
   const account = useSelector(state => state.user.credentials);
-  const bookingStatus = useSelector(state => state.ticketRoom.initialBooking.status);
+  const bookingStatus = useSelector(state => state.ticketRoom.initialBookingStatus);
 
   const {price, tickets} = orderInformation;
   const {taiKhoan} = account;

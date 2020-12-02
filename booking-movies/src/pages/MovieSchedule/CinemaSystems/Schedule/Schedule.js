@@ -6,7 +6,7 @@ import AlertDialog from '../../AlertDialog/AlertDialog';
 import { Button, Divider, Grid } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { CLEAR_ORDER, TICKET_ROOM_PAGE } from '../../../../constants/constant';
+import { CLEAR_BOOKING_STATUS, CLEAR_ORDER, TICKET_ROOM_PAGE } from '../../../../constants/constant';
 import { createAction } from '../../../../redux/actions';
 
 const Schedule = ({schedule}) => {
@@ -22,6 +22,7 @@ const Schedule = ({schedule}) => {
 
           const handleClick = () => {
             dispatch(createAction(CLEAR_ORDER))
+            dispatch(createAction(CLEAR_BOOKING_STATUS))
             if(user){
               history.push(`${TICKET_ROOM_PAGE}/${maLichChieu}`)
             }
