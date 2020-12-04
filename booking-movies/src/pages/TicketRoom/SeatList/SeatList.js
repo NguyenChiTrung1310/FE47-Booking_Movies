@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { Grid } from '@material-ui/core'
 
 import { createAction } from '../../../redux/actions';
-import { CLEAR_ORDER, TICKET_INFORMATION } from '../../../constants/constant';
+import { TICKET_INFORMATION } from '../../../constants/constant';
 
 import './SeatList.scss'
 
@@ -12,14 +12,6 @@ const SeatList = ({seatList}) => {
   const [number, setNumber] = useState(0);
   const [price, setPrice] = useState(0);
   const [orderedList, setOrderedList] = useState([]);
-
-
-  // useEffect(() => {
-  //   setOrderedList([]);
-  //   setPrice(0);
-  //   setNumber(0);
-  //   dispatch(createAction(CLEAR_ORDER))
-  // }, [dispatch])
 
   const checkSelected = (tenGhe) => {
     let check = false;

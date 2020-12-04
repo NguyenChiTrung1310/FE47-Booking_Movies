@@ -1,7 +1,7 @@
 import { CardMedia, Container, Grid, Typography } from '@material-ui/core';
 import React from 'react'
 import LoadingCool from '../../components/Spinner_Cool/SpinnerCool';
-import { LOCAL_STORAGE_ORDER_CART_KEY, LOCAL_STORAGE_ORDER_CART_MOVIE_INFO_KEY , LOCAL_STORAGE_ORDER_CART_TICKET_INFO_KEY } from '../../constants/constant';
+import { LOCAL_STORAGE_ORDER_CART_KEY, LOCAL_STORAGE_ORDER_CART_MOVIE_INFO_KEY } from '../../constants/constant';
 import { getDataFromLocalStorage } from '../../utils/LocalStorage/LocalStorage';
 import './OrderCart.scss';
 
@@ -10,14 +10,11 @@ import TicketImage from '../../assets/images/gold-ticket.png';
 const OrderCartPage = () => {
   const orderCartStr = getDataFromLocalStorage(LOCAL_STORAGE_ORDER_CART_KEY)
   const orderCartMovieInfo = getDataFromLocalStorage(LOCAL_STORAGE_ORDER_CART_MOVIE_INFO_KEY)
-  // const orderCartTicketInfo = getDataFromLocalStorage(LOCAL_STORAGE_ORDER_CART_TICKET_INFO_KEY)
 
   const orderCart = JSON.parse(orderCartStr);
-  // const ticketInformation = JSON.parse(orderCartTicketInfo);
   const movieInformation = JSON.parse(orderCartMovieInfo);
 
   const {maLichChieu} = orderCart;
-  // const {price} = ticketInformation;
   const {movie, theater, address, screeningRoom, date, time} = movieInformation;
   return (
     <Container>

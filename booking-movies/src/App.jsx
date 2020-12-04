@@ -79,7 +79,6 @@ function App() {
     const bookingStatus = getDataFromLocalStorage(LOCAL_STORAGE_BOOKING_STATUS_KEY)
     const orderCartMovieInfoStr = getDataFromLocalStorage(LOCAL_STORAGE_ORDER_CART_MOVIE_INFO_KEY)
     if(orderCartMovieInfoStr){
-      // console.log('app: ', JSON.parse(orderCartStr))
       dispatch(createAction(BOOKING_SUCCESS, JSON.parse(orderCartStr)))
       dispatch(createAction(BOOKING_STATUS, JSON.parse(bookingStatus)))
       dispatch(createAction(TICKET_MOVIE, JSON.parse(orderCartMovieInfoStr)))

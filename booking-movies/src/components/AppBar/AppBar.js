@@ -134,7 +134,6 @@ const AppBar = () => {
                     <StyledMenuItem onClick={handleClose}>
                       <Link
                         className='user link-user hover-link'
-                        // onClick={handleProfileClick}
                         to={PROFILE_PAGE}
                       >{ userProfile ?
                           userProfile.hoTen
@@ -146,7 +145,6 @@ const AppBar = () => {
                         <StyledMenuItem onClick={handleClose}>
                           <Link
                             className='user link-user hover-link'
-                            // onClick={handleProfileClick}
                             to={ORDER_CART_PAGE}
                           >Your order</Link>
                         </StyledMenuItem>
