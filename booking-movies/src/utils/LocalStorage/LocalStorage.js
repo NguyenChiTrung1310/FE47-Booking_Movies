@@ -4,7 +4,8 @@ import {
   LOCAL_STORAGE_TOKEN_KEY,
   LOCAL_STORAGE_ORDER_CART_KEY,
   LOCAL_STORAGE_ORDER_CART_MOVIE_INFO_KEY, 
-  LOCAL_STORAGE_ORDER_CART_TICKET_INFO_KEY
+  LOCAL_STORAGE_ORDER_CART_TICKET_INFO_KEY,
+  LOCAL_STORAGE_BOOKING_STATUS_KEY
 } from '../../constants/constant';
 
 
@@ -27,8 +28,9 @@ export const storeProfile = (data) => {
 
 /* ========= ORDER CART ========= */
 // set 
-export const storeOrderCart = (data) => {
+export const storeOrderCart = (data, status) => {
   localStorage.setItem(LOCAL_STORAGE_ORDER_CART_KEY, data);
+  localStorage.setItem(LOCAL_STORAGE_BOOKING_STATUS_KEY, status);
 }
 export const storeOrderCart_MovieInfo = (data) => {
   localStorage.setItem(LOCAL_STORAGE_ORDER_CART_MOVIE_INFO_KEY, data);

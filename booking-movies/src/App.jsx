@@ -42,6 +42,8 @@ import {
   LOCAL_STORAGE_ORDER_CART_MOVIE_INFO_KEY,
   BOOKING_SUCCESS,
   TICKET_MOVIE,
+  LOCAL_STORAGE_BOOKING_STATUS_KEY,
+  BOOKING_STATUS,
 } from './constants/constant';
 import { Grid } from '@material-ui/core';
 import AppBar from './components/AppBar/AppBar';
@@ -74,10 +76,12 @@ function App() {
 
   const getOrderCartFromLocal = () => {
     const orderCartStr = getDataFromLocalStorage(LOCAL_STORAGE_ORDER_CART_KEY)
+    const bookingStatus = getDataFromLocalStorage(LOCAL_STORAGE_BOOKING_STATUS_KEY)
     const orderCartMovieInfoStr = getDataFromLocalStorage(LOCAL_STORAGE_ORDER_CART_MOVIE_INFO_KEY)
-    if(orderCartStr && orderCartMovieInfoStr){
-      console.log('app: ', JSON.parse(orderCartStr))
+    if(orderCartMovieInfoStr){
+      // console.log('app: ', JSON.parse(orderCartStr))
       dispatch(createAction(BOOKING_SUCCESS, JSON.parse(orderCartStr)))
+      dispatch(createAction(BOOKING_STATUS, JSON.parse(bookingStatus)))
       dispatch(createAction(TICKET_MOVIE, JSON.parse(orderCartMovieInfoStr)))
     }
   } 

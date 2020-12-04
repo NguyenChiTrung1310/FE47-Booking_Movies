@@ -14,12 +14,12 @@ const SeatList = ({seatList}) => {
   const [orderedList, setOrderedList] = useState([]);
 
 
-  useEffect(() => {
-    setOrderedList([]);
-    setPrice(0);
-    setNumber(0);
-    dispatch(createAction(CLEAR_ORDER))
-  }, [dispatch])
+  // useEffect(() => {
+  //   setOrderedList([]);
+  //   setPrice(0);
+  //   setNumber(0);
+  //   dispatch(createAction(CLEAR_ORDER))
+  // }, [dispatch])
 
   const checkSelected = (tenGhe) => {
     let check = false;

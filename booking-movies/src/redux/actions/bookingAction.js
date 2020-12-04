@@ -35,9 +35,9 @@ export const BookingTicketAction = (
   return (dispatch) => {
     BookingTicketService(booking)
       .then(res => {
-        const {config} = res;
+        const {config, status} = res;
         dispatch(bookingSucceeded(res));
-        storeOrderCart(config.data);
+        storeOrderCart(config.data, status);
         notify_success();
       })
       .catch(err => {

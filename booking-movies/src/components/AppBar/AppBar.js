@@ -17,12 +17,15 @@ import {
   LOGIN_PAGE, 
   CINEMA_PAGE, 
   PROFILE_PAGE, 
-  REGISTER_PAGE
+  REGISTER_PAGE,
+  ORDER_CART_PAGE,
+  LOCAL_STORAGE_BOOKING_STATUS_KEY
 } from '../../constants/constant';
 
 import { toast } from 'react-toastify';
 import {useStyles, StyleButton, StyledMenuItem} from './useStyles';
 import './AppBar.scss';
+import { getDataFromLocalStorage } from '../../utils/LocalStorage/LocalStorage';
 
 const AppBar = () => {
   const classes = useStyles();
@@ -33,6 +36,9 @@ const AppBar = () => {
   const userCredentials = useSelector(state => state.user.credentials);
   const userProfile = useSelector(state=> state.profile.initialProfile)
   const loginStatus = useSelector(state => state.user.loginStatus);
+  const getBookingStatus = getDataFromLocalStorage(LOCAL_STORAGE_BOOKING_STATUS_KEY) 
+
+  const bookingStatus = JSON.parse(getBookingStatus);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -135,6 +141,17 @@ const AppBar = () => {
                           : userCredentials.hoTen
                         }</Link>
                     </StyledMenuItem>
+                    {
+                      bookingStatus === 200 ? (
+                        <StyledMenuItem onClick={handleClose}>
+                          <Link
+                            className='user link-user hover-link'
+                            // onClick={handleProfileClick}
+                            to={ORDER_CART_PAGE}
+                          >Your order</Link>
+                        </StyledMenuItem>
+                      ) : null
+                    }
                     {
                       userCredentials.maLoaiNguoiDung === 'KhachHang' 
                         ? null
