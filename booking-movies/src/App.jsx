@@ -17,7 +17,8 @@ import {
   MovieDetailPage,
   MovieSchedulePage, 
   TicketRoomPage, 
-  TicketOrderPage
+  TicketOrderPage,
+  OrderCartPage
 } from './pages';
 
 import {
@@ -28,6 +29,7 @@ import {
   CONTACT_PAGE, 
   ADMIN_PAGE, 
   MOVIE_SCHEDULE_PAGE,
+  ORDER_CART_PAGE,
   LOGIN_SUCCESS, 
   LOCAL_STORAGE_CREDENTIALS_KEY, 
   PROFILE_PAGE, 
@@ -35,7 +37,11 @@ import {
   LOCAL_STORAGE_PROFILE_KEY, 
   TICKET_ROOM_PAGE,
   MOVIE_DETAIL_PAGE,
-  TICKET_ORDER_PAGE
+  TICKET_ORDER_PAGE,
+  LOCAL_STORAGE_ORDER_CART_KEY,
+  LOCAL_STORAGE_ORDER_CART_MOVIE_INFO_KEY,
+  BOOKING_SUCCESS,
+  TICKET_MOVIE,
 } from './constants/constant';
 import { Grid } from '@material-ui/core';
 import AppBar from './components/AppBar/AppBar';
@@ -66,12 +72,26 @@ function App() {
     }
   }
 
+  const getOrderCartFromLocal = () => {
+    const orderCartStr = getDataFromLocalStorage(LOCAL_STORAGE_ORDER_CART_KEY)
+    const orderCartMovieInfoStr = getDataFromLocalStorage(LOCAL_STORAGE_ORDER_CART_MOVIE_INFO_KEY)
+    if(orderCartStr && orderCartMovieInfoStr){
+      console.log('app: ', JSON.parse(orderCartStr))
+      dispatch(createAction(BOOKING_SUCCESS, JSON.parse(orderCartStr)))
+      dispatch(createAction(TICKET_MOVIE, JSON.parse(orderCartMovieInfoStr)))
+    }
+  } 
+
   useEffect(() => {
     getCredentialsFromLocal()
   });
 
   useEffect(() => {
     getProfileFromLocal()
+  });
+
+  useEffect(() => {
+    getOrderCartFromLocal()
   });
 
   return (
@@ -133,6 +153,11 @@ function App() {
           component={MovieDetailPage}
           exact
           path={`${MOVIE_DETAIL_PAGE}/:maPhimId`}
+        />
+        <Route 
+          component={OrderCartPage}
+          exact
+          path={ORDER_CART_PAGE}
         />
         <Route
           component={ErrorPage}

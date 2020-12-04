@@ -10,6 +10,7 @@ import MovieDetailPage from './MovieDetail/MovieDetailPage';
 import MovieSchedulePage from './MovieSchedule/MovieSchedule';
 import TicketOrderPage from './TicketOrder/TicketOrderPage';
 import TicketRoomPage from './TicketRoom/TicketRoomPage';
+import OrderCartPage from './OrderCart/OrderCart';
 
 export {
   LoginPage,
@@ -23,5 +24,6 @@ export {
   MovieDetailPage,
   TicketOrderPage,
   TicketRoomPage,
-  MovieSchedulePage
+  MovieSchedulePage,
+  OrderCartPage
 } 
