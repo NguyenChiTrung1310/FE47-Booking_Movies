@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import Carousel from 'react-material-ui-carousel';
@@ -18,7 +18,10 @@ const Banner = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchMovieList());
+    const interval = setInterval(() => {
+      dispatch(fetchMovieList());
+    }, 5000);
+    return () => clearInterval(interval);
   }, [dispatch]);
 
   const movieList = useSelector((state) => {
