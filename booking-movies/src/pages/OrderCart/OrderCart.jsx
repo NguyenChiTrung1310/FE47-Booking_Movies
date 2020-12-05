@@ -1,19 +1,19 @@
 import { CardMedia, Container, Grid, Typography } from '@material-ui/core';
 import React from 'react'
 import LoadingCool from '../../components/Spinner_Cool/SpinnerCool';
-import { LOCAL_STORAGE_ORDER_CART_KEY, LOCAL_STORAGE_ORDER_CART_MOVIE_INFO_KEY } from '../../constants/constant';
+import { LOCAL_STORAGE_ORDER_CART_KEY, LOCAL_STORAGE_ORDER_CART_MOVIE_INFO_KEY, LOCAL_STORAGE_PROFILE_KEY } from '../../constants/constant';
 import { getDataFromLocalStorage } from '../../utils/LocalStorage/LocalStorage';
 import './OrderCart.scss';
 
 import TicketImage from '../../assets/images/gold-ticket.png';
-import { useSelector } from 'react-redux';
 
 const OrderCartPage = () => {
   const orderCartStr = getDataFromLocalStorage(LOCAL_STORAGE_ORDER_CART_KEY)
   const orderCartMovieInfo = getDataFromLocalStorage(LOCAL_STORAGE_ORDER_CART_MOVIE_INFO_KEY)
-  const user = useSelector(state => state.profile.initialProfile);
+  const userStr = getDataFromLocalStorage(LOCAL_STORAGE_PROFILE_KEY)
 
   const orderCart = JSON.parse(orderCartStr);
+  const user = JSON.parse(userStr);
   const movieInformation = JSON.parse(orderCartMovieInfo);
 
   const {maLichChieu} = orderCart;
