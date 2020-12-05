@@ -41,7 +41,7 @@ const ProfilePage = () => {
         thongTinDatVe: []
       });
     }
-  }, [setFields, userProfile])
+  }, [setFields, userProfile, userCredentials])
 
   const handleChange = (e) => {
     setFields({
