@@ -3,10 +3,15 @@ import { Link, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { AppBar as App, Button, IconButton, Menu, Toolbar, Typography } from '@material-ui/core';
+import { AppBar as App, Button, CardMedia, Grid, IconButton, Menu, Toolbar, Typography } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-
+import PersonIcon from '@material-ui/icons/Person';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import AdminIcon from '../../assets/images/admin.svg';
+import RegisterIcon from '../../assets/images/register.svg';
+import LoginIcon from '../../assets/images/login.svg';
 
 import { clearStoreAction } from '../../redux/actions/userAction';
 import { inforUserAction } from '../../redux/actions/profileAction';
@@ -34,7 +39,6 @@ const AppBar = () => {
 
   const [anchorEl, setAnchorEl] = useState(null);
   const userCredentials = useSelector(state => state.user.credentials);
-  const userProfile = useSelector(state=> state.profile.initialProfile)
   const loginStatus = useSelector(state => state.user.loginStatus);
   const getBookingStatus = getDataFromLocalStorage(LOCAL_STORAGE_BOOKING_STATUS_KEY) 
 
@@ -69,6 +73,13 @@ const AppBar = () => {
       dispatch(inforUserAction(userCredentials));
     }
   }, [userCredentials, dispatch, loginStatus]);
+
+  const accountName = (name) => {
+    if(name.length > 4){
+      return `${name.slice(0, 4)}...`;
+    }
+    return;
+  }
 
   return (
     <div>
@@ -125,20 +136,20 @@ const AppBar = () => {
                 userCredentials
                   ? (<div>
                     <StyledMenuItem onClick={handleClose}>
-                      <StyleButton
-                        className='user logout link-user hover-btn'
-                        onClick={handleLogOutBtnClick}
-                      >Logout</StyleButton>
-                    </StyledMenuItem>
-
-                    <StyledMenuItem onClick={handleClose}>
                       <Link
                         className='user link-user hover-link'
                         to={PROFILE_PAGE}
-                      >{ userProfile ?
-                          userProfile.hoTen
-                          : userCredentials.hoTen
-                        }</Link>
+                      >
+                        <Grid className='menu-item'>
+                          <PersonIcon className='icon-item'/>
+                          <Typography
+                            className='text-item'
+                            component={'span'}
+                          >
+                              Hi,  {accountName(userCredentials.taiKhoan)}
+                          </Typography>
+                        </Grid>
+                      </Link>
                     </StyledMenuItem>
                     {
                       bookingStatus === 200 ? (
@@ -146,7 +157,17 @@ const AppBar = () => {
                           <Link
                             className='user link-user hover-link'
                             to={ORDER_CART_PAGE}
-                          >Your order</Link>
+                          >
+                            <Grid className='menu-item'>
+                              <ShoppingCartIcon className='icon-item'/>
+                              <Typography
+                                className='text-item'
+                                component={'span'}
+                              >
+                            Your order
+                              </Typography>
+                            </Grid>
+                          </Link>
                         </StyledMenuItem>
                       ) : null
                     }
@@ -159,24 +180,88 @@ const AppBar = () => {
                               className='user link-user hover-link'
                               onClick={handleProfileClick}
                               to={ADMIN_PAGE}
-                            >Admin</Link>
+                            >
+                              <Grid className='menu-item'>
+                                <Grid className='icon-item admin-item'>
+                                  <CardMedia 
+                                    alt='admin'
+                                    className='admin-icon'
+                                    image={AdminIcon}
+                                  />
+                                </Grid>
+                                <Typography
+                                  className='text-item'
+                                  component={'span'}
+                                >
+                                  Admin
+                                </Typography>
+                              </Grid>
+                            </Link>
                           </StyledMenuItem>
                         )
                     }
+                    <StyledMenuItem onClick={handleClose}>
+                      <StyleButton
+                        className='logout hover-btn'
+                        onClick={handleLogOutBtnClick}
+                      >
+                        <Grid className='menu-item'>
+                          <ExitToAppIcon className='icon-item'/>
+                          <Typography
+                            className='text-item logout-item'
+                            component={'span'}
+                          >
+                            Logout
+                          </Typography>
+                        </Grid>
+                      </StyleButton>
+                    </StyledMenuItem>
                   </div>
                   ) 
                   : (<div>
                     <StyledMenuItem onClick={handleClose}>
                       <Link
-                        className='link link-user hover-link'
+                        className='link hover-link auth'
                         to={LOGIN_PAGE}
-                      >Login</Link></StyledMenuItem>
+                      >
+                        <Grid className='menu-item'>
+                          <Grid className='icon-item admin-item'>
+                            <CardMedia 
+                              alt='admin'
+                              className='admin-icon'
+                              image={LoginIcon}
+                            />
+                          </Grid>
+                          <Typography
+                            className='text-item'
+                            component={'span'}
+                          >
+                            Login
+                          </Typography>
+                        </Grid>
+                      </Link></StyledMenuItem>
 
                     <StyledMenuItem onClick={handleClose}>
                       <Link
-                        className='link link-user hover-link'
+                        className='link hover-link auth'
                         to={REGISTER_PAGE}
-                      >Register</Link></StyledMenuItem>
+                      >
+                        <Grid className='menu-item'>
+                          <Grid className='icon-item admin-item'>
+                            <CardMedia 
+                              alt='admin'
+                              className='admin-icon'
+                              image={RegisterIcon}
+                            />
+                          </Grid>
+                          <Typography
+                            className='text-item'
+                            component={'span'}
+                          >
+                            Register
+                          </Typography>
+                        </Grid>
+                      </Link></StyledMenuItem>
                   </div>
                   )
               }

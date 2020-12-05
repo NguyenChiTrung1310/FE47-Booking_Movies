@@ -14,12 +14,16 @@ import {
   Button,
   Menu,
   Tab,
+  Grid,
 } from '@material-ui/core';
 import { useTheme } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import HomeIcon from '@material-ui/icons/Home';
+import PersonIcon from '@material-ui/icons/Person';
 
 
 import {TabItem} from '../../TabPanel/TabItem/TabItem';
@@ -147,14 +151,49 @@ const AdminBar = () => {
                     <StyledMenuItem onClick={handleClose}>
                       <Link
                         className='user link-user hover-link'
+                        to={HOME_PAGE}
+                      >
+                        <Grid className='menu-item'>
+                          <HomeIcon className='icon-item'/>
+                          <Typography
+                            className='text-item'
+                            component={'span'}
+                          >
+                            Home
+                          </Typography>
+                        </Grid>
+                      </Link></StyledMenuItem>
+                    <StyledMenuItem onClick={handleClose}>
+                      <Link
+                        className='user link-user hover-link'
                         to={PROFILE_PAGE}
-                      >Update Info</Link></StyledMenuItem>
+                      >
+                        <Grid className='menu-item'>
+                          <PersonIcon className='icon-item'/>
+                          <Typography
+                            className='text-item'
+                            component={'span'}
+                          >
+                            Profile
+                          </Typography>
+                        </Grid>
+                      </Link></StyledMenuItem>
     
                     <StyledMenuItem onClick={handleClose}>
                       <StyleButton
                         className='user logout link-user hover-btn'
                         onClick={handleLogOutBtnClick}
-                      >Logout</StyleButton>  
+                      >
+                        <Grid className='menu-item'>
+                          <ExitToAppIcon className='icon-item'/>
+                          <Typography
+                            className='text-item logout-item'
+                            component={'span'}
+                          >
+                            Logout
+                          </Typography>
+                        </Grid>
+                      </StyleButton>  
                     </StyledMenuItem>
                   </Menu>
                 </div>
