@@ -29,7 +29,7 @@ const ProfilePage = () => {
   });
 
   useEffect(() => {
-    if(userCredentials){
+    if(userProfile){
       setFields({
         taiKhoan: userProfile.taiKhoan,
         matKhau: userProfile.matKhau,
@@ -41,7 +41,7 @@ const ProfilePage = () => {
         thongTinDatVe: []
       });
     }
-  }, [setFields, userProfile, userCredentials])
+  }, [setFields, userProfile])
 
   const handleChange = (e) => {
     setFields({
