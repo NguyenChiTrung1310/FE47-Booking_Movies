@@ -6,10 +6,12 @@ import { getDataFromLocalStorage } from '../../utils/LocalStorage/LocalStorage';
 import './OrderCart.scss';
 
 import TicketImage from '../../assets/images/gold-ticket.png';
+import { useSelector } from 'react-redux';
 
 const OrderCartPage = () => {
   const orderCartStr = getDataFromLocalStorage(LOCAL_STORAGE_ORDER_CART_KEY)
   const orderCartMovieInfo = getDataFromLocalStorage(LOCAL_STORAGE_ORDER_CART_MOVIE_INFO_KEY)
+  const user = useSelector(state => state.profile.initialProfile);
 
   const orderCart = JSON.parse(orderCartStr);
   const movieInformation = JSON.parse(orderCartMovieInfo);
@@ -35,6 +37,22 @@ const OrderCartPage = () => {
                   >
                 Your Order
                   </Typography>               
+                </Grid>
+                <Grid>                 
+                  <Typography 
+                    className='ticket-item'
+                    component={'h5'}
+                    variant='h5'
+                  >
+                      Schedule ID:  
+                    <Typography 
+                      className='item'
+                      component={'span'}
+                      variant='h6'
+                    >
+                      {user.hoTen}
+                    </Typography>
+                  </Typography>         
                 </Grid>
                 <Grid>                 
                   <Typography 
