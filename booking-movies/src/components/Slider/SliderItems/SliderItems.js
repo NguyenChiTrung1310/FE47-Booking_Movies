@@ -40,21 +40,22 @@ const SliderItems=({item})=>{
           </Typography>
           <Grid style={{textAlign: 'center', width: '80%', margin: 'auto'}}>
             <Typography
-              className='card-text'
+              className='card-text days'
               component='h5'
               variant='h5'
             >
              Date: 
               <Typography
+                className='days'
                 component='span'
-                style={{paddingLeft: '8px', color: '#03a9f4'}}
+                style={{paddingLeft: '8px' }}
                 variant='p'
               >
                 {ngayKhoiChieu}
               </Typography>
             </Typography>
             <Typography
-              className='card-text'
+              className='card-text rating'
               component='h5'
               variant='h5'
             >

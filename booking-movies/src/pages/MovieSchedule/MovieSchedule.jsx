@@ -72,7 +72,7 @@ const MovieSchedulePage = (props) => {
                     <Grid>                 
                       <Typography 
                         component={'h1'}
-                        style={{fontWeight: '400', color: '#03a9f4'}}
+                        style={{fontWeight: '400'}}
                         variant='h2'
                       >
                         {tenPhim}

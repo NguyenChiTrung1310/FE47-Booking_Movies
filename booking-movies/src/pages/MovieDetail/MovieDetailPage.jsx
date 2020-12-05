@@ -5,12 +5,8 @@ import { fetchMovieDetail } from '../../redux/actions/movieListAction';
 import LoadingCool from '../../components/Spinner_Cool/SpinnerCool';
 import { CLEAR_DETAIL_MOVIE } from '../../constants/constant';
 import { createAction } from '../../redux/actions'; 
-import ModalPopup from './Modal/Modal.js';
-
-// import _ from 'lodash';
+import ModalPopup from './Modal/Modal.js'; 
 import PropTypes from 'prop-types';
-
-
 import './MovieDetail.scss'
 import CustomScheduleMovie from '../../components/DetailMovie/CustomScheduleMovie/CustomScheduleMovie';
 import { useStyles } from './Modal/useStyles';
@@ -42,23 +38,7 @@ const MovieDetailPage = (props) => {
       lichChieu,
       trailer,
     } = movieList;
-    // console.log('ARRAY LICH CHIEU', lichChieu); 
-    // const arrr = lichChieu.reduce((acc, lichChieu) => {
-  
-
-    //   const found = acc.find(i => i.maRap === lichChieu.maRap);
-      
-     
-    //   if (found) {
-    //     found.ngayChieuGioChieu.push(lichChieu.ngayChieuGioChieu);
-    //   } else {
-    //     acc.push({maRap: lichChieu.maRap, ngayChieuGioChieu: [lichChieu.ngayChieuGioChieu]}) 
-    //   }
-       
-    //   return acc;  
-    // }, []);
-    // console.log('XXXX',arrr);
-    // Declare a new array 
+ 
     let newArray = []; 
     // Declare an empty object 
     let uniqueObject = {};
@@ -77,33 +57,12 @@ const MovieDetailPage = (props) => {
     for (let i in uniqueObject) { 
       newArray.push(uniqueObject[i]); 
     } 
-      
-    // Display the unique objects 
-    // console.log(newArray);   
-    
+ 
     const yo=[];
     for( let i in newArray){
       // console.log(newArray[i]);
       yo.push(newArray[i].thongTinRap);
     }
-    // console.log('QQQ',yo);
-
-    // const arr = yo.reduce((acc, yo) => {
-  
-
-    //   const found = acc.find(i => i.tenCumRap === yo.tenCumRap);
-      
-    //   if(found) {
- 
-    //     found.tenRap.push(yo.tenRap);
-    //   } else {
-    //     acc.push({tenCumRap: yo.tenCumRap, tenRap: [yo.tenRap]}) 
-    //   }
-       
-    //   return acc;  
-    // }, []);
-    // console.log('RESULT',arr);
-
     return (
       <Container className='main'>
         <Grid
@@ -117,8 +76,7 @@ const MovieDetailPage = (props) => {
           >
             <Grid
               container
-            >
-
+            > 
               <Grid
                 item
                 sm={6}
@@ -144,14 +102,11 @@ const MovieDetailPage = (props) => {
                 >
                   {maPhim}
                 </Typography>
-              </Grid>
-
-
+              </Grid> 
               <img
-                alt='imagee'
+                alt='hinhAnh'
                 className='image'
-                src={hinhAnh}
-
+                src={hinhAnh} 
               />
             </Grid>
           </Grid>
@@ -194,36 +149,18 @@ const MovieDetailPage = (props) => {
               container
             > 
               <ModalPopup trailer={trailer}/>
-              <Grid
-                className='button'
-                item
-                sm={3}
-                xs={12}
-              > 
-                <Button
-                  className={classes.trailerbtn}
-                >  
-                  <Typography
-                    component='h6'
-                    variant='h6'
-                  >
-                     Ticket
-                  </Typography></Button>
-              </Grid>
+              
             </Grid>
           </Grid>
-        </Grid>
-        {/* <ScheduleMovie schedule={lichChieu} /> */}
+        </Grid> 
         <CustomScheduleMovie
           arrayData={newArray}
           className='schedule-movie' 
-        />
-        {/* <CustomScheduleMovie arrayData={arr} /> */}
+        /> 
       </Container>
 
     )
-  }
-
+  } 
 
   return (
     <div>
@@ -238,7 +175,5 @@ MovieDetailPage.propTypes={
   match: PropTypes.object,
   params: PropTypes.object,
 }
-
-
 export default MovieDetailPage;
 

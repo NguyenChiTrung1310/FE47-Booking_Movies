@@ -11,7 +11,7 @@ import {
 } from '@material-ui/core'
 import PropTypes from 'prop-types';
 import { useStyles } from './useStyles'; 
- 
+import './Modal.scss'
 
 const ModalPopup = ({trailer}) => {
   const classes= useStyles();
@@ -25,9 +25,9 @@ const ModalPopup = ({trailer}) => {
     setOpen(false);
   }
   return (
-    <Grid>
+    <Grid style={{paddingTop:'50px'}}>
       <Button 
-        className={classes.trailerbtn}
+        className='style detail-btn'
         onClick={handleOpen}
         type='button'
       > 
