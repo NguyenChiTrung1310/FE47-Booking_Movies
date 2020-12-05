@@ -29,7 +29,7 @@ const ProfilePage = () => {
   });
 
   useEffect(() => {
-    if(userCredentials){
+    if(userProfile){
       setFields({
         taiKhoan: userProfile.taiKhoan,
         matKhau: userProfile.matKhau,

@@ -1,6 +1,7 @@
 import { createAction } from '.';
 import { BookingTicketService, GetTicketRoomService } from '../../services';
 import {FETCH_TICKET_ROOM, BOOKING_SUCCESS} from '../../constants/constant';
+import { storeOrderCart } from '../../utils/LocalStorage/LocalStorage';
 
 export const getTicketRoomsAction = (id) => {
   return (dispatch) => {
@@ -34,7 +35,9 @@ export const BookingTicketAction = (
   return (dispatch) => {
     BookingTicketService(booking)
       .then(res => {
+        const {config, status} = res;
         dispatch(bookingSucceeded(res));
+        storeOrderCart(config.data, status);
         notify_success();
       })
       .catch(err => {

@@ -6,9 +6,10 @@ import { Grid, Typography } from '@material-ui/core'
 
 import { createAction } from '../../../redux/actions';
 import { CLEAR_BOOKING_STATUS } from '../../../constants/constant';
+import {storeOrderCart_MovieInfo, storeOrderCart_TicketInfo } from '../../../utils/LocalStorage/LocalStorage';
 
 const OrderForm = ({config}) => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const ticketInformation = useSelector(state => state.ticketRoom.initialTicketInfo);
   const movieInformation = useSelector(state => state.ticketRoom.initialTicketMovie);
@@ -16,6 +17,13 @@ const OrderForm = ({config}) => {
 
   const {seats, price} = ticketInformation;
   const {movie, theater, address, screeningRoom, date, time} = movieInformation;
+
+  useEffect(() => {
+    if(movieInformation){
+      storeOrderCart_MovieInfo(JSON.stringify(movieInformation));
+      storeOrderCart_TicketInfo(JSON.stringify(ticketInformation));
+    }
+  })
 
   const {data} = config;
   const orderData = JSON.parse(data);

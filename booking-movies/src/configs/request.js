@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { getTokenFromLocalStorage } from '../utils/LocalStorage/LocalStorage';
 
-export const request = (url = '', method = '', data = {}) => {
+export async function request (url = '', method = '', data = {}) {
   const config = {};
 
   const token = getTokenFromLocalStorage();
@@ -13,7 +13,7 @@ export const request = (url = '', method = '', data = {}) => {
     }
   }
 
-  return axios({
+  return await axios({
     url: url,
     method: method,
     data: data,

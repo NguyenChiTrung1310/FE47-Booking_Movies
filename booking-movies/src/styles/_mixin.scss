@@ -63,3 +63,35 @@
     margin: $margin;
     border-radius: $borderRadius;
 }
+
+@mixin menu-style{
+    width: 200px!important;
+    margin: auto;
+
+    text-decoration: none;
+    color: $white !important;
+    font-size: 20px!important;
+
+    position: relative;
+
+    .menu-item{
+        display: flex;
+        justify-content: center !important;
+        align-items: center !important;
+        
+        width: 140px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+  
+        .text-item{
+          font-size: 20px !important;
+          width: 70%;
+        }
+  
+        .icon-item{
+          width: 30%;
+        }
+      }
+}
