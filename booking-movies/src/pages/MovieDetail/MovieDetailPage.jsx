@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Container, Typography, Grid, Button } from '@material-ui/core';
+import { Container, Typography, Grid } from '@material-ui/core';
 import { fetchMovieDetail } from '../../redux/actions/movieListAction';
 import LoadingCool from '../../components/Spinner_Cool/SpinnerCool';
 import { CLEAR_DETAIL_MOVIE } from '../../constants/constant';
@@ -9,10 +9,9 @@ import ModalPopup from './Modal/Modal.js';
 import PropTypes from 'prop-types';
 import './MovieDetail.scss'
 import CustomScheduleMovie from '../../components/DetailMovie/CustomScheduleMovie/CustomScheduleMovie';
-import { useStyles } from './Modal/useStyles';
+
 const MovieDetailPage = (props) => {
   const dispatch = useDispatch();
-  const classes= useStyles();
   useEffect(() => {
     dispatch(fetchMovieDetail(props.match.params.maPhimId));
     return () => {

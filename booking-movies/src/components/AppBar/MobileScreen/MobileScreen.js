@@ -31,7 +31,7 @@ const MobileScreen = ({drawerOpen, setState}) => {
         onClick= {handleDrawerOpen} 
       >
         {
-          matches ? <MenuIcon /> : (
+          matches ? <MenuIcon style={{fontSize: '36px'}}/> : (
             <span className={classes.brand}>Cinnema <span className={classes.plusIcon}><AddIcon fontSize='inherit'/></span></span>
           )
         }
