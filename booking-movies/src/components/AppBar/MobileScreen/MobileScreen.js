@@ -1,5 +1,6 @@
 import React from 'react';
 import { IconButton, Toolbar, Typography, Drawer } from '@material-ui/core'; 
+import AddIcon from '@material-ui/icons/Add';
 import {useStyles} from '../useStyles';
 import LinkMenu from '../LinkMenu/LinkMenu';
 import IconUser from '../IconUser/IconUser';
