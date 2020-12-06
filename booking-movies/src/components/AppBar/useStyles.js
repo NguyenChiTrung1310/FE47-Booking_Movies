@@ -22,7 +22,7 @@ export const StyleButton = withStyles({
   },
 })(Button);
 
-export const useStyles = makeStyles(() => ({
+export const useStyles = makeStyles((theme, fade) => ({
   app: {
     backgroundColor: '#1b1b1b',
     // marginBottom: '10px'
@@ -49,10 +49,10 @@ export const useStyles = makeStyles(() => ({
     alignItems:'center',
   },
   links: {
-    width: 300,
+    width: 700,
     margin: 'auto',
     display: 'flex',
     textDecoration: 'none'
-  }
+  } 
 }));
 

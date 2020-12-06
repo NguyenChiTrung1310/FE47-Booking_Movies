@@ -9,9 +9,9 @@ const ADMIN_PAGE = '/admin';
 const MOVIE_SCHEDULE_PAGE = '/movie-schedule';
 const TICKET_ROOM_PAGE = '/ticket-room';
 const TICKET_ORDER_PAGE = '/ticket-order';
-const MOVIE_DETAIL_PAGE='/movie-detail'
-const ORDER_CART_PAGE='/order-cart'
-
+const MOVIE_DETAIL_PAGE='/movie-detail';
+const ORDER_CART_PAGE='/order-cart';
+const SEARCH_PAGE= '/searchMovie/:tenPhim';
 
 /* =============* REDUCERS *============= */
 // user auth
@@ -24,6 +24,8 @@ const USER_PROFILE = 'USER_PROFILE';
 const UPDATE_PROFILE = 'UPDATE_PROFILE'; 
 // Movies 
 const FETCH_MOVIELIST='FETCH_MOVIELIST';
+const KEYSEARCH = 'KEYSEARCH';
+const CLEAR_SEARCHKEY= 'CLEAR_SEARCHKEY';
 // Cinemas
 const FETCH_CINEMA_LIST='FETCH_CINEMA_LIST';
 const FECTH_BRANCH_CINEMA_LIST = 'FECTH_BRANCH_CINEMA_LIST';
@@ -71,7 +73,8 @@ export {
   TICKET_ROOM_PAGE,
   TICKET_ORDER_PAGE, 
   MOVIE_DETAIL_PAGE,
-  ORDER_CART_PAGE
+  ORDER_CART_PAGE,
+  SEARCH_PAGE
 };
 
 export {
@@ -93,6 +96,8 @@ export {
   REGISTER_SUCESS, 
   REGISTER_FAILURE, 
   FETCH_MOVIELIST, 
+  KEYSEARCH,
+  CLEAR_SEARCHKEY,
   FETCH_CINEMA_LIST, 
   FECTH_BRANCH_CINEMA_LIST, 
   FETCH_THEATER_SCHEDULE, 

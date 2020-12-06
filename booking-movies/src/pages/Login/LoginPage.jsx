@@ -41,7 +41,7 @@ const LoginPage = () => {
     setFields({
       ...fields,
       [e.target.name]: e.target.value,
-    });
+    }); 
   };
 
   const handleSubmit = (e) => {

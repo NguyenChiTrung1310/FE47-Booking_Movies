@@ -18,7 +18,8 @@ import {
   MovieSchedulePage, 
   TicketRoomPage, 
   TicketOrderPage,
-  OrderCartPage
+  OrderCartPage,
+  SearchPage
 } from './pages';
 
 import {
@@ -44,6 +45,7 @@ import {
   TICKET_MOVIE,
   LOCAL_STORAGE_BOOKING_STATUS_KEY,
   BOOKING_STATUS,
+  SEARCH_PAGE,
 } from './constants/constant';
 import { Grid } from '@material-ui/core';
 import AppBar from './components/AppBar/AppBar';
@@ -52,7 +54,7 @@ import Footer from './components/Footer/Footer';
 import { getDataFromLocalStorage } from './utils/LocalStorage/LocalStorage';
 import { toast } from 'react-toastify';
 
-import './App.scss';
+import './App.scss'; 
 
 toast.configure({
   autoClose: 2000,
@@ -161,6 +163,11 @@ function App() {
           component={OrderCartPage}
           exact
           path={ORDER_CART_PAGE}
+        />
+        <Route
+          component={SearchPage}
+          exact
+          path={SEARCH_PAGE}
         />
         <Route
           component={ErrorPage}

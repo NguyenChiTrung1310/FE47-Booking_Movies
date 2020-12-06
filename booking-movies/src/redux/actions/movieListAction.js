@@ -1,8 +1,8 @@
 // fetch data  
 import {createAction} from '.';
-import { FETCH_MOVIELIST, FETCH_MOVIE_DETAIL } from '../../constants/constant';
-import { MovieDetailService, MovieListService } from '../../services/movielist';
-
+import {  FETCH_MOVIELIST, FETCH_MOVIE_DETAIL,KEYSEARCH } from '../../constants/constant';
+import { MovieDetailService, MovieListService, MovieSearchService } from '../../services/movielist';
+//CLEAR_SEARCHKEY
 export const fetchMovieList = ()=>{
   return (dispatch) =>{
     MovieListService()
@@ -28,4 +28,15 @@ export const fetchMovieDetail=(maPhim)=>{
     
 }
 
- 
+export const fetchSearchMovie=(keySearch)=>{
+  return (dispatch)=>{
+    MovieSearchService(keySearch).then(
+      (res)=>{ 
+        dispatch(createAction(KEYSEARCH, res.data))
+        console.log('DATA',res.data);
+      }) 
+      .catch((err)=>{ 
+        //console.log(err);
+      })
+  }
+}
