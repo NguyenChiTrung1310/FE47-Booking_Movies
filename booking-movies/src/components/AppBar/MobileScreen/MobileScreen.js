@@ -1,14 +1,17 @@
 import React from 'react';
 import { IconButton, Toolbar, Typography, Drawer } from '@material-ui/core'; 
 import AddIcon from '@material-ui/icons/Add';
+import MenuIcon from '@material-ui/icons/Menu';
 import {useStyles} from '../useStyles';
 import LinkMenu from '../LinkMenu/LinkMenu';
 import IconUser from '../IconUser/IconUser';
 import PropTypes from 'prop-types';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 
 const MobileScreen = ({drawerOpen, setState}) => {
   const classes = useStyles();
+  const matches = useMediaQuery('(max-width:768px)');
 
   const handleDrawerOpen=()=>{
     setState((prevState)=> ({...prevState, drawerOpen: true}));
@@ -27,7 +30,11 @@ const MobileScreen = ({drawerOpen, setState}) => {
         edge='start'
         onClick= {handleDrawerOpen} 
       >
-        <span className={classes.brand}>Cinnema <span className={classes.plusIcon}><AddIcon fontSize='inherit'/></span></span>
+        {
+          matches ? <MenuIcon /> : (
+            <span className={classes.brand}>Cinnema <span className={classes.plusIcon}><AddIcon fontSize='inherit'/></span></span>
+          )
+        }
       </IconButton>
            
       <Drawer
