@@ -27,6 +27,7 @@
     .card-title {
       font-size: 24px;
       font-weight: 600;
+      margin: 10px;
     }
     .card-text {
       margin-top: 10px;
@@ -46,19 +47,15 @@
 }
 
 @media (max-width: 996px) {
-  .days {
-    visibility: hidden;
+  .card-body{
+    height: 380px;
   }
   .rating {
-    margin-top: -50px !important ;
-    font-size: 18px !important;
+    visibility: hidden;
   }
 }
 
 @media (max-width: 768px) {
-  .days {
-    visibility: hidden;
-  }
   .rating {
     visibility: hidden;
   }
