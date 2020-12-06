@@ -166,7 +166,7 @@ function App() {
           component={ErrorPage}
         />
       </Switch>
-      <Footer />
+      {/* <Footer /> */}
     </Grid>
   );
 }

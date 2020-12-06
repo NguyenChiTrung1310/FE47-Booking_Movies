@@ -33,7 +33,7 @@
     text-align: left;
 
     .style {
-      color: $white;
+      color: $white !important;
       font-family: 'Montserrat', sans-serif !important;
       font-weight: 500;
     }
@@ -97,7 +97,15 @@
 
 @media (max-width: 996px) {
   .banner {
+    .banner-img {
+      position: relative;
+    }
     .titles {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+
       .name {
         visibility: hidden;
       }
@@ -108,8 +116,18 @@
         visibility: hidden;
       }
       .detail-btn {
-        margin-left: 50px;
-      }
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        width: 200px;
+        height: 100px;
+
+        font-size: 30px;
+        font-weight: bolder;
+        background-color: #1c1c1cbf;
+      }  
     }
   }
 }
@@ -126,9 +144,6 @@
       .author {
         visibility: hidden;
       }
-      .detail-btn {
-        margin-left: 50px;
-      }
     }
   }
 }
@@ -144,9 +159,6 @@
       }
       .author {
         visibility: hidden;
-      }
-      .detail-btn {
-        margin-left: 50px;
       }
     }
   }

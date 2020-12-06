@@ -25,7 +25,6 @@ export const StyleButton = withStyles({
 export const useStyles = makeStyles(() => ({
   app: {
     backgroundColor: '#1b1b1b',
-    // marginBottom: '10px'
   },
   brand: {
     fontSize: 30,
