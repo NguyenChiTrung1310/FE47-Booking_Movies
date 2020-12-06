@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Divider, Grid } from '@material-ui/core';
+import { Button, Divider, Grid } from '@material-ui/core';
 
 import './ScheduleMovie.scss';
 import { CONTACT_PAGE } from '../../../../constants/constant';
@@ -12,7 +12,7 @@ const ScheduleMovie = ({movieSchedules}) => {
     const {ngayChieuGioChieu, tenRap} = item;
 
     return (
-      <Grid
+      <Button
         className='schedule-item'
         key={index}
       >
@@ -26,7 +26,7 @@ const ScheduleMovie = ({movieSchedules}) => {
         >
           {ngayChieuGioChieu}
         </Grid>
-      </Grid>
+      </Button>
     ) 
   });
 

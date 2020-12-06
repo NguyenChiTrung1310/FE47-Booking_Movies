@@ -1,7 +1,7 @@
 import React from 'react'
+import { useSelector } from 'react-redux';
 import { Grid, Typography } from '@material-ui/core'
 import LabelImportantIcon from '@material-ui/icons/LabelImportant';
-import { useSelector } from 'react-redux';
 
 const OrderTicket = () => {
 
@@ -45,23 +45,6 @@ const OrderTicket = () => {
       )
     });
   }
-
-  // const renderTotalPrice = () => {
-  //   return seats.map((item, index) => {
-  //     const {price} = item;
-
-  //     return (
-  //       <Typography
-  //         component={'span'}
-  //         key={index}
-  //         style={{fontWeight: '600', color: '#03a9f4'}}
-  //         variant='h5'
-  //       >
-  //         {price}
-  //       </Typography>
-  //     )
-  //   });
-  // }
 
   return (
     <Grid className='ticket-section'>

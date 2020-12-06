@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
+import { useDispatch } from 'react-redux';
 import { Grid } from '@material-ui/core'
 
-import './SeatList.scss'
-import { useDispatch } from 'react-redux';
 import { createAction } from '../../../redux/actions';
 import { TICKET_INFORMATION } from '../../../constants/constant';
+
+import './SeatList.scss'
 
 const SeatList = ({seatList}) => {
   const dispatch = useDispatch();
@@ -24,10 +25,11 @@ const SeatList = ({seatList}) => {
   }
 
   return seatList.map((item,index) => {
-    const {tenGhe, loaiGhe, stt, daDat, giaVe} = item;
+    const {tenGhe, loaiGhe, stt, daDat, giaVe, maGhe} = item;
     
     const handleClick = () => {
       let ordered = JSON.parse(JSON.stringify(orderedList));
+      
       let newNumber = number;
       let newPrice = price;
     
@@ -50,6 +52,8 @@ const SeatList = ({seatList}) => {
         numID: stt,
         isBook: daDat,
         typeSeat: loaiGhe,
+        seatID: maGhe,
+        initialPrice: giaVe
       }
       
       dispatch(createAction(TICKET_INFORMATION, {seat, number: newNumber, price: newPrice}))

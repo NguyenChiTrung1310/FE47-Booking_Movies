@@ -6,7 +6,11 @@ import CinemaPage from './Cinema/CinemaPage';
 import ContactPage from './Contact/Contact';
 import ProfilePage from './Profile/ProfilePage';
 import AdminPage from './Admin/AdminPage';
-import MovieDetailPage from './MovieDetail/MovieDetailPage'
+import MovieDetailPage from './MovieDetail/MovieDetailPage';
+import MovieSchedulePage from './MovieSchedule/MovieSchedule';
+import TicketOrderPage from './TicketOrder/TicketOrderPage';
+import TicketRoomPage from './TicketRoom/TicketRoomPage';
+import OrderCartPage from './OrderCart/OrderCart';
 
 export {
   LoginPage,
@@ -17,4 +21,9 @@ export {
   ContactPage, 
   ProfilePage, 
   AdminPage, 
-  MovieDetailPage} 
+  MovieDetailPage,
+  TicketOrderPage,
+  TicketRoomPage,
+  MovieSchedulePage,
+  OrderCartPage
+} 

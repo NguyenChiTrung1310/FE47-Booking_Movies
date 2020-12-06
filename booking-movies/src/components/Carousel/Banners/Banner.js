@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Carousel from 'react-material-ui-carousel';
 import CarouselBanner from '../Carousel/Carousel';
 import { fetchMovieList } from '../../../redux/actions/movieListAction';
+import { Grid } from '@material-ui/core';
 
 const Banner = () => {
   const [carousel] = useState({
@@ -17,7 +18,10 @@ const Banner = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchMovieList());
+    const interval = setInterval(() => {
+      dispatch(fetchMovieList());
+    }, 5000);
+    return () => clearInterval(interval);
   }, [dispatch]);
 
   const movieList = useSelector((state) => {
@@ -38,7 +42,7 @@ const Banner = () => {
   }
 
   return (
-    <div className='carousel'>
+    <Grid className='carousel'>
       <Carousel
         animation={carousel.animation}
         autoPlay={carousel.autoPlay}
@@ -50,7 +54,7 @@ const Banner = () => {
           renderSilerList()
         }
       </Carousel>
-    </div>
+    </Grid>
   )
 }
 

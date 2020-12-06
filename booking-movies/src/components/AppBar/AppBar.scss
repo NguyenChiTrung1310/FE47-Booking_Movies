@@ -37,11 +37,32 @@
         @include animation('circle 1.5s ease-in-out forwards');
     }
 }
+  
+.auth, .link-user, .logout{
+  @include menu-style();
 
-.link-user {
-    width: 200px!important;
-    text-align: center!important;
-    font-size: 20px!important;
+  .admin-item{
+    position: relative;
+
+    .admin-icon{
+      width: 24px;
+      height: 28px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+  
+}
+
+.logout {
+  height: 40px !important;
+  text-transform: capitalize!important;
+  
+  .logout-item{
+    padding-right: 20px;
+  }
 }
 
 .hover-btn{
@@ -60,7 +81,7 @@
 
 .hover-link{
   height: 40px!important;
-  padding-top: 12px;
+  transition: all .3s ease-in-out;
   &::after{
     @include hover-menu();
   }
@@ -75,11 +96,6 @@
   }
 }
 
-.logout {
-  text-transform: capitalize!important;
-  height: 50px!important;
-}
-
 .updateBtn{
   font-size: 24px!important;
 }
@@ -90,7 +106,7 @@
 }
 
 #simple-menu > div.MuiPaper-root.MuiMenu-paper.MuiPopover-paper.MuiPaper-elevation8.MuiPaper-rounded {
-    
+  width: 220px !important;
   top: 60px !important;
   background-color: $blue-3!important;
 }

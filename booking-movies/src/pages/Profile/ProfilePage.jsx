@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types'; 
-import { Container, TextField, Typography } from '@material-ui/core';
+import { Container, Grid, TextField, Typography } from '@material-ui/core';
 import Button from '../../components/Button/Button';
 
-import { useStyles } from '../Register/useStyles';
-import { useDispatch, useSelector } from 'react-redux';
-import { toast } from 'react-toastify';
 import { updateProfileAction } from '../../redux/actions/profileAction';
+import { useStyles } from '../Register/useStyles';
+import { toast } from 'react-toastify';
 
 const ProfilePage = () => {
   const classes = useStyles();
@@ -29,7 +29,7 @@ const ProfilePage = () => {
   });
 
   useEffect(() => {
-    if(userCredentials){
+    if(userProfile){
       setFields({
         taiKhoan: userProfile.taiKhoan,
         matKhau: userProfile.matKhau,
@@ -94,7 +94,7 @@ const ProfilePage = () => {
       component='main'
       maxWidth='xs'
     >
-      <div className={classes.paper}>
+      <Grid className={classes.paper}>
         <Typography
           className='title'
           component='h3'
@@ -219,7 +219,7 @@ const ProfilePage = () => {
               </form>
             ) : null
         }
-      </div>
+      </Grid>
     </Container>
   )
 }

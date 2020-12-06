@@ -1,26 +1,24 @@
-/* eslint-disable no-unused-vars */
 import React, { useEffect, useState  } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {Link, useHistory} from 'react-router-dom';
-import { toast } from 'react-toastify';
 import PropTypes from 'prop-types';
 import { Container, TextField, Typography, Grid, InputLabel, Select, FormControl, MenuItem } from '@material-ui/core';
 
 import Button from './../../components/Button/Button';
-import {
-  handleRegisterForm, 
-} from '../../utils/Validation/Validation';
+import { handleRegisterForm } from '../../utils/Validation/Validation';
 import { LOGIN_PAGE, REGISTER_SUCESS } from './../../constants/constant'
 
-import { useStyles } from './../Register/useStyles';
-import './RegisterPage.scss'; 
 import { registerAction } from '../../redux/actions/userAction';
 import LoadingCool from '../../components/Spinner_Cool/SpinnerCool';
+import { useStyles } from './../Register/useStyles';
+import { toast } from 'react-toastify';
+import './RegisterPage.scss'; 
+
 const RegisterPage = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const history = useHistory();
-  const registerStatus = useSelector(state=> state.user.registerStatus); //re
+  const registerStatus = useSelector(state=> state.user.registerStatus); 
 
   const [fields, setFields] = useState({
     taiKhoan: '',
@@ -76,15 +74,13 @@ const RegisterPage = () => {
     }
   }; 
   useEffect(() => {
-    if(registerStatus=== REGISTER_SUCESS){
+    if(registerStatus === REGISTER_SUCESS){
       setTimeout(()=>{
         history.push(LOGIN_PAGE); 
       },2000);
-     
     } 
   }, [registerStatus, history])
   
-  //is Loading
   const isLoading=()=>{
     return(
       <LoadingCool/> 
@@ -100,7 +96,7 @@ const RegisterPage = () => {
         registerStatus === REGISTER_SUCESS
           ? isLoading() 
           : (
-            <div className={classes.paper}>
+            <Grid className={classes.paper}>
               <Typography
                 className='title'
                 component='h3'
@@ -228,7 +224,6 @@ const RegisterPage = () => {
                       className={classes.inputLabel}
                       value='GP06'
                     >GP06</MenuItem>
-             
                   </Select>
                 </FormControl> 
                 <Button
@@ -240,7 +235,7 @@ const RegisterPage = () => {
                 </Button>
                 <Grid container>
                   <Grid item>
-                    <div className={classes.loginLink}>
+                    <Grid className={classes.loginLink}>
                       <p>
             Have an Account?
                         <Link
@@ -250,11 +245,11 @@ const RegisterPage = () => {
               Login
                         </Link>
                       </p>
-                    </div>
+                    </Grid>
                   </Grid>
                 </Grid>
               </form>
-            </div>
+            </Grid>
           )
       }
       

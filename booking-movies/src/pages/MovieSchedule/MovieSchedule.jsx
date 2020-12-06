@@ -6,6 +6,8 @@ import {
   Grid, 
   Typography,
 } from '@material-ui/core'
+import ExpandLess from '@material-ui/icons/ExpandLess';
+import ExpandMore from '@material-ui/icons/ExpandMore';
 import PropTypes from 'prop-types';
 
 import LoadingCool from '../../components/Spinner_Cool/SpinnerCool'
@@ -16,8 +18,7 @@ import {CINEMA_SYSTEM, CLEAR_DETAIL_MOVIE} from '../../constants/constant';
 import CinemaSystems from './CinemaSystems/CinemaSystems';
 import { createAction } from '../../redux/actions';
 import ShowMoreText from 'react-show-more-text';
-import ExpandLess from '@material-ui/icons/ExpandLess';
-import ExpandMore from '@material-ui/icons/ExpandMore';
+
 
 import './MovieSchedule.scss';
 
@@ -177,6 +178,7 @@ const MovieSchedulePage = (props) => {
 
 MovieSchedulePage.propTypes={
   match: PropTypes.object,
+  movieScheduleDetail: PropTypes.object,
   params: PropTypes.object,
 }
 

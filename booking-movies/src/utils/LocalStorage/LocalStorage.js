@@ -1,4 +1,12 @@
-import { LOCAL_STORAGE_CREDENTIALS_KEY, LOCAL_STORAGE_PROFILE_KEY, LOCAL_STORAGE_TOKEN_KEY } from '../../constants/constant';
+import { 
+  LOCAL_STORAGE_CREDENTIALS_KEY, 
+  LOCAL_STORAGE_PROFILE_KEY, 
+  LOCAL_STORAGE_TOKEN_KEY,
+  LOCAL_STORAGE_ORDER_CART_KEY,
+  LOCAL_STORAGE_ORDER_CART_MOVIE_INFO_KEY, 
+  LOCAL_STORAGE_ORDER_CART_TICKET_INFO_KEY,
+  LOCAL_STORAGE_BOOKING_STATUS_KEY
+} from '../../constants/constant';
 
 
 /* ========= USER TOKEN ========= */
@@ -17,6 +25,20 @@ export const storeCredentials = (token) => {
 export const storeProfile = (data) => {
   localStorage.setItem(LOCAL_STORAGE_PROFILE_KEY, data);
 }
+
+/* ========= ORDER CART ========= */
+// set 
+export const storeOrderCart = (data, status) => {
+  localStorage.setItem(LOCAL_STORAGE_ORDER_CART_KEY, data);
+  localStorage.setItem(LOCAL_STORAGE_BOOKING_STATUS_KEY, status);
+}
+export const storeOrderCart_MovieInfo = (data) => {
+  localStorage.setItem(LOCAL_STORAGE_ORDER_CART_MOVIE_INFO_KEY, data);
+}
+export const storeOrderCart_TicketInfo = (data) => {
+  localStorage.setItem(LOCAL_STORAGE_ORDER_CART_TICKET_INFO_KEY, data);
+}
+
 
 
 /* ========= GET DATA FRON LOCALSTORAGE ========= */

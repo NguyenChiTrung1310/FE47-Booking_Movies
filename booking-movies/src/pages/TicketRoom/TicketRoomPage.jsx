@@ -1,17 +1,18 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
-import { getTicketRoomsAction } from '../../redux/actions/bookingAction';
-import { Button, CardMedia, Container, Grid, Typography } from '@material-ui/core';
-import LoadingCool from '../../components/Spinner_Cool/SpinnerCool';
-import { createAction } from '../../redux/actions';
-import { CLEAR_DETAIL_MOVIE, SEAT_LIST } from '../../constants/constant';
+import { CardMedia, Container, Grid, Typography } from '@material-ui/core';
 import LabelImportantIcon from '@material-ui/icons/LabelImportant';
 
-import SeatList from './SeatList/SeatList';
 
-import './TicketRoomPage.scss'
 import OrderTicket from './Order/Order';
+import SeatList from './SeatList/SeatList';
+import { createAction } from '../../redux/actions';
+import { getTicketRoomsAction } from '../../redux/actions/bookingAction';
+import CheckoutBtn from './CheckoutBtn/CheckoutBtn';
+import LoadingCool from '../../components/Spinner_Cool/SpinnerCool';
+import { CLEAR_DETAIL_MOVIE, SEAT_LIST } from '../../constants/constant';
+import './TicketRoomPage.scss'
 
 
 const TicketRoomPage = (props) => {
@@ -25,12 +26,12 @@ const TicketRoomPage = (props) => {
   }, [dispatch, props])
 
   const ticketRoom = useSelector(state => state.ticketRoom.initialTicketRoom);
+  
   const{thongTinPhim, danhSachGhe} = ticketRoom;
 
   useEffect(() => {
     dispatch(createAction(SEAT_LIST ,danhSachGhe));
   }, [dispatch, danhSachGhe])
-
 
   return (
     <Container className='ticket-room-page'>
@@ -163,7 +164,19 @@ const TicketRoomPage = (props) => {
 
                             <OrderTicket />
 
-                            <Button className='style detail-btn'>Checkout</Button>
+                            <Grid className='checkout'>
+                              <CheckoutBtn
+                                maLichChieu={thongTinPhim.maLichChieu}
+                                movieInfo={{
+                                  movie: thongTinPhim.tenPhim,
+                                  theater: thongTinPhim.tenCumRap,
+                                  address: thongTinPhim.diaChi,
+                                  screeningRoom: thongTinPhim.tenRap,
+                                  date: thongTinPhim.ngayChieu,
+                                  time: thongTinPhim.gioChieu
+                                }}
+                              />
+                            </Grid>
                           </Grid>                
                         </Grid> 
                       ) : <LoadingCool />
@@ -179,8 +192,7 @@ const TicketRoomPage = (props) => {
                   </Grid>
                 </Grid>
               ) : <LoadingCool />
-            }
-                
+            }     
           </Grid>
         ) : <LoadingCool />
       }
@@ -189,8 +201,10 @@ const TicketRoomPage = (props) => {
 }
 
 TicketRoomPage.propTypes={
+  danhSachGhe: PropTypes.array,
   match: PropTypes.object,
   params: PropTypes.object,
+  thongTinPhim: PropTypes.object,
 }
 
 export default TicketRoomPage

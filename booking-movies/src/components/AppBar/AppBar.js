@@ -3,18 +3,34 @@ import { Link, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { AppBar as App, Button, IconButton, Menu, Toolbar, Typography, Drawer } from '@material-ui/core';
+import { AppBar as App, Button, IconButton, Menu, Toolbar, Typography, Drawer, CardMedia, Grid } from '@material-ui/core'; 
 import AddIcon from '@material-ui/icons/Add';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-
+import PersonIcon from '@material-ui/icons/Person';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import AdminIcon from '../../assets/images/admin.svg';
+import RegisterIcon from '../../assets/images/register.svg';
+import LoginIcon from '../../assets/images/login.svg';
 
 import { clearStoreAction } from '../../redux/actions/userAction';
 import { inforUserAction } from '../../redux/actions/profileAction';
-import {ADMIN_PAGE, CONTACT_PAGE, HOME_PAGE, LOGIN_PAGE, NEWS_PAGE, PROFILE_PAGE, REGISTER_PAGE} from '../../constants/constant';
+import { 
+  ADMIN_PAGE, 
+  CONTACT_PAGE,
+  HOME_PAGE, 
+  LOGIN_PAGE, 
+  CINEMA_PAGE, 
+  PROFILE_PAGE, 
+  REGISTER_PAGE,
+  ORDER_CART_PAGE,
+  LOCAL_STORAGE_BOOKING_STATUS_KEY
+} from '../../constants/constant';
 
 import { toast } from 'react-toastify';
 import {useStyles, StyleButton, StyledMenuItem} from './useStyles';
 import './AppBar.scss';
+import { getDataFromLocalStorage } from '../../utils/LocalStorage/LocalStorage';
 
 const AppBar = () => {
   const classes = useStyles();
@@ -66,22 +82,41 @@ const AppBar = () => {
             userCredentials
               ? (<div>
                 <StyledMenuItem onClick={handleClose}>
-                  <StyleButton
-                    className='user logout link-user hover-btn'
-                    onClick={handleLogOutBtnClick}
-                  >Logout</StyleButton>
-                </StyledMenuItem>
-
-                <StyledMenuItem onClick={handleClose}>
                   <Link
                     className='user link-user hover-link'
-                    // onClick={handleProfileClick}
                     to={PROFILE_PAGE}
-                  >{ userProfile ?
-                      userProfile.hoTen
-                      : userCredentials.hoTen
-                    }</Link>
+                  >
+                    <Grid className='menu-item'>
+                      <PersonIcon className='icon-item'/>
+                      <Typography
+                        className='text-item'
+                        component={'span'}
+                      >
+                      Hi,  {accountName(userCredentials.taiKhoan)}
+                      </Typography>
+                    </Grid>
+                  </Link>
                 </StyledMenuItem>
+                {
+                  bookingStatus === 200 ? (
+                    <StyledMenuItem onClick={handleClose}>
+                      <Link
+                        className='user link-user hover-link'
+                        to={ORDER_CART_PAGE}
+                      >
+                        <Grid className='menu-item'>
+                          <ShoppingCartIcon className='icon-item'/>
+                          <Typography
+                            className='text-item'
+                            component={'span'}
+                          >
+                    Your order
+                          </Typography>
+                        </Grid>
+                      </Link>
+                    </StyledMenuItem>
+                  ) : null
+                }
                 {
                   userCredentials.maLoaiNguoiDung === 'KhachHang' 
                     ? null
@@ -91,24 +126,88 @@ const AppBar = () => {
                           className='user link-user hover-link'
                           onClick={handleProfileClick}
                           to={ADMIN_PAGE}
-                        >Admin</Link>
+                        >
+                          <Grid className='menu-item'>
+                            <Grid className='icon-item admin-item'>
+                              <CardMedia 
+                                alt='admin'
+                                className='admin-icon'
+                                image={AdminIcon}
+                              />
+                            </Grid>
+                            <Typography
+                              className='text-item'
+                              component={'span'}
+                            >
+                          Admin
+                            </Typography>
+                          </Grid>
+                        </Link>
                       </StyledMenuItem>
                     )
                 }
+                <StyledMenuItem onClick={handleClose}>
+                  <StyleButton
+                    className='logout hover-btn'
+                    onClick={handleLogOutBtnClick}
+                  >
+                    <Grid className='menu-item'>
+                      <ExitToAppIcon className='icon-item'/>
+                      <Typography
+                        className='text-item logout-item'
+                        component={'span'}
+                      >
+                    Logout
+                      </Typography>
+                    </Grid>
+                  </StyleButton>
+                </StyledMenuItem>
               </div>
               ) 
               : (<div>
                 <StyledMenuItem onClick={handleClose}>
                   <Link
-                    className='link link-user hover-link'
+                    className='link hover-link auth'
                     to={LOGIN_PAGE}
-                  >Login</Link></StyledMenuItem>
+                  >
+                    <Grid className='menu-item'>
+                      <Grid className='icon-item admin-item'>
+                        <CardMedia 
+                          alt='admin'
+                          className='admin-icon'
+                          image={LoginIcon}
+                        />
+                      </Grid>
+                      <Typography
+                        className='text-item'
+                        component={'span'}
+                      >
+                    Login
+                      </Typography>
+                    </Grid>
+                  </Link></StyledMenuItem>
 
                 <StyledMenuItem onClick={handleClose}>
                   <Link
-                    className='link link-user hover-link'
+                    className='link hover-link auth'
                     to={REGISTER_PAGE}
-                  >Register</Link></StyledMenuItem>
+                  >
+                    <Grid className='menu-item'>
+                      <Grid className='icon-item admin-item'>
+                        <CardMedia 
+                          alt='admin'
+                          className='admin-icon'
+                          image={RegisterIcon}
+                        />
+                      </Grid>
+                      <Typography
+                        className='text-item'
+                        component={'span'}
+                      >
+                    Register
+                      </Typography>
+                    </Grid>
+                  </Link></StyledMenuItem>
               </div>
               )
           }
@@ -125,7 +224,7 @@ const AppBar = () => {
         >Home</Link>
         <Link
           className='link link-menu'
-          to={NEWS_PAGE}
+          to={CINEMA_PAGE}
         >Cinema</Link>
         <Link
           className='link link-menu'
@@ -213,8 +312,10 @@ const AppBar = () => {
 
   const [anchorEl, setAnchorEl] = useState(null);
   const userCredentials = useSelector(state => state.user.credentials);
-  const userProfile = useSelector(state=> state.profile.initialProfile)
   const loginStatus = useSelector(state => state.user.loginStatus);
+  const getBookingStatus = getDataFromLocalStorage(LOCAL_STORAGE_BOOKING_STATUS_KEY) 
+
+  const bookingStatus = JSON.parse(getBookingStatus);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -245,6 +346,13 @@ const AppBar = () => {
       dispatch(inforUserAction(userCredentials));
     }
   }, [userCredentials, dispatch, loginStatus]);
+
+  const accountName = (name) => {
+    if(name.length > 4){
+      return `${name.slice(0, 4)}...`;
+    }
+    return;
+  }
 
   return (
     <div>

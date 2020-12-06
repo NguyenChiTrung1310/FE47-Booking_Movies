@@ -2,18 +2,20 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {Link, useHistory} from 'react-router-dom'
 import PropTypes from 'prop-types'; 
-import { toast } from 'react-toastify';
 import { Container, Grid, TextField, Typography } from '@material-ui/core'; 
 
 import Button from '../../components/Button/Button'; 
 import { HOME_PAGE, REGISTER_PAGE } from './../../constants/constant'
 import { handleLoginForm } from '../../utils/Validation/Validation';
-import { useStyles } from './useStyles';
-import './LoginPage.scss';
 import { loginAction } from '../../redux/actions/userAction';
 
 import { isEmpty } from 'lodash';
 import LoadingCool from '../../components/Spinner_Cool/SpinnerCool';
+
+import { toast } from 'react-toastify';
+import { useStyles } from './useStyles';
+import './LoginPage.scss';
+
 
 const LoginPage = () => {
   const classes = useStyles();
@@ -24,9 +26,9 @@ const LoginPage = () => {
   /* START ______GET DATA FROM REDUCER______ */
   
   // Get loginStatus from reducer using useSelector
-  const loginStatus = useSelector(state => {
-    return state.user.loginStatus;
-  });
+  const loginStatus = useSelector(state => state.user.loginStatus);
+
+  const linkScheduleID = useSelector(state => state.cinemaList.initialScheduleIDLink);
 
   /* END ________________________________________ */
 
@@ -74,12 +76,15 @@ const LoginPage = () => {
 
   useEffect(() => {
     if(loginStatus === true){
-      setTimeout(() => {
-        history.push(HOME_PAGE)
-      }, 2000);
-      
+      if(linkScheduleID){
+        history.push(linkScheduleID);
+      }else{
+        setTimeout(() => {
+          history.push(HOME_PAGE)
+        }, 2000);
+      }
     }
-  }, [loginStatus, history]);
+  }, [loginStatus, linkScheduleID, history]);
 
   const loading = () => {
     return (<LoadingCool />);
@@ -138,7 +143,7 @@ const LoginPage = () => {
               <Button type='submit'>Sign In</Button>
               <Grid container>
                 <Grid item>
-                  <div className={classes.registerLink}>
+                  <Grid className={classes.registerLink}>
                     <p>
                   Don't have an account?
                       <Link
@@ -148,7 +153,7 @@ const LoginPage = () => {
                     Register
                       </Link>
                     </p>
-                  </div>
+                  </Grid>
                 </Grid>
               </Grid>
             </form>

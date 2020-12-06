@@ -48,8 +48,8 @@ const SliderItems=({item})=>{
               <Typography
                 className='days'
                 component='span'
-                style={{paddingLeft: '8px' }}
-                variant='p'
+                style={{paddingLeft: '8px', color: '#03a9f4'}}
+                variant='body2'
               >
                 {ngayKhoiChieu}
               </Typography>
@@ -63,7 +63,7 @@ const SliderItems=({item})=>{
               <Typography
                 component='span'
                 style={{paddingLeft: '8px', color: '#03a9f4'}}
-                variant='p'
+                variant='body2'
               >
                 {danhGia} 
                 <StarIcon className='icon-star'/>
