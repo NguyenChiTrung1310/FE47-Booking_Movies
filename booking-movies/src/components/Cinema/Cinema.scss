@@ -66,5 +66,17 @@
       }
     }
   }
- }
+}
+
+@media (max-width: 576px) {
+  .container {
+    .banner {
+      .tabs{
+        width: 450px;
+        overflow: hidden;
+      }
+    }
+  }
+}
+
  
