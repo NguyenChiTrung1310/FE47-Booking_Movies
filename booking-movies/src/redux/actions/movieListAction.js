@@ -33,7 +33,7 @@ export const fetchSearchMovie=(keySearch)=>{
     MovieSearchService(keySearch).then(
       (res)=>{ 
         dispatch(createAction(KEYSEARCH, res.data))
-        console.log('DATA',res.data);
+        // console.log('DATA',res.data);
       }) 
       .catch((err)=>{ 
         //console.log(err);
