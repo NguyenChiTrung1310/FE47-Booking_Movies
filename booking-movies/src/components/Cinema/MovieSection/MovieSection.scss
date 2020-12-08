@@ -84,3 +84,77 @@
     }
   }
 }
+
+@media (max-width: 996px) {
+  .movie-schedule{
+    width: 100%;
+
+    
+    .movie-item{
+      width: 595px;
+      margin-left: -15px;
+      position: relative;
+
+
+      .item{
+        .movie-images{
+          height: 100%;
+          width: 150px;
+        }
+        .content{
+          width: 395px;
+          position: absolute;
+          left: 200px;
+
+          .schedule-content{
+            width: 100%;
+            margin-top: 5px;
+          }
+        }
+
+        .next-detail {
+          margin-right: 0;
+        }
+      }
+    }
+  }
+ }
+
+ @media (max-width: 768px) {
+  .movie-schedule{
+    width: 100%;
+
+    
+    .movie-item{
+      width: 595px;
+      margin-left: -15px;
+      position: relative;
+
+
+      .item{
+        .movie-images{
+          height: 100%;
+          width: 150px;
+        }
+        .content{
+          width: 395px;
+          position: absolute;
+          left: 200px;
+
+          .schedule-content{
+            width: 100%;
+            margin-top: 5px;
+          }
+        }
+
+        .next-detail {
+          margin-right: 110px;
+        }
+
+      }
+          .movie-divider{
+            width: 80%;
+          }
+    }
+  }
+ }

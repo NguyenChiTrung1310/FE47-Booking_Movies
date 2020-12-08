@@ -19,7 +19,7 @@ const OrderCartPage = () => {
   const {maLichChieu} = orderCart;
   const {movie, theater, address, screeningRoom, date, time} = movieInformation;
   return (
-    <Container>
+    <Container className='container-form'>
       {
         orderCart ? (
           <Grid className='order-form'>
@@ -104,7 +104,7 @@ const OrderCartPage = () => {
                 </Grid>
                 <Grid>                 
                   <Typography 
-                    className='ticket-item'
+                    className='ticket-item item-address'
                     component={'h5'}
                     variant='h5'
                   >
