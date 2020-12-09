@@ -3,7 +3,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { AppBar as App, Button, IconButton, Menu, Toolbar, Typography, Drawer, CardMedia, Grid} from '@material-ui/core'; 
+import { AppBar as App, Button, IconButton, Menu, Toolbar, Typography, Drawer, CardMedia, Grid } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import AddIcon from '@material-ui/icons/Add';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
@@ -13,23 +13,24 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import AdminIcon from '../../assets/images/admin.svg';
 import RegisterIcon from '../../assets/images/register.svg';
 import LoginIcon from '../../assets/images/login.svg';
+import SearchBar from '../SearchBar/SearchBar'
 
 import { clearStoreAction } from '../../redux/actions/userAction';
 import { inforUserAction } from '../../redux/actions/profileAction';
-import { 
-  ADMIN_PAGE, 
+import {
+  ADMIN_PAGE,
   CONTACT_PAGE,
-  HOME_PAGE, 
-  LOGIN_PAGE, 
-  CINEMA_PAGE, 
-  PROFILE_PAGE, 
+  HOME_PAGE,
+  LOGIN_PAGE,
+  CINEMA_PAGE,
+  PROFILE_PAGE,
   REGISTER_PAGE,
   ORDER_CART_PAGE,
   LOCAL_STORAGE_BOOKING_STATUS_KEY
 } from '../../constants/constant';
 
 import { toast } from 'react-toastify';
-import {useStyles, StyleButton, StyledMenuItem} from './useStyles';
+import { useStyles, StyleButton, StyledMenuItem } from './useStyles';
 import './AppBar.scss';
 import { getDataFromLocalStorage } from '../../utils/LocalStorage/LocalStorage';
 
@@ -38,30 +39,30 @@ const AppBar = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const [state, setState]= useState({
+  const [state, setState] = useState({
     mobieView: false,
     drawerOpen: false,
     keySearch: '',
   });
 
-  const {mobieView, drawerOpen}= state;
+  const { mobieView, drawerOpen } = state;
 
-  useEffect(()=>{
-    const setResponsiveness=()=>{
-      return window.innerWidth <900 ?
-        setState((prevState)=> ({...prevState, mobieView: true}))
-        : setState((prevState)=>({...prevState, mobieView: false}));
+  useEffect(() => {
+    const setResponsiveness = () => {
+      return window.innerWidth < 900 ?
+        setState((prevState) => ({ ...prevState, mobieView: true }))
+        : setState((prevState) => ({ ...prevState, mobieView: false }));
     };
 
     setResponsiveness();
 
-    window.addEventListener('resize',()=> setResponsiveness());
+    window.addEventListener('resize', () => setResponsiveness());
 
-  },[]);
+  }, []);
 
-  const iconUser=()=>{
-    return(
-      <div style={{position:'absolute', right:'0px'}}> 
+  const iconUser = () => {
+    return (
+      <div style={{ position: 'absolute', right: '0px' }}>
         <Button
           aria-controls='simple-menu'
           aria-haspopup='true'
@@ -89,12 +90,12 @@ const AppBar = () => {
                     to={PROFILE_PAGE}
                   >
                     <Grid className='menu-item'>
-                      <PersonIcon className='icon-item'/>
+                      <PersonIcon className='icon-item' />
                       <Typography
                         className='text-item'
                         component={'span'}
                       >
-                      Hi,  {accountName(userCredentials.taiKhoan)}
+                        Hi,  {accountName(userCredentials.taiKhoan)}
                       </Typography>
                     </Grid>
                   </Link>
@@ -107,12 +108,12 @@ const AppBar = () => {
                         to={ORDER_CART_PAGE}
                       >
                         <Grid className='menu-item'>
-                          <ShoppingCartIcon className='icon-item'/>
+                          <ShoppingCartIcon className='icon-item' />
                           <Typography
                             className='text-item'
                             component={'span'}
                           >
-                    Your order
+                            Your order
                           </Typography>
                         </Grid>
                       </Link>
@@ -120,7 +121,7 @@ const AppBar = () => {
                   ) : null
                 }
                 {
-                  userCredentials.maLoaiNguoiDung === 'KhachHang' 
+                  userCredentials.maLoaiNguoiDung === 'KhachHang'
                     ? null
                     : (
                       <StyledMenuItem onClick={handleClose}>
@@ -131,7 +132,7 @@ const AppBar = () => {
                         >
                           <Grid className='menu-item'>
                             <Grid className='icon-item admin-item'>
-                              <CardMedia 
+                              <CardMedia
                                 alt='admin'
                                 className='admin-icon'
                                 image={AdminIcon}
@@ -141,7 +142,7 @@ const AppBar = () => {
                               className='text-item'
                               component={'span'}
                             >
-                          Admin
+                              Admin
                             </Typography>
                           </Grid>
                         </Link>
@@ -154,18 +155,18 @@ const AppBar = () => {
                     onClick={handleLogOutBtnClick}
                   >
                     <Grid className='menu-item'>
-                      <ExitToAppIcon className='icon-item'/>
+                      <ExitToAppIcon className='icon-item' />
                       <Typography
                         className='text-item logout-item'
                         component={'span'}
                       >
-                    Logout
+                        Logout
                       </Typography>
                     </Grid>
                   </StyleButton>
                 </StyledMenuItem>
               </div>
-              ) 
+              )
               : (<div>
                 <StyledMenuItem onClick={handleClose}>
                   <Link
@@ -174,7 +175,7 @@ const AppBar = () => {
                   >
                     <Grid className='menu-item'>
                       <Grid className='icon-item admin-item'>
-                        <CardMedia 
+                        <CardMedia
                           alt='admin'
                           className='admin-icon'
                           image={LoginIcon}
@@ -184,7 +185,7 @@ const AppBar = () => {
                         className='text-item'
                         component={'span'}
                       >
-                    Login
+                        Login
                       </Typography>
                     </Grid>
                   </Link></StyledMenuItem>
@@ -196,7 +197,7 @@ const AppBar = () => {
                   >
                     <Grid className='menu-item'>
                       <Grid className='icon-item admin-item'>
-                        <CardMedia 
+                        <CardMedia
                           alt='admin'
                           className='admin-icon'
                           image={RegisterIcon}
@@ -206,7 +207,7 @@ const AppBar = () => {
                         className='text-item'
                         component={'span'}
                       >
-                    Register
+                        Register
                       </Typography>
                     </Grid>
                   </Link></StyledMenuItem>
@@ -217,8 +218,8 @@ const AppBar = () => {
       </div>
     )
   }
-  const linkPage=()=>{
-    return(
+  const linkPage = () => {
+    return (
       <>
         <Link
           className='link link-menu'
@@ -231,8 +232,8 @@ const AppBar = () => {
         <Link
           className='link link-menu'
           to={CONTACT_PAGE}
-        >Contact</Link> 
-        <form
+        >Contact</Link>
+        {/* <form
           className='input-group'
           onSubmit={handleSubmitSearch}
         >
@@ -250,11 +251,12 @@ const AppBar = () => {
               <SearchIcon className='search-icon'/>
             </button>
           </div>
-        </form>  
+        </form>   */}
+        <SearchBar movieList={movieList} />
       </>
     )
   }
-  const displayDesktop=()=>{
+  const displayDesktop = () => {
     return (
       <div>
         <App
@@ -268,8 +270,8 @@ const AppBar = () => {
               color='inherit'
               edge='start'
             >
-              <span className={classes.brand}>Cinnema <span className={classes.plusIcon}><AddIcon fontSize='inherit'/></span></span>
-            </IconButton> 
+              <span className={classes.brand}>Cinnema <span className={classes.plusIcon}><AddIcon fontSize='inherit' /></span></span>
+            </IconButton>
             <Typography
               className={classes.menuLinks}
               variant='h6'
@@ -278,54 +280,54 @@ const AppBar = () => {
                 {linkPage()}
               </div>
               {iconUser()}
-            </Typography> 
+            </Typography>
           </Toolbar>
         </App>
       </div>
- 
+
     )
   }
 
-  const displayMobile= ()=>{
-    const handleDrawerOpen=()=>{
-      setState((prevState)=> ({...prevState, drawerOpen: true}));
+  const displayMobile = () => {
+    const handleDrawerOpen = () => {
+      setState((prevState) => ({ ...prevState, drawerOpen: true }));
     }
-    const handleDrawerClose= ()=>{
-      setState((prevState)=> ({...prevState, drawerOpen: false}));
+    const handleDrawerClose = () => {
+      setState((prevState) => ({ ...prevState, drawerOpen: false }));
     }
 
     return (
       <Toolbar className={classes.toolBar}>
         <IconButton
-          aria-haspopup= 'true'
+          aria-haspopup='true'
           aria-label='menu'
           className={classes.menuButton}
           color='inherit'
           edge='start'
-          onClick= {handleDrawerOpen} 
+          onClick={handleDrawerOpen}
         >
-          <span className={classes.brand}>Cinnema <span className={classes.plusIcon}><AddIcon fontSize='inherit'/></span></span>
+          <span className={classes.brand}>Cinnema <span className={classes.plusIcon}><AddIcon fontSize='inherit' /></span></span>
         </IconButton>
-         
+
         <Drawer
           {...{
             anchor: 'left',
             open: drawerOpen,
-            onClose: handleDrawerClose,  
-            width:'10px'
+            onClose: handleDrawerClose,
+            width: '10px'
           }}
         >
           <Typography
-            className={classes.menuLinkss} 
+            className={classes.menuLinkss}
             variant='h6'
           >
             <div className={classes.linkss}>
               {linkPage()}
             </div>
-          </Typography> 
+          </Typography>
         </Drawer>
         {iconUser()}
-        
+
       </Toolbar>
 
     )
@@ -334,8 +336,8 @@ const AppBar = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const userCredentials = useSelector(state => state.user.credentials);
   const loginStatus = useSelector(state => state.user.loginStatus);
-  const getBookingStatus = getDataFromLocalStorage(LOCAL_STORAGE_BOOKING_STATUS_KEY) 
-
+  const getBookingStatus = getDataFromLocalStorage(LOCAL_STORAGE_BOOKING_STATUS_KEY)
+  const movieList = useSelector(state => state.movieList.initialMovieList);
   const bookingStatus = JSON.parse(getBookingStatus);
 
   const handleClick = (event) => {
@@ -345,7 +347,7 @@ const AppBar = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
-  
+
   // handle logout
   const handleLogOutBtnClick = (e) => {
     e.preventDefault();
@@ -359,31 +361,31 @@ const AppBar = () => {
   }
 
   //handle search
-  const handleSearchMovie=(e)=>{
+  const handleSearchMovie = (e) => {
     setState({
       ...state,
       keySearch: e.target.value,
-    }) 
-  } 
-  //handle submit
-  const handleSubmitSearch=(e)=>{
-    e.preventDefault();
-    history.push('/searchMovie/'+ state.keySearch)
+    })
   }
- 
+  //handle submit
+  const handleSubmitSearch = (e) => {
+    e.preventDefault();
+    history.push('/searchMovie/' + state.keySearch)
+  }
+
 
   const handleProfileClick = () => {
     dispatch(inforUserAction(userCredentials));
   }
 
   useEffect(() => {
-    if(loginStatus === true){
+    if (loginStatus === true) {
       dispatch(inforUserAction(userCredentials));
     }
   }, [userCredentials, dispatch, loginStatus]);
 
   const accountName = (name) => {
-    if(name.length > 4){
+    if (name.length > 4) {
       return `${name.slice(0, 4)}...`;
     }
     return;
