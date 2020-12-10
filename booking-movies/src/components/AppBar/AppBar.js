@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { AppBar as App, Button, IconButton, Menu, Toolbar, Typography, Drawer, CardMedia, Grid } from '@material-ui/core';
-// import SearchIcon from '@material-ui/icons/Search';
 import AddIcon from '@material-ui/icons/Add';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import PersonIcon from '@material-ui/icons/Person';
@@ -233,32 +232,13 @@ const AppBar = () => {
           className='link link-menu'
           to={CONTACT_PAGE}
         >Contact</Link>
-        {/* <form
-          className='input-group'
-          onSubmit={handleSubmitSearch}
-        >
-          <input
-            className='form-control'
-            onChange={handleSearchMovie}
-            placeholder='Search movie'
-            type='text'
-          />
-          <div className='input-group-append'>
-            <button
-              className='btn'
-              type='submit'
-            >
-              <SearchIcon className='search-icon'/>
-            </button>
-          </div>
-        </form>   */}
-        <SearchBar movieList={movieList} />
       </>
     )
   }
   const displayDesktop = () => {
     return (
       <div>
+
         <App
           className={classes.app}
           position='static'
@@ -272,6 +252,7 @@ const AppBar = () => {
             >
               <span className={classes.brand}>Cinnema <span className={classes.plusIcon}><AddIcon fontSize='inherit' /></span></span>
             </IconButton>
+            <SearchBar movieList={movieList} />
             <Typography
               className={classes.menuLinks}
               variant='h6'
@@ -359,20 +340,6 @@ const AppBar = () => {
     dispatch(clearStoreAction(notify_success));
     history.push(HOME_PAGE);
   }
-
-  //handle search
-  // const handleSearchMovie = (e) => {
-  //   setState({
-  //     ...state,
-  //     keySearch: e.target.value,
-  //   })
-  // }
-  //handle submit
-  // const handleSubmitSearch = (e) => {
-  //   e.preventDefault();
-  //   history.push('/searchMovie/' + state.keySearch)
-  // }
-
 
   const handleProfileClick = () => {
     dispatch(inforUserAction(userCredentials));

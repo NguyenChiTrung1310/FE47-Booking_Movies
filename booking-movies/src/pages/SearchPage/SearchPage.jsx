@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import SearchIcon from '@material-ui/icons/Search';
-import { Container, Grid } from '@material-ui/core';
+import { Grid, GridList } from '@material-ui/core';
 import { createAction } from './../../redux/actions'
 import { fetchSearchMovie } from '../../redux/actions/movieListAction';
 import { CLEAR_SEARCHKEY } from '../../constants/constant';
@@ -31,7 +31,9 @@ const SearchPage = (props) => {
       })
     } else {
       return (
-        <div>
+        <div
+          style={{ width: '1000px' }}
+        >
           <p className='error'>
             Search No Result
           </p>
@@ -45,24 +47,23 @@ const SearchPage = (props) => {
   }
 
   return (
-    <div >
+    <div
+    >
       <p style={{ fontSize: '20px' }}>
         Result found for{' '}
         <span className='text-danger'>{`"${props.match.params.tenPhim}"`}</span>
       </p>
-      {/* <div className='container'>
-        <div
-          className='row' 
-        >{renderMovieSearch()}</div>
-      </div> */}
       <div
       >
-        <Container
+        <GridList
           container
-          style={{ display: 'flex', justifyContent: 'center', alignContent: 'center', width: '1000px', overflow: 'hidden' }}
+          cellHeight={400}
+          cols={6}
+          className="test"
+          style={{ margin: '0px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}
         >
           {renderMovieSearch()}
-        </Container>
+        </GridList>
       </div>
     </div>
   )
