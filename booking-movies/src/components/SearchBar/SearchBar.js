@@ -1,34 +1,37 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 // import SearchIcon from '@material-ui/icons/Search';
 import { TextField } from '@material-ui/core';
 import { Autocomplete } from '@material-ui/lab';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
 import { useStyles } from './useStyles';
 import './SearchBar.scss';
 
 
 const SearchBar = ({ movieList }) => {
   const classes = useStyles();
-  const dispatch = useDispatch();
   const history = useHistory();
-  const [value, setValue] = useState({
-    value: '',
-  })
 
+  const nameMovie = movieList.map((item) => item.tenPhim);
+  console.log("Name Movie List", nameMovie);
 
+  const [value, setValue] = useState(nameMovie[0]);
+  //handle submit
+  const handleSubmitSearch = (newValue) => {
+    history.push('/searchMovie/' + newValue)
+  }
   return (
     <Autocomplete
+      value={value}
+      onChange={(e, newValue) => {
+        setValue(newValue);
+        handleSubmitSearch(newValue)
+      }}
       className={classes.search}
       disableClearable
       freeSolo
       id='search-bar'
       options={movieList.map((movie) => movie.tenPhim)}
-      value={value}
-      onChange={(event, newValue) => {
-        setValue(newValue);
-      }}
       renderInput={(params) => (
         <TextField
           className={classes.textField}
@@ -37,7 +40,6 @@ const SearchBar = ({ movieList }) => {
           label='Search movie...'
           margin='normal'
           variant='outlined'
-
         />
       )}
     />

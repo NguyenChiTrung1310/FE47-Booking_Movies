@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { AppBar as App, Button, IconButton, Menu, Toolbar, Typography, Drawer, CardMedia, Grid } from '@material-ui/core';
-import SearchIcon from '@material-ui/icons/Search';
+// import SearchIcon from '@material-ui/icons/Search';
 import AddIcon from '@material-ui/icons/Add';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import PersonIcon from '@material-ui/icons/Person';
@@ -361,17 +361,17 @@ const AppBar = () => {
   }
 
   //handle search
-  const handleSearchMovie = (e) => {
-    setState({
-      ...state,
-      keySearch: e.target.value,
-    })
-  }
+  // const handleSearchMovie = (e) => {
+  //   setState({
+  //     ...state,
+  //     keySearch: e.target.value,
+  //   })
+  // }
   //handle submit
-  const handleSubmitSearch = (e) => {
-    e.preventDefault();
-    history.push('/searchMovie/' + state.keySearch)
-  }
+  // const handleSubmitSearch = (e) => {
+  //   e.preventDefault();
+  //   history.push('/searchMovie/' + state.keySearch)
+  // }
 
 
   const handleProfileClick = () => {
