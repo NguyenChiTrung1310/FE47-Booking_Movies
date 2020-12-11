@@ -4,13 +4,14 @@ import { Container, Typography, Grid } from '@material-ui/core';
 import { fetchMovieDetail } from '../../redux/actions/movieListAction';
 import LoadingCool from '../../components/Spinner_Cool/SpinnerCool';
 import { CLEAR_DETAIL_MOVIE } from '../../constants/constant';
-import { createAction } from '../../redux/actions'; 
-import ModalPopup from './Modal/Modal.js'; 
+import { createAction } from '../../redux/actions';
+import ModalPopup from './Modal/Modal.js';
 import PropTypes from 'prop-types';
 import './MovieDetail.scss'
-import CustomScheduleMovie from '../../components/DetailMovie/CustomScheduleMovie/CustomScheduleMovie'; 
+import CustomScheduleMovie from '../../components/DetailMovie/CustomScheduleMovie/CustomScheduleMovie';
+
 const MovieDetailPage = (props) => {
-  const dispatch = useDispatch(); 
+  const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchMovieDetail(props.match.params.maPhimId));
     return () => {
@@ -36,35 +37,35 @@ const MovieDetailPage = (props) => {
       lichChieu,
       trailer,
     } = movieList;
- 
-    let newArray = []; 
+
+    let newArray = [];
     // Declare an empty object 
     let uniqueObject = {};
 
     // Loop for the array elements 
-    for (let i in lichChieu) { 
-      
+    for (let i in lichChieu) {
+
       // Extract the title 
-      let objTitle = lichChieu[i]['maRap']; 
+      let objTitle = lichChieu[i]['maRap'];
 
       // Use the title as the index 
-      uniqueObject[objTitle] = lichChieu[i]; 
-    } 
-      
+      uniqueObject[objTitle] = lichChieu[i];
+    }
+
     // Loop to push unique object into array 
-    for (let i in uniqueObject) { 
-      newArray.push(uniqueObject[i]); 
-    } 
- 
-    const yo=[];
-    for( let i in newArray){
+    for (let i in uniqueObject) {
+      newArray.push(uniqueObject[i]);
+    }
+
+    const yo = [];
+    for (let i in newArray) {
       // console.log(newArray[i]);
       yo.push(newArray[i].thongTinRap);
     }
     return (
       <Container className='main'>
         <Grid
-          container 
+          container
         >
           {/* Poster&NameMovie */}
           <Grid
@@ -74,7 +75,7 @@ const MovieDetailPage = (props) => {
           >
             <Grid
               container
-            > 
+            >
               <Grid
                 item
                 sm={6}
@@ -100,11 +101,11 @@ const MovieDetailPage = (props) => {
                 >
                   {maPhim}
                 </Typography>
-              </Grid> 
+              </Grid>
               <img
                 alt='hinhAnh'
                 className='image'
-                src={hinhAnh} 
+                src={hinhAnh}
               />
             </Grid>
           </Grid>
@@ -145,20 +146,20 @@ const MovieDetailPage = (props) => {
             </Typography>
             <Grid
               container
-            > 
-              <ModalPopup trailer={trailer}/>
-              
+            >
+              <ModalPopup trailer={trailer} />
+
             </Grid>
           </Grid>
-        </Grid> 
+        </Grid>
         <CustomScheduleMovie
           arrayData={newArray}
-          className='schedule-movie' 
-        /> 
+          className='schedule-movie'
+        />
       </Container>
 
     )
-  } 
+  }
 
   return (
     <div>
@@ -169,7 +170,7 @@ const MovieDetailPage = (props) => {
   )
 }
 
-MovieDetailPage.propTypes={
+MovieDetailPage.propTypes = {
   match: PropTypes.object,
   params: PropTypes.object,
 }

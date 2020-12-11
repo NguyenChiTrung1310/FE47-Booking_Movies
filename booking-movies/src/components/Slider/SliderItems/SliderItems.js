@@ -46,7 +46,6 @@ const SliderItems=({item})=>{
             >
              Date: 
               <Typography
-                className='days'
                 component='span'
                 style={{paddingLeft: '8px', color: '#03a9f4'}}
                 variant='body2'

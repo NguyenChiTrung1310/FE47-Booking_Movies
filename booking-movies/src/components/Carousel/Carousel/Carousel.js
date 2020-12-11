@@ -14,8 +14,6 @@ const CarouselBanner = ({ item }) => {
   const {
     tenPhim = 'Harry Potter',
     moTa = 'a boy is given the ability to become an adult superhero in times of need with a single magic word',
-    // ngayKhoiChieu = 'By: david f. sandberg',
-    // danhGia = 'NOT FOUND',
     hinhAnh = {BannerImg},
     maPhim  = 'NOT FOUND',
   } = item;
@@ -43,20 +41,6 @@ const CarouselBanner = ({ item }) => {
         >
           {moTa}
         </Typography>
-        {/* <Typography
-          className='style author'
-          component='h4'
-          variant='h4'
-        >
-          {ngayKhoiChieu}
-        </Typography> */}
-        {/* <Typography
-          className='style author'
-          component='h4'
-          variant='h4'
-        >
-          {danhGia}
-        </Typography> */}
         <Button
           className='style detail-btn'
           onClick={detailLink}
