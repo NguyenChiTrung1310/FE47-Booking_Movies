@@ -1,23 +1,12 @@
-import React   from 'react';   
-import { Container  , Typography, Grid  } from '@material-ui/core'
+import React from 'react';
+import { Container, Typography, Grid } from '@material-ui/core';
 import PropTypes from 'prop-types';
 
-const CustomInforMovie = ({item}) => {
-  const {
-    tenCumRap, 
-    tenRap,
-    // maRap, 
-    // maCumRap, 
-    // maHeThongRap, 
-    // tenHeThongRap
-  } =item; 
+const CustomInforMovie = ({ item }) => {
+  const { tenCumRap, tenRap } = item;
   return (
     <Container>
- 
-      <Grid
-        container
-         
-      >
+      <Grid container>
         <Grid
           item
           sm={6}
@@ -46,12 +35,11 @@ const CustomInforMovie = ({item}) => {
         </Grid>
       </Grid>
     </Container>
-  )
-}
+  );
+};
 
-CustomInforMovie.propTypes={
+CustomInforMovie.propTypes = {
   item: PropTypes.object,
-}
+};
 
-
-export default CustomInforMovie
+export default CustomInforMovie;

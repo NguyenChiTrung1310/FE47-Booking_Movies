@@ -6,11 +6,13 @@ import { createAction } from './../../redux/actions'
 import { fetchSearchMovie } from '../../redux/actions/movieListAction';
 import { CLEAR_SEARCHKEY } from '../../constants/constant';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import './SearchPage.scss'
 import SearchItem from './../../components/SearchItem/SearchItem'
 
 const SearchPage = (props) => {
   const dispatch = useDispatch();
+  const {movieSearchList} = props;
   useEffect(() => {
     dispatch(fetchSearchMovie(props.match.params.tenPhim));
     return () => {
@@ -19,7 +21,7 @@ const SearchPage = (props) => {
   }, [dispatch, props]);
 
   const renderMovieSearch = () => {
-    if (props.movieSearchList.length) {
+    if (movieSearchList.length) {
       return props.movieSearchList.map((item, index) => {
         return (
           <Grid
@@ -47,19 +49,17 @@ const SearchPage = (props) => {
   }
 
   return (
-    <div
-    >
+    <div >
       <p style={{ fontSize: '20px' }}>
         Result found for{' '}
         <span className='text-danger'>{`"${props.match.params.tenPhim}"`}</span>
       </p>
-      <div
-      >
+      <div >
         <GridList
-          container
           cellHeight={400}
+          className='test'
           cols={6}
-          className="test"
+          container
           style={{ margin: '0px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}
         >
           {renderMovieSearch()}
@@ -73,4 +73,11 @@ const mapStateToProps = (state) => {
     movieSearchList: state.movieList.initialMovieSearch,
   };
 };
+
+SearchPage.propTypes = {
+  match: PropTypes.object,
+  movieSearchList: PropTypes.array,
+  params: PropTypes.object,
+}
+
 export default connect(mapStateToProps)(SearchPage); 

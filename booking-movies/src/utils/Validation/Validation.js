@@ -11,8 +11,6 @@ const validatePhoneNumber = (soDt) => {
   return re.test(soDt);
 };
 
-
-
 const notify_warning = (error) => {
   toast.warn(error);
 };
@@ -38,10 +36,6 @@ const handleRegisterForm = (fields) => {
     validateEmail(fields['email']) === true &&
     validatePhoneNumber(fields['soDt']) === true
   ) {
-    // console.log(
-    //   `Account: ${fields['taiKhoan']} || Password: ${fields['matKhau']} || Fullname: ${fields['hoTen']} || Email: ${fields['email']} || Phone: ${fields['soDt']} || TypeGroup: ${fields['maNhom']} || TypeUser: ${fields['maLoaiNguoiDung']} `
-    // );
-    // notify_success();
     return 1;
   } else {
     //taiKhoan
@@ -84,12 +78,12 @@ const handleRegisterForm = (fields) => {
         return notify_warning(errors['soDt']);
       }
     }
-    //maNhom 
-      if (!fields['maNhom']) {
-        errors['maNhom'] = ' Type group field cannot be empty';
-        return notify_warning(errors['maNhom']);
-      }
-    //maNguoiDung 
+    //maNhom
+    if (!fields['maNhom']) {
+      errors['maNhom'] = ' Type group field cannot be empty';
+      return notify_warning(errors['maNhom']);
+    }
+    //maNguoiDung
     if (!fields['maLoaiNguoiDung']) {
       errors['maLoaiNguoiDung'] = ' Type User field cannot be empty';
       return notify_warning(errors['maLoaiNguoiDung']);
@@ -100,13 +94,10 @@ const handleRegisterForm = (fields) => {
 const handleLoginForm = (fields) => {
   var errors = {
     taiKhoan: '',
-    matKhau: ''
+    matKhau: '',
   };
 
-  if (
-    fields['taiKhoan'] !== '' &&
-    fields['matKhau'] !== ''
-  ) {
+  if (fields['taiKhoan'] !== '' && fields['matKhau'] !== '') {
     return 1;
   } else {
     // taiKhoan
@@ -121,6 +112,6 @@ const handleLoginForm = (fields) => {
       return notify_warning(errors['matKhau']);
     }
   }
-}
+};
 
 export { handleRegisterForm, validateEmail, handleLoginForm };

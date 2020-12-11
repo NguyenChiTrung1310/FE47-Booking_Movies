@@ -6,7 +6,6 @@ export async function request (url = '', method = '', data = {}) {
 
   const token = getTokenFromLocalStorage();
   
-
   if (token){
     config.headers = {
       Authorization: `Bearer ${token}`

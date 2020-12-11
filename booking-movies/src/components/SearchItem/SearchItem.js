@@ -5,6 +5,7 @@ import {
   Typography,
   CardMedia
 } from '@material-ui/core';
+import PropTypes from 'prop-types';
 const SearchItem = ({ item }) => {
   const { tenPhim, hinhAnh } = item;
   return (
@@ -20,14 +21,18 @@ const SearchItem = ({ item }) => {
           className='card-title1'
           component='h2'
           gutterBottom
-          variant='h5'
           style={{ color: '#ffffff' }}
+          variant='h5'
         >
           {tenPhim}
         </Typography>
       </CardActionArea>
     </Card>
   );
+};
+
+SearchItem.propTypes = {
+  item: PropTypes.object,
 };
 
 export default SearchItem;

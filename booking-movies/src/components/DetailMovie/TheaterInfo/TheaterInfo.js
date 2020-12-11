@@ -1,24 +1,12 @@
-import React   from 'react';   
-import { Container  , Typography, Grid  } from '@material-ui/core'
+import React from 'react';
+import { Container, Typography, Grid } from '@material-ui/core';
 import PropTypes from 'prop-types';
 
-
-const TheaterInfo = ({item}) => {
-  const {
-    tenCumRap, 
-    tenRap,
-    // maRap, 
-    // maCumRap, 
-    // maHeThongRap, 
-    // tenHeThongRap
-  } =item; 
+const TheaterInfo = ({ item }) => {
+  const { tenCumRap, tenRap } = item;
   return (
     <Container>
- 
-      <Grid
-        container
-         
-      >
+      <Grid container>
         <Grid
           item
           sm={3}
@@ -47,11 +35,11 @@ const TheaterInfo = ({item}) => {
         </Grid>
       </Grid>
     </Container>
-  )
-}
+  );
+};
 
-TheaterInfo.propTypes={
+TheaterInfo.propTypes = {
   item: PropTypes.object,
-}
+};
 
-export default TheaterInfo
+export default TheaterInfo;

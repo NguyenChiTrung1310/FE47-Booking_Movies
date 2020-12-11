@@ -11,12 +11,6 @@ const ScheduleMovie = ({ schedule }) => {
       const {
         thongTinRap,
         ngayChieuGioChieu,
-        // maLichChieu, 
-        // maRap, 
-        // maPhim, 
-        // tenPhim, 
-        // giaVe, 
-        // thoiLuong
       } = item;
 
       return (

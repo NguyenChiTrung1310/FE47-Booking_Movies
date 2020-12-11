@@ -22,7 +22,7 @@ export const StyleButton = withStyles({
   },
 })(Button);
 
-export const useStyles = makeStyles((theme, fade) => ({
+export const useStyles = makeStyles(() => ({
   app: {
     backgroundColor: '#1b1b1b',
   },
