@@ -59,7 +59,7 @@ const SearchPage = (props) => {
           cellHeight={400}
           className='test'
           cols={6}
-          container
+          container='true'
           style={{ margin: '0px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}
         >
           {renderMovieSearch()}
